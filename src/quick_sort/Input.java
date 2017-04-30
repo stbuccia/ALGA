@@ -11,11 +11,14 @@ public class Input <T>{
 	
 	public T[] items; //Attenzione è public
 	final Class<T> type; //final cioè non cambia (?)
-	private String path = "/home/buccia/file.txt"; // Percorso al file sorgente
+	private String path = "/home/ema/Scrivania/EWorkspace/ALGA/src/quick_sort/in.txt"; // Percorso al file sorgente dei dati
+	private int max_val;
 	
 	public Input(int n, Integer max_val, char mode, Class<T> tipo){
 		this.items=(T[])(new Object[n]);
 		this.type=tipo;
+		this.max_val = max_val;
+		
 		if (mode=='R')
 			this.riempiRandItems(max_val);
 		else if (mode=='K')
@@ -93,11 +96,29 @@ public class Input <T>{
 	private void add(String l, int i){
 		try {
 			System.out.println(l);
-			if (l!=null) items[i]=fromString(l.trim());
+			if (l!=null){
+				l = l.trim();
+				if(validateInput(l)) {
+					items[i]=fromString(l); 
+				} else {
+					items[i] = maxInRangeElement();
+				}
+			}
 			else items[i]=nullElement();
 		} catch (Exception e) {
 			items[i]=nullElement();
+		} 
+	}
+	
+	// valida l'input, controllando se è nel range accettato da max_value
+	private boolean validateInput(String s) {
+		T tc = fromString(s);
+		if(!isString() && toCompare(tc, fromInteger(max_val)) > 0 ||
+			isString() && toCompare(tc, fromString("zzzzzzzzzz")) > 0) {
+			System.out.println("fuori range");
+			return false;
 		}
+		return true;
 	}
 
 	private T nullElement(){
@@ -106,6 +127,12 @@ public class Input <T>{
 		else if (this.isDouble()) return (T)new Double(0.0);
 		
 		else return (T)String.valueOf("");
+	}
+	
+	private T maxInRangeElement(){
+		if(this.isInteger()) return fromInteger(max_val);
+		else if(this.isDouble()) return fromDouble((double)(max_val));
+		else return(fromString("zzzzzzzzzz"));
 	}
 	
 	public T fromInteger(Integer n){
