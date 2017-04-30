@@ -1,11 +1,13 @@
 package quick_sort;
 
+import java.util.concurrent.TimeUnit;
+
 public class Algoritmo {
 	public Algoritmo(){
 		
 	}
 	
-	public void doQuickSort(Input a, int primo, int ultimo){
+	public <T> void doQuickSort(Input<T> a, int primo, int ultimo){
 		if (primo<ultimo){
 			int k=this.pivot(a, primo, ultimo);
 			this.doQuickSort(a, primo, k-1);
@@ -13,13 +15,13 @@ public class Algoritmo {
 		}
 	}
 	
-	private int pivot(Input a, int primo, int ultimo){
+	private <T> int pivot(Input<T> a, int primo, int ultimo){
 		int j=primo;
-		Object p=a.items[primo];
-		Object temp;
+		T p=a.items[primo];
+		T temp;
 		for (int i=primo; i<=ultimo; i++){
 			this.passoAlgoritmo(a);
-			if (isMin(a.items[i],p)){
+			if (a.toCompare(a.items[i], p)<0){
 				j++;
 				temp=a.items[i]; 
 				a.items[i]=a.items[j];
@@ -31,26 +33,15 @@ public class Algoritmo {
 		return j;
 	}
 	
-	private boolean isMin(Object a, Object b){ //a e b stesso tipo
-		if (a instanceof Integer){
-			return (int)a<(int)b;
-		}
-		else if (a instanceof Double){
-			return (double)a<(double)b;
-		}
-		else{ //Per forza una stringa
-			return a.toString().compareToIgnoreCase(b.toString())<0;
-		}
-	}
-	
 	//Esegue ogni iterazione
-	private void passoAlgoritmo(Input in){
+	private <T> void passoAlgoritmo(Input<T> in){
 		
 		try{
-			Thread.sleep(50); //aspetta 0.05 s
+			TimeUnit.MILLISECONDS.sleep(50);
 		}catch(InterruptedException e){
 			e.printStackTrace();
 		}
+		
 		in.stampaItems();
 	}
 }
