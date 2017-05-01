@@ -11,7 +11,7 @@ public class Input <T>{
 	
 	public T[] items; //Attenzione è public
 	final Class<T> type; //final cioè non cambia (?)
-	private String path = "/home/ema/Scrivania/EWorkspace/ALGA/src/quick_sort/in.txt"; // Percorso al file sorgente dei dati
+	private String path = "/home/buccia/file.txt"; // Percorso al file sorgente dei dati
 	private int max_val;
 	
 	public Input(int n, Integer max_val, char mode, Class<T> tipo){
@@ -44,17 +44,11 @@ public class Input <T>{
 	
 	private void riempiKeyItems(Integer max_val){
 		Scanner keyboard = new Scanner(System.in);
-		boolean toolarge;
 		for (int i=0; i<items.length; i++){
-			toolarge=false;
 			try{
-				items[i]=this.fromString(keyboard.next());
-				if (!isString()) toolarge=(toCompare(items[i], fromInteger(max_val))>0);
-				else toolarge=(toCompare(items[i], fromString("zzzzzzzzzz"))>0);
-				if (toolarge){
-					System.out.println("L'input troppo grande");
-					i--;
-				}
+				String s=keyboard.next();
+				if (validateInput(s)) items[i]=this.fromString(s);
+				else i--;
 			}catch(NumberFormatException e){
 				System.out.println("L'input non è del tipo richiesto");
 				i--;
@@ -137,9 +131,7 @@ public class Input <T>{
 	
 	public T fromInteger(Integer n){
 		if (this.isInteger()) return (T)n;
-		
 		else if (this.isDouble()) return (T)new Double((double)n);
-		
 		else return (T)String.valueOf(n);
 	}
 	
