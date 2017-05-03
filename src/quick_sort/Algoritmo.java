@@ -6,9 +6,11 @@ import java.util.concurrent.TimeUnit;
 public class Algoritmo {
 	
 	private boolean byStep;
+	Scanner keyboard = null;
 	
 	
 	public Algoritmo(){
+		keyboard = new Scanner(System.in);
 		byStep = true;
 	}
 	
@@ -40,7 +42,6 @@ public class Algoritmo {
 	
 	//Esegue ogni iterazione
 	private <T> void passoAlgoritmo(Input<T> in){
-		Scanner keyboard = new Scanner(System.in);
 		boolean isPressed = false;
 		if (byStep){
 			while(!isPressed){
