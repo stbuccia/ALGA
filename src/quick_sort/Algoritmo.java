@@ -1,10 +1,15 @@
 package quick_sort;
 
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Algoritmo {
+	
+	private boolean byStep;
+	
+	
 	public Algoritmo(){
-		
+		byStep = true;
 	}
 	
 	public <T> void doQuickSort(Input<T> a, int primo, int ultimo){
@@ -35,13 +40,21 @@ public class Algoritmo {
 	
 	//Esegue ogni iterazione
 	private <T> void passoAlgoritmo(Input<T> in){
-		
-		try{
-			TimeUnit.MILLISECONDS.sleep(50);
-		}catch(InterruptedException e){
-			e.printStackTrace();
+		Scanner keyboard = new Scanner(System.in);
+		boolean isPressed = false;
+		if (byStep){
+			while(!isPressed){
+				isPressed = keyboard.nextLine().isEmpty();
+			}
 		}
-		
+		else{
+        		try {
+        			TimeUnit.MILLISECONDS.sleep(50);
+        		} catch(InterruptedException e) {
+        			e.printStackTrace();
+        		}
+		}	
+	
 		in.stampaItems();
 	}
 }
