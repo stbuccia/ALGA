@@ -5,13 +5,15 @@ import java.util.concurrent.TimeUnit;
 
 public class Algoritmo {
 	
-	private boolean byStep;
-	Scanner keyboard = null;
-	
+	private boolean byStep, inPausa, interrompi;
+	private Scanner keyboard = null;
+	private int delay=50;
 	
 	public Algoritmo(){
 		keyboard = new Scanner(System.in);
 		byStep = true;
+		inPausa=false;
+		interrompi=false;
 	}
 	
 	public <T> void doQuickSort(Input<T> a, int primo, int ultimo){
@@ -42,20 +44,39 @@ public class Algoritmo {
 	
 	//Esegue ogni iterazione
 	private <T> void passoAlgoritmo(Input<T> in){
-		boolean isPressed = false;
-		if (byStep){
-			while(!isPressed){
-				isPressed = keyboard.nextLine().isEmpty();
+		do{
+			boolean isPressed = false;
+			if (byStep){
+				while(!isPressed){
+					isPressed = keyboard.nextLine().isEmpty();
+				}
 			}
-		}
-		else{
-        		try {
-        			TimeUnit.MILLISECONDS.sleep(50);
-        		} catch(InterruptedException e) {
-        			e.printStackTrace();
-        		}
-		}	
-	
+			else{
+	        		try {
+	        			TimeUnit.MILLISECONDS.sleep(delay);
+	        		} catch(InterruptedException e) {
+	        			e.printStackTrace();
+	        		}
+			}			
+		}while(inPausa);
 		in.stampaItems();
+	}
+
+	
+	public void setDelay(int n){
+		this.delay=n;
+	}
+	
+	public void setByStep(boolean cond){
+		this.byStep=cond;
+	}
+	
+	public void setInPausa(){
+		this.inPausa=!inPausa;
+	}
+	
+	public void setInterrompi(boolean cond){
+		this.interrompi=cond;
+	
 	}
 }
