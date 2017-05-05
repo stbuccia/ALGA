@@ -1,4 +1,4 @@
-package quick_sort;
+package model;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,39 +10,58 @@ import java.util.Scanner;
 public class Input <T>{
 	
 	public T[] items; //Attenzione è public
-	final Class<T> type; //final cioè non cambia (?)
-	private String path = "/home/buccia/file.txt"; // Percorso al file sorgente dei dati
-	private int max_val;
+	final Class<T> type;
+	private String path; // Percorso al file sorgente dei dati
+	private Integer max_val;
+	private char mode;
+	
+	public void setMaxVal(Integer n){
+		this.max_val=n;
+	}
+	
+	public void setPath(String s){
+		this.path=s;
+	}
+	
+	public void setMode(char c){
+		this.mode=c;
+	}
 	
 	public Input(int n, Integer max_val, char mode, Class<T> tipo){
 		this.items=(T[])(new Object[n]);
 		this.type=tipo;
-		this.max_val = max_val;
-		
-		if (mode=='R')
-			this.riempiRandItems(max_val);
-		else if (mode=='K')
-			this.riempiKeyItems(max_val);
-		else if (mode=='F')
-			this.getFromFile(max_val);
-		//TODO:Implementare altri tipi di input
+		this.setMaxVal(max_val);
+		this.setPath("/home/buccia/file.txt");
+		this.setMode(mode);
+		this.riempiItems();
 	}
 	
-	private void riempiRandItems(Integer max_val){
+	private void riempiItems(){
+		if (this.mode=='R')
+			this.riempiRandItems();
+		else if (this.mode=='K')
+			this.riempiKeyItems();
+		else if (this.mode=='F')
+			this.getFromFile();
+		else 
+			System.out.println("Modalità input non disponibile");
+	}
+	
+	private void riempiRandItems(){
 		for (int i=0; i<items.length; i++){
 			if (!this.isString())
 				items[i]=fromDouble(Math.random()*max_val);
 			else{
-				int lunghezza=(int)(Math.random()*10+1);//massimo 10 caratteri
+				int lunghezza=(int)(Math.random()*10+1); //massimo 10 caratteri
 				String s="";
 				for (int j=0; j<lunghezza; j++)
-					s+=(char)(Math.random()*26+97);//Stringhe con solo lettere minuscole
+					s+=(char)(Math.random()*26+97); //Stringhe con solo lettere minuscole
 				items[i]=fromString(s);
 			}
 		}
 	}
 	
-	private void riempiKeyItems(Integer max_val){
+	private void riempiKeyItems(){
 		Scanner keyboard = new Scanner(System.in);
 		for (int i=0; i<items.length; i++){
 			try{
@@ -57,7 +76,7 @@ public class Input <T>{
 		keyboard.close();
 	}
 	
-	private void getFromFile(int max_val) {
+	private void getFromFile() {
 		
 		String l = "";
 		System.out.println(path);

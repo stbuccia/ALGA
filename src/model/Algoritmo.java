@@ -1,4 +1,4 @@
-package quick_sort;
+package model;
 
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;

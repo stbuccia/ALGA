@@ -1,4 +1,4 @@
-package quick_sort;
+package model;
 
 public class Ordinamento {
 	public static void main(String[] args){
