@@ -3,7 +3,6 @@ package model;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.lang.Math;
 import java.util.Scanner;
 
 
