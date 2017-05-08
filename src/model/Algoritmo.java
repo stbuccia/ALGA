@@ -11,9 +11,9 @@ public class Algoritmo {
 	
 	public Algoritmo(){
 		keyboard = new Scanner(System.in);
-		byStep = true;
+		this.setByStep(true);
 		inPausa=false;
-		interrompi=false;
+		this.setInterrompi(false);
 	}
 	
 	public <T> void doQuickSort(Input<T> a, int primo, int ultimo){

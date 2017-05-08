@@ -10,9 +10,9 @@ public class Input <T>{
 	
 	public T[] items; //Attenzione è public
 	final Class<T> type;
-	private String path; // Percorso al file sorgente dei dati
+	private String path=""; // Percorso al file sorgente dei dati
 	private Integer max_val;
-	private char mode;
+	private String mode;
 	
 	public void setMaxVal(Integer n){
 		this.max_val=n;
@@ -22,25 +22,24 @@ public class Input <T>{
 		this.path=s;
 	}
 	
-	public void setMode(char c){
+	public void setMode(String c){
 		this.mode=c;
 	}
 	
-	public Input(int n, Integer max_val, char mode, Class<T> tipo){
+	public Input(int n, Integer max_val, Class<T> tipo){
 		this.items=(T[])(new Object[n]);
 		this.type=tipo;
 		this.setMaxVal(max_val);
 		this.setPath("/home/buccia/file.txt");
-		this.setMode(mode);
-		this.riempiItems();
+		//this.setMode(mode);
 	}
 	
-	private void riempiItems(){
-		if (this.mode=='R')
+	public void riempiItems(){
+		if (this.mode.equals("Casuale"))
 			this.riempiRandItems();
-		else if (this.mode=='K')
+		else if (this.mode.equals("Tastiera"))
 			this.riempiKeyItems();
-		else if (this.mode=='F')
+		else if (this.mode.equals("File"))
 			this.getFromFile();
 		else 
 			System.out.println("Modalità input non disponibile");
@@ -78,12 +77,12 @@ public class Input <T>{
 	private void getFromFile() {
 		
 		String l = "";
-		System.out.println(path);
+		System.out.println(this.path);
 		BufferedReader reader = null;
 		File source = null;
 		
 		try {
-			source = new File(path);
+			source = new File(this.path);
 			reader = new BufferedReader(new FileReader(source));
 			for	(int i = 0; i < items.length; ++i) {
 				try {

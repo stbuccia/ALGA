@@ -12,15 +12,7 @@ public class Ordinamento extends Application{
 	public static void main(String[] args) {
 	
 		launch(args);
-		
-		int n=10;
-		Algoritmo a=new Algoritmo();
-		Input<Integer> i =new Input<Integer> (n, 100, 'R', Integer.class);
-		i.stampaItems();
-		a.doQuickSort(i, 0, n-1);
-		i.stampaItems();
-	
-	
+
 	}
 
 	@Override
