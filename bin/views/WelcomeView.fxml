@@ -19,14 +19,14 @@
       <TextField layoutX="211.0" layoutY="205.0" prefHeight="26.0" prefWidth="356.0" />
       <Text layoutX="50.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File sorgente " />
       <CheckBox layoutX="37.0" layoutY="362.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="410.0" text="Eseguire automaticamente l'algoritmo" />
-      <Text fill="#6e6e6e" layoutX="116.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QuickSort Animator">
+      <Text fill="#6e6e6e" layoutX="140.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QuickSort Animator">
          <font>
-            <Font name="Source Code Pro" size="36.0" />
+            <Font name="Inconsolata" size="37.0" />
          </font>
       </Text>
-      <Text fill="#b5b5b5" layoutX="196.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Un fighissimo animatore di algoritmi">
+      <Text fill="#b5b5b5" layoutX="188.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Un fighissimo animatore di algoritmi">
          <font>
-            <Font name="Source Sans Pro" size="15.0" />
+            <Font size="15.0" />
          </font>
       </Text>
    </children>
