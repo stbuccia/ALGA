@@ -3,6 +3,8 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.event.ActionEvent;
@@ -13,32 +15,104 @@ public class WelcomeWindowController {
 	
 	@FXML private ComboBox<String> Tipo, Modalita;
 	@FXML private CheckBox auto;
-	@FXML private TextField path, delay, num;
+	@FXML private TextField path, delay, num, value;
+	@FXML private Label stato;
+	@FXML private Button start;
+	
+	@FXML
+	void togglePath(){
+		String s = Modalita.getSelectionModel().getSelectedItem();
+		if (s.equals("File")) path.setDisable(false);
+		else path.setDisable(true);
+	}
+	
+	@FXML
+	void toggleDelay(){
+		delay.setText("50");
+		controlDelay();
+		controlNumber();
+		controlMaxValue();
+		delay.setDisable(!auto.isSelected());
+	}
+	
+	@FXML
+	void controlDelay(){
+		int ms=0;
+		String s=delay.getText();
+		stato.setText("");
+		boolean disable=false;
+		try{
+			ms=Integer.parseInt(s);
+		}
+		catch(NumberFormatException e){
+			stato.setText("Il delay deve essere un numero");
+			disable=true;
+		}
+		if(ms <0 || ms >5000){
+			stato.setText("Il delay deve essere un intero tra 0 e 5000 ");
+			disable=true;
+		}
+		start.setDisable(disable);
+	}
+	
+	@FXML
+	void controlNumber(){
+		int n=1;
+		String s=num.getText();
+		stato.setText("");
+		boolean disable=false;
+		
+		try{
+			n=Integer.parseInt(s);
+		}
+		catch(NumberFormatException e){
+			stato.setText("Il numero degli elementi non è valido");
+			disable=true;
+		}
+		if(n <1 || n >1000){
+			stato.setText("Il numero deglie elementi deve essere un intero tra 1 e 1000 ");
+			disable=true;
+		}
+		start.setDisable(disable);
+	}
+	
+	@FXML
+	void controlMaxValue(){
+		int n=1;
+		String s=value.getText();
+		stato.setText("");
+		boolean disable=false;
+		
+		try{
+			n=Integer.parseInt(s);
+		}
+		catch(NumberFormatException e){
+			stato.setText("Il valore massimo degli elementi non è valido");
+			disable=true;
+		}
+		if(n <1 || n >1000){
+			stato.setText("Il valore massimo degli elementi deve essere un intero tra 1 e 1000 ");
+			disable=true;
+		}
+		start.setDisable(disable);
+	}
 	
 	@FXML 
 	void onButtonPressed(ActionEvent event) {
-		int n=100, ms=50;
+		int n;
 		
 		model.Input i;
 		model.Algoritmo a=new model.Algoritmo();
-		
 		if (auto.isSelected()) a.setByStep(false);
 		
-		try{
-			a.setDelay(Integer.parseInt(delay.getText()));
-		}catch(NumberFormatException e){
-			System.out.println("Il delay deve essere un numero: impostato per default a 50");
-		}
+		a.setDelay(Integer.parseInt(delay.getText()));
 		
-		try{
-			n=Integer.parseInt(num.getText());
-		}catch(NumberFormatException e){
-			System.out.println("Il numero degli elementi deve essere un intero: impostato per default a 100");
-		}
+		n=Integer.parseInt(num.getText());
 		
 		i=creaInput(n, Tipo.getSelectionModel().getSelectedItem());
 		i.setMode(Modalita.getSelectionModel().getSelectedItem());
 		i.setPath(path.getText());
+		i.setMaxVal(Integer.parseInt(value.getText()));
 		i.riempiItems();
 		i.stampaItems();
 		
@@ -54,6 +128,7 @@ public class WelcomeWindowController {
 	
 	@FXML
     public void initialize() {
-		
+		path.setDisable(true);
+		//start.setDisable(false);
     }
 }
