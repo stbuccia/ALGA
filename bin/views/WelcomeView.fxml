@@ -43,11 +43,13 @@
 	      </items>
 		</ComboBox>
       <Text layoutX="50.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File sorgente " />
-      <TextField id="path" fx:id="path" layoutX="211.0" layoutY="205.0" prefHeight="26.0" prefWidth="356.0" text="/home/buccia/file.txt" onAction="#onButtonPressed"/>
+      <TextField id="path" fx:id="path" layoutX="211.0" layoutY="205.0" onAction="#onButtonPressed" prefHeight="26.0" prefWidth="356.0" text="/home/buccia/file.txt" />
       <Text layoutX="50.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delay nell'esecuzione" />
-      <TextField id="delay" fx:id="delay" layoutX="211.0" layoutY="246.0" prefHeight="26.0" prefWidth="95.0" text="50" onAction="#onButtonPressed" />
+      <TextField id="delay" fx:id="delay" layoutX="211.0" layoutY="246.0" onAction="#onButtonPressed" prefHeight="26.0" prefWidth="95.0" text="50" />
       <Text layoutX="333.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ms" />
       <CheckBox fx:id="auto" layoutX="37.0" layoutY="362.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="410.0" text="Eseguire automaticamente l'algoritmo" />
       <Button layoutX="517.0" layoutY="358.0" mnemonicParsing="false" onAction="#onButtonPressed" text="Start" />
+      <Text layoutX="50.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero Elementi" />
+      <TextField id="num" fx:id="num" layoutX="211.0" layoutY="283.0" onAction="#onButtonPressed" prefHeight="26.0" prefWidth="95.0" text="100" />
    </children>
 </AnchorPane>

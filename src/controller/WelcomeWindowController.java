@@ -13,28 +13,32 @@ public class WelcomeWindowController {
 	
 	@FXML private ComboBox<String> Tipo, Modalita;
 	@FXML private CheckBox auto;
-	@FXML private TextField path;
-	@FXML private TextField delay;
+	@FXML private TextField path, delay, num;
 	
 	@FXML 
 	void onButtonPressed(ActionEvent event) {
-		int n=10, ms=50;
+		int n=100, ms=50;
 		
 		model.Input i;
 		model.Algoritmo a=new model.Algoritmo();
 		
 		if (auto.isSelected()) a.setByStep(false);
-		System.out.println(delay.getText());
+		
 		try{
 			a.setDelay(Integer.parseInt(delay.getText()));
 		}catch(NumberFormatException e){
 			System.out.println("Il delay deve essere un numero: impostato per default a 50");
 		}
 		
+		try{
+			n=Integer.parseInt(num.getText());
+		}catch(NumberFormatException e){
+			System.out.println("Il numero degli elementi deve essere un intero: impostato per default a 100");
+		}
+		
 		i=creaInput(n, Tipo.getSelectionModel().getSelectedItem());
 		i.setMode(Modalita.getSelectionModel().getSelectedItem());
 		i.setPath(path.getText());
-		
 		i.riempiItems();
 		i.stampaItems();
 		
