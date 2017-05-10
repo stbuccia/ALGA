@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.File;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -22,46 +24,61 @@ public class WelcomeWindowController {
 	@FXML
 	void togglePath(){
 		String s = Modalita.getSelectionModel().getSelectedItem();
-		if (s.equals("File")) path.setDisable(false);
-		else path.setDisable(true);
+		path.setDisable(!s.equals("File"));
+		control();
+	}
+	
+	@FXML
+	void toggleValue(){
+		String s = Tipo.getSelectionModel().getSelectedItem();
+		value.setDisable(s.equals("Stringhe"));
+		control();
 	}
 	
 	@FXML
 	void toggleDelay(){
-		delay.setText("50");
-		controlDelay();
-		controlNumber();
-		controlMaxValue();
 		delay.setDisable(!auto.isSelected());
+		control();
 	}
-	
-	@FXML
-	void controlDelay(){
+
+	boolean controlPath(){
+		boolean disable=false;
+		if (!path.isDisable()){
+			String s=path.getText();
+			if (!new File(s).exists()){
+				stato.setText("Il file non esiste");
+				disable=true;
+				start.setDisable(true);
+			}
+		}
+		return (!disable);
+	}
+
+	boolean controlDelay(){
 		int ms=0;
 		String s=delay.getText();
-		stato.setText("");
 		boolean disable=false;
-		try{
-			ms=Integer.parseInt(s);
+		if (!delay.isDisable()){
+			try{
+				ms=Integer.parseInt(s);
+			}
+			catch(NumberFormatException e){
+				stato.setText("Il delay deve essere un numero");
+				disable=true;
+			}
+			if(ms <0 || ms >5000){
+				stato.setText("Il delay deve essere un intero tra 0 e 5000 ");
+				disable=true;
+			}
 		}
-		catch(NumberFormatException e){
-			stato.setText("Il delay deve essere un numero");
-			disable=true;
-		}
-		if(ms <0 || ms >5000){
-			stato.setText("Il delay deve essere un intero tra 0 e 5000 ");
-			disable=true;
-		}
-		start.setDisable(disable);
+		if (disable) start.setDisable(true);
+		return (!disable);
 	}
 	
-	@FXML
-	void controlNumber(){
+	boolean controlNumber(){
 		int n=1;
 		String s=num.getText();
-		stato.setText("");
 		boolean disable=false;
-		
 		try{
 			n=Integer.parseInt(s);
 		}
@@ -73,28 +90,37 @@ public class WelcomeWindowController {
 			stato.setText("Il numero deglie elementi deve essere un intero tra 1 e 1000 ");
 			disable=true;
 		}
-		start.setDisable(disable);
+		if (disable) start.setDisable(true);
+		return (!disable);
+	}
+	
+	boolean controlMaxValue(){
+		int n=1;
+		String s=value.getText();
+		boolean disable=false;
+		if (!value.isDisable()){
+			try{
+				n=Integer.parseInt(s);
+			}
+			catch(NumberFormatException e){
+				stato.setText("Il valore massimo degli elementi non è valido");
+				disable=true;
+			}
+			if(n <1 || n >1000){
+				stato.setText("Il valore massimo degli elementi deve essere un intero tra 1 e 1000 ");
+				disable=true;
+			}
+		}
+		if (disable) start.setDisable(true);
+		return (!disable);
 	}
 	
 	@FXML
-	void controlMaxValue(){
-		int n=1;
-		String s=value.getText();
-		stato.setText("");
-		boolean disable=false;
-		
-		try{
-			n=Integer.parseInt(s);
+	void control(){
+		if (controlPath() && controlDelay() && controlNumber() && controlMaxValue()){
+			start.setDisable(false);
+			stato.setText("");
 		}
-		catch(NumberFormatException e){
-			stato.setText("Il valore massimo degli elementi non è valido");
-			disable=true;
-		}
-		if(n <1 || n >1000){
-			stato.setText("Il valore massimo degli elementi deve essere un intero tra 1 e 1000 ");
-			disable=true;
-		}
-		start.setDisable(disable);
 	}
 	
 	@FXML 
@@ -128,7 +154,24 @@ public class WelcomeWindowController {
 	
 	@FXML
     public void initialize() {
+		
+		Tipo.getSelectionModel().select("Interi");
+		Modalita.getSelectionModel().select("Casuale");
+		
+		path.setText("/home/buccia/file.txt");
 		path.setDisable(true);
-		//start.setDisable(false);
+		
+		delay.setText("50");
+		delay.setDisable(false);
+		
+		num.setText("100");
+		num.setDisable(false);
+		
+		value.setText("100");
+		value.setDisable(false);
+		
+		auto.setSelected(true);
+		stato.setText("");
+		start.setDisable(false);
     }
 }

@@ -24,7 +24,7 @@
          </font>
       </Text>
       <Text layoutX="50.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo in input" />
-      <ComboBox fx:id="Tipo" layoutX="211.0" layoutY="124.0" prefWidth="150.0" value="Interi">
+      <ComboBox fx:id="Tipo" layoutX="211.0" layoutY="124.0" onHiding="#toggleValue" prefWidth="150.0">
 	      <items>
             <FXCollections fx:factory="observableArrayList">
             	<String fx:id="int" fx:value="Interi" />
@@ -34,7 +34,7 @@
 	      </items>
       </ComboBox>
       <Text layoutX="50.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modalità di Input" />
-      <ComboBox fx:id="Modalita" layoutX="211.0" layoutY="160.0" onHiding="#togglePath" prefWidth="150.0" value="Casuale">
+      <ComboBox fx:id="Modalita" layoutX="211.0" layoutY="160.0" onHiding="#togglePath" prefWidth="150.0">
       	<items>
             <FXCollections fx:factory="observableArrayList">
             	<String fx:id="random" fx:value="Casuale" />
@@ -44,16 +44,17 @@
 	      </items>
 		</ComboBox>
       <Text layoutX="50.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File sorgente " />
-      <TextField id="path" fx:id="path" layoutX="211.0" layoutY="205.0" onAction="#onButtonPressed" prefHeight="26.0" prefWidth="356.0" text="/home/buccia/file.txt" />
+      <TextField id="path" fx:id="path" layoutX="211.0" layoutY="205.0" onAction="#onButtonPressed" onKeyReleased="#control" prefHeight="26.0" prefWidth="356.0" />
       <Text layoutX="50.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delay nell'esecuzione" />
-      <TextField id="delay" fx:id="delay" layoutX="211.0" layoutY="246.0" onAction="#onButtonPressed" onKeyReleased="#controlDelay" prefHeight="26.0" prefWidth="95.0" text="50" />
+      <TextField id="delay" fx:id="delay" layoutX="211.0" layoutY="246.0" onAction="#onButtonPressed" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
       <Text layoutX="333.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ms" />
-      <CheckBox fx:id="auto" layoutX="37.0" layoutY="434.0" mnemonicParsing="false" onAction="#toggleDelay" prefHeight="18.0" prefWidth="410.0" selected="true" text="Eseguire automaticamente l'algoritmo" />
-      <Button fx:id="start" layoutX="521.0" layoutY="431.0" mnemonicParsing="false" onAction="#onButtonPressed" text="Start" />
+      <CheckBox fx:id="auto" layoutX="37.0" layoutY="434.0" mnemonicParsing="false" onAction="#toggleDelay" prefHeight="18.0" prefWidth="398.0" text="Eseguire automaticamente l'algoritmo" />
+      <Button fx:id="start" layoutX="521.0" layoutY="431.0" mnemonicParsing="false" onAction="#onButtonPressed" prefHeight="25.0" prefWidth="60.0" text="Inizia" />
       <Text layoutX="50.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero Elementi" />
-      <TextField id="num" fx:id="num" layoutX="211.0" layoutY="283.0" onAction="#onButtonPressed" onKeyReleased="#controlNumber" prefHeight="26.0" prefWidth="95.0" text="100" />
+      <TextField id="num" fx:id="num" layoutX="211.0" layoutY="283.0" onAction="#onButtonPressed" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
       <Label fx:id="stato" layoutX="50.0" layoutY="391.0" prefHeight="15.0" prefWidth="557.0" textFill="RED" />
       <Text layoutX="50.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valore Massimo" />
-      <TextField id="value" fx:id="value" layoutX="211.0" layoutY="321.0" onAction="#onButtonPressed" onKeyReleased="#controlMaxValue" prefHeight="26.0" prefWidth="95.0" text="100" />
+      <TextField id="value" fx:id="value" layoutX="211.0" layoutY="321.0" onAction="#onButtonPressed" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
+      <Button layoutX="442.0" layoutY="431.0" mnemonicParsing="false" onAction="#initialize" prefHeight="25.0" prefWidth="79.0" text="Ripristina" />
    </children>
 </AnchorPane>
