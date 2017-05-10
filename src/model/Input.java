@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Input <T>{
 	
-	public T[] items; //Attenzione è public
+	public T[] items;
 	final Class<T> type;
 	private String path=""; // Percorso al file sorgente dei dati
 	private Integer max_val;
@@ -24,6 +24,10 @@ public class Input <T>{
 	
 	public void setMode(String c){
 		this.mode=c;
+	}
+	
+	public Integer getMaxVal(){
+		return max_val;
 	}
 	
 	public Input(int n, Integer max_val, Class<T> tipo){
