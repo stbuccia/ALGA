@@ -27,6 +27,7 @@ public class WelcomeWindowController {
 	
 	@FXML
 	void toggleValue(){
+		value.setText("100"); //altrimenti potrebbe essere sollevata un'eccezione
 		String s = Tipo.getSelectionModel().getSelectedItem();
 		value.setDisable(s.equals("Stringhe"));
 		control();
@@ -34,6 +35,7 @@ public class WelcomeWindowController {
 	
 	@FXML
 	void toggleDelay(){
+		delay.setText("50"); //altrimenti potrebbe essere sollevata un'eccezione
 		delay.setDisable(!auto.isSelected());
 		control();
 	}
@@ -125,24 +127,21 @@ public class WelcomeWindowController {
 		
 		int n;
 		model.Main.u.setMyScene(Scenes.QSORT);
-		
-		model.Input i;
-		model.Algoritmo a=new model.Algoritmo();
-		if (auto.isSelected()) a.setByStep(false);
-		
-		a.setDelay(Integer.parseInt(delay.getText()));
-		
+
 		n=Integer.parseInt(num.getText());
-		
-		i=new model.Input(n, Tipo.getSelectionModel().getSelectedItem());
+		model.Input i=new model.Input(n, Tipo.getSelectionModel().getSelectedItem());
 		i.setMode(Modalita.getSelectionModel().getSelectedItem());
 		i.setPath(path.getText());
 		i.setMaxVal(Integer.parseInt(value.getText()));
 		i.riempiItems();
-		i.stampaItems();
 		
-		a.doQuickSort(i, 0, n-1);
-		i.stampaItems();
+		model.Algoritmo a=new model.Algoritmo(i);
+		if (auto.isSelected()) a.setByStep(false);
+		a.setDelay(Integer.parseInt(delay.getText()));
+		a.creaRects(100, 100);
+		a.stampaItems();
+		a.doQuickSort(0, n-1);
+		a.stampaItems();
 	}
 	
 	@FXML
@@ -151,7 +150,7 @@ public class WelcomeWindowController {
 		Tipo.getSelectionModel().select("Interi");
 		Modalita.getSelectionModel().select("Casuale");
 		
-		path.setText("/home/buccia/file.txt");
+		path.setText("/home/buccia/file.txdouble)((double)(s.charAt(i-'a')+1)t");
 		path.setDisable(true);
 		
 		delay.setText("50");

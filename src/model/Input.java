@@ -10,8 +10,13 @@ public class Input{
 	
 	public Object[] items;
 	private String path=""; // Percorso al file sorgente dei dati
-	private Integer max_val;
+	private Integer max_val=0, lunghStr=10;
 	private String mode, type;
+	
+	public Input(int n, String tipo){
+		this.items=new Object[n];
+		this.type=tipo;
+	}
 	
 	public void setMaxVal(Integer n){
 		this.max_val=n;
@@ -27,11 +32,6 @@ public class Input{
 	
 	public Integer getMaxVal(){
 		return max_val;
-	}
-	
-	public Input(int n, String tipo){
-		this.items=new Object[n];
-		this.type=tipo;
 	}
 	
 	public void riempiItems(){
@@ -50,7 +50,7 @@ public class Input{
 			if (!this.isString())
 				items[i]=fromDouble(Math.random()*max_val);
 			else{
-				int lunghezza=(int)(Math.random()*10+1); //massimo 10 caratteri
+				int lunghezza=(int)(Math.random()*lunghStr+1); //massimo 10 caratteri
 				String s="";
 				for (int j=0; j<lunghezza; j++)
 					s+=(char)(Math.random()*26+97); //Stringhe con solo lettere minuscole
@@ -124,8 +124,7 @@ public class Input{
 	// valida l'input, controllando se è nel range accettato da max_value
 	private boolean validateInput(String s) {
 		Object tc = fromString(s);
-		if(!isString() && toCompare(tc, fromInteger(max_val)) > 0 ||
-			isString() && toCompare(tc, fromString("zzzzzzzzzz")) > 0) {
+		if(toCompare(tc, maxInRangeElement()) > 0 ) {
 			System.out.println("fuori range");
 			return false;
 		}
@@ -141,7 +140,12 @@ public class Input{
 	private Object maxInRangeElement(){
 		if(this.isInteger()) return fromInteger(max_val);
 		else if(this.isDouble()) return fromDouble((double)(max_val));
-		else return(fromString("zzzzzzzzzz"));
+		else{ 
+			String s="";
+			for (int i=0; i<lunghStr; i++)
+				s+="z";
+			return(fromString(s));
+		}
 	}
 	
 	public Object fromInteger(Integer n){
@@ -181,7 +185,7 @@ public class Input{
 		else if (isDouble()){
 			return ((Double)t1).compareTo((Double)t2);
 		}
-		else{ //Per forza una stringa
+		else{
 			return t1.toString().compareToIgnoreCase(t2.toString());
 		}
 	}
@@ -192,8 +196,4 @@ public class Input{
 		System.out.println();
 	}
 	
-	public int getItemHeight(){
-		int out = 0;
-		return out;
-	}
 }
