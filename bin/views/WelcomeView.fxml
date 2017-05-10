@@ -8,53 +8,63 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeWindowController">
    <children>
-      <Text fill="#6e6e6e" layoutX="116.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QuickSort Animator">
-         <font>
-            <Font name="Inconsolata Medium" size="36.0" />
-         </font>
-      </Text>
-      <Text fill="#b5b5b5" layoutX="196.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Un fighissimo animatore di algoritmi">
-         <font>
-            <Font name="Source Sans Pro" size="15.0" />
-         </font>
-      </Text>
-      <Text layoutX="50.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo in input" />
-      <ComboBox fx:id="Tipo" layoutX="211.0" layoutY="124.0" onHiding="#toggleValue" prefWidth="150.0">
-	      <items>
-            <FXCollections fx:factory="observableArrayList">
-            	<String fx:id="int" fx:value="Interi" />
-                <String fx:id="double" fx:value="Reali" />
-                <String fx:id="string" fx:value="Stringhe" />
-            </FXCollections>
-	      </items>
-      </ComboBox>
-      <Text layoutX="50.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modalità di Input" />
-      <ComboBox fx:id="Modalita" layoutX="211.0" layoutY="160.0" onHiding="#togglePath" prefWidth="150.0">
-      	<items>
-            <FXCollections fx:factory="observableArrayList">
-            	<String fx:id="random" fx:value="Casuale" />
-                <String fx:id="keyboard" fx:value="Tastiera" />
-                <String fx:id="file" fx:value="File" />
-            </FXCollections>
-	      </items>
-		</ComboBox>
-      <Text layoutX="50.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File sorgente " />
-      <TextField id="path" fx:id="path" layoutX="211.0" layoutY="205.0" onAction="#onButtonPressed" onKeyReleased="#control" prefHeight="26.0" prefWidth="356.0" />
-      <Text layoutX="50.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delay nell'esecuzione" />
-      <TextField id="delay" fx:id="delay" layoutX="211.0" layoutY="246.0" onAction="#onButtonPressed" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
-      <Text layoutX="333.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ms" />
-      <CheckBox fx:id="auto" layoutX="37.0" layoutY="434.0" mnemonicParsing="false" onAction="#toggleDelay" prefHeight="18.0" prefWidth="398.0" text="Eseguire automaticamente l'algoritmo" />
-      <Button fx:id="start" layoutX="502.0" layoutY="431.0" mnemonicParsing="false" onAction="#onButtonPressed" prefHeight="25.0" prefWidth="79.0" text="Inizia" />
-      <Text layoutX="50.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero Elementi" />
-      <TextField id="num" fx:id="num" layoutX="211.0" layoutY="283.0" onAction="#onButtonPressed" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
-      <Label fx:id="stato" layoutX="50.0" layoutY="391.0" prefHeight="15.0" prefWidth="557.0" textFill="RED" />
-      <Text layoutX="50.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valore Massimo" />
-      <TextField id="value" fx:id="value" layoutX="211.0" layoutY="321.0" onAction="#onButtonPressed" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
-      <Button layoutX="419.0" layoutY="431.0" mnemonicParsing="false" onAction="#initialize" prefHeight="25.0" prefWidth="79.0" text="Ripristina" />
-   </children>
+   		<ScrollPane prefHeight="500" prefWidth="621" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <Pane prefHeight="500" prefWidth="621">
+               <children>
+                  <Text fill="#6e6e6e" layoutX="116.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QuickSort Animator">
+			         <font>
+			            <Font name="Inconsolata Medium" size="36.0" />
+			         </font>
+			      </Text>
+			      <Text fill="#b5b5b5" layoutX="196.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Un fighissimo animatore di algoritmi">
+			         <font>
+			            <Font name="Source Sans Pro" size="15.0" />
+			         </font>
+			      </Text>
+			      <Text layoutX="50.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo in input" />
+			      <ComboBox fx:id="Tipo" layoutX="211.0" layoutY="124.0" onHiding="#toggleValue" prefWidth="150.0">
+				      <items>
+			            <FXCollections fx:factory="observableArrayList">
+			            	<String fx:id="int" fx:value="Interi" />
+			                <String fx:id="double" fx:value="Reali" />
+			                <String fx:id="string" fx:value="Stringhe" />
+			            </FXCollections>
+				      </items>
+			      </ComboBox>
+			      <Text layoutX="50.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modalità di Input" />
+			      <ComboBox fx:id="Modalita" layoutX="211.0" layoutY="160.0" onHiding="#togglePath" prefWidth="150.0">
+			      	<items>
+			            <FXCollections fx:factory="observableArrayList">
+			            	<String fx:id="random" fx:value="Casuale" />
+			                <String fx:id="keyboard" fx:value="Tastiera" />
+			                <String fx:id="file" fx:value="File" />
+			            </FXCollections>
+				      </items>
+					</ComboBox>
+			      <Text layoutX="50.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File sorgente " />
+			      <TextField id="path" fx:id="path" layoutX="211.0" layoutY="205.0" onAction="#onButtonPressed" onKeyReleased="#control" prefHeight="26.0" prefWidth="356.0" />
+			      <Text layoutX="50.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delay nell'esecuzione" />
+			      <TextField id="delay" fx:id="delay" layoutX="211.0" layoutY="246.0" onAction="#onButtonPressed" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
+			      <Text layoutX="333.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ms" />
+			      <CheckBox fx:id="auto" layoutX="37.0" layoutY="434.0" mnemonicParsing="false" onAction="#toggleDelay" prefHeight="18.0" prefWidth="398.0" text="Eseguire automaticamente l'algoritmo" />
+			      <Button fx:id="start" layoutX="502.0" layoutY="431.0" mnemonicParsing="false" onAction="#inizia" prefHeight="25.0" prefWidth="79.0" text="Inizia" />
+			      <Text layoutX="50.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero Elementi" />
+			      <TextField id="num" fx:id="num" layoutX="211.0" layoutY="283.0" onAction="#onButtonPressed" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
+			      <Label fx:id="stato" layoutX="50.0" layoutY="391.0" prefHeight="15.0" prefWidth="557.0" textFill="RED" />
+			      <Text layoutX="50.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valore Massimo" />
+			      <TextField id="value" fx:id="value" layoutX="211.0" layoutY="321.0" onAction="#onButtonPressed" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
+			      <Button layoutX="419.0" layoutY="431.0" mnemonicParsing="false" onAction="#initialize" prefHeight="25.0" prefWidth="79.0" text="Ripristina" />
+				</children>
+            </Pane>
+         </content>
+      </ScrollPane>
+         </children>
 </AnchorPane>

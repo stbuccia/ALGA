@@ -123,6 +123,28 @@ public class WelcomeWindowController {
 		}
 	}
 	
+	@FXML
+	void inizia(ActionEvent event){
+		
+		int n;
+		model.Main.u.setMyScene(Scenes.QSORT);
+
+		model.Input i;
+		model.Algoritmo a=new model.Algoritmo();
+		if (auto.isSelected()) a.setByStep(false);
+		
+		a.setDelay(Integer.parseInt(delay.getText()));
+		
+		n=Integer.parseInt(num.getText());
+		
+		i=creaInput(n, Tipo.getSelectionModel().getSelectedItem());
+		i.setMode(Modalita.getSelectionModel().getSelectedItem());
+		i.setPath(path.getText());
+		i.setMaxVal(Integer.parseInt(value.getText()));
+		i.riempiItems();
+		i.stampaItems();
+	}
+	
 	@FXML 
 	void onButtonPressed(ActionEvent event) {
 		int n;

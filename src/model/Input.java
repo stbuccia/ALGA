@@ -134,9 +134,7 @@ public class Input <T>{
 
 	private T nullElement(){
 		if (this.isInteger()) return (T)new Integer(0);
-		
 		else if (this.isDouble()) return (T)new Double(0.0);
-		
 		else return (T)String.valueOf("");
 	}
 	
@@ -192,5 +190,10 @@ public class Input <T>{
 		for (int i=0; i<items.length; i++)
 			System.out.print(items[i]+" ");
 		System.out.println();
+	}
+	
+	public int getItemHeight(){
+		int out = 0;
+		return out;
 	}
 }
