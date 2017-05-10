@@ -6,13 +6,12 @@ import java.io.FileReader;
 import java.util.Scanner;
 
 
-public class Input <T>{
+public class Input{
 	
-	public T[] items;
-	final Class<T> type;
+	public Object[] items;
 	private String path=""; // Percorso al file sorgente dei dati
 	private Integer max_val;
-	private String mode;
+	private String mode, type;
 	
 	public void setMaxVal(Integer n){
 		this.max_val=n;
@@ -30,12 +29,9 @@ public class Input <T>{
 		return max_val;
 	}
 	
-	public Input(int n, Integer max_val, Class<T> tipo){
-		this.items=(T[])(new Object[n]);
+	public Input(int n, String tipo){
+		this.items=new Object[n];
 		this.type=tipo;
-		this.setMaxVal(max_val);
-		this.setPath("/home/buccia/file.txt");
-		//this.setMode(mode);
 	}
 	
 	public void riempiItems(){
@@ -127,7 +123,7 @@ public class Input <T>{
 	
 	// valida l'input, controllando se è nel range accettato da max_value
 	private boolean validateInput(String s) {
-		T tc = fromString(s);
+		Object tc = fromString(s);
 		if(!isString() && toCompare(tc, fromInteger(max_val)) > 0 ||
 			isString() && toCompare(tc, fromString("zzzzzzzzzz")) > 0) {
 			System.out.println("fuori range");
@@ -136,53 +132,53 @@ public class Input <T>{
 		return true;
 	}
 
-	private T nullElement(){
-		if (this.isInteger()) return (T)new Integer(0);
-		else if (this.isDouble()) return (T)new Double(0.0);
-		else return (T)String.valueOf("");
+	private Object nullElement(){
+		if (this.isInteger()) return new Integer(0);
+		else if (this.isDouble()) return new Double(0.0);
+		else return String.valueOf("");
 	}
 	
-	private T maxInRangeElement(){
+	private Object maxInRangeElement(){
 		if(this.isInteger()) return fromInteger(max_val);
 		else if(this.isDouble()) return fromDouble((double)(max_val));
 		else return(fromString("zzzzzzzzzz"));
 	}
 	
-	public T fromInteger(Integer n){
-		if (this.isInteger()) return (T)n;
-		else if (this.isDouble()) return (T)new Double((double)n);
-		else return (T)String.valueOf(n);
+	public Object fromInteger(Integer n){
+		if (this.isInteger()) return n;
+		else if (this.isDouble()) return new Double((double)n);
+		else return String.valueOf(n);
 	}
 	
-	public T fromDouble(Double x){
-		if (this.isInteger()) return (T)new Integer(x.intValue());
-		else if (this.isDouble()) return (T)(x);
-		else return (T)String.valueOf(x);
+	public Object fromDouble(Double x){
+		if (this.isInteger()) return new Integer(x.intValue());
+		else if (this.isDouble()) return (x);
+		else return String.valueOf(x);
 	}
 	
-	public T fromString(String s){
-		if (this.isInteger()) return (T)new Integer(s);
-		else if (this.isDouble()) return (T)new Double(s);
-		else return (T)s;
+	public Object fromString(String s){
+		if (this.isInteger()) return new Integer(s);
+		else if (this.isDouble()) return new Double(s);
+		else return s;
 	}
 	
 	public boolean isInteger(){
-		return Integer.class.isAssignableFrom(this.type);
+		return type.equals("Interi");
 	}
 	
 	public boolean isDouble(){
-		return Double.class.isAssignableFrom(this.type);
+		return type.equals("Reali");
 	}
 	
 	public boolean isString(){
-		return String.class.isAssignableFrom(this.type);
+		return type.equals("Stringhe");
 	}
 	
-	public int toCompare(T t1, T t2){
-		if (Integer.class.isAssignableFrom(this.type)){
+	public int toCompare(Object t1, Object t2){
+		if (isInteger()){
 			return ((Integer)t1).compareTo((Integer)t2);
 		}
-		else if (Double.class.isAssignableFrom(this.type)){
+		else if (isDouble()){
 			return ((Double)t1).compareTo((Double)t2);
 		}
 		else{ //Per forza una stringa

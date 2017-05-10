@@ -8,10 +8,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputControl;
 import javafx.event.ActionEvent;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 
 public class WelcomeWindowController {
 	
@@ -128,26 +125,6 @@ public class WelcomeWindowController {
 		
 		int n;
 		model.Main.u.setMyScene(Scenes.QSORT);
-
-		model.Input i;
-		model.Algoritmo a=new model.Algoritmo();
-		if (auto.isSelected()) a.setByStep(false);
-		
-		a.setDelay(Integer.parseInt(delay.getText()));
-		
-		n=Integer.parseInt(num.getText());
-		
-		i=creaInput(n, Tipo.getSelectionModel().getSelectedItem());
-		i.setMode(Modalita.getSelectionModel().getSelectedItem());
-		i.setPath(path.getText());
-		i.setMaxVal(Integer.parseInt(value.getText()));
-		i.riempiItems();
-		i.stampaItems();
-	}
-	
-	@FXML 
-	void onButtonPressed(ActionEvent event) {
-		int n;
 		
 		model.Input i;
 		model.Algoritmo a=new model.Algoritmo();
@@ -157,7 +134,7 @@ public class WelcomeWindowController {
 		
 		n=Integer.parseInt(num.getText());
 		
-		i=creaInput(n, Tipo.getSelectionModel().getSelectedItem());
+		i=new model.Input(n, Tipo.getSelectionModel().getSelectedItem());
 		i.setMode(Modalita.getSelectionModel().getSelectedItem());
 		i.setPath(path.getText());
 		i.setMaxVal(Integer.parseInt(value.getText()));
@@ -166,12 +143,6 @@ public class WelcomeWindowController {
 		
 		a.doQuickSort(i, 0, n-1);
 		i.stampaItems();
-	}
-	
-	static model.Input creaInput(int n, String s){
-		if (s.equals("Interi")) return new model.Input<Integer> (n, 100, Integer.class);
-		else if (s.equals("Reali")) return new model.Input<Double> (n, 100, Double.class);
-		else return new model.Input<String> (n, 100, String.class);
 	}
 	
 	@FXML
