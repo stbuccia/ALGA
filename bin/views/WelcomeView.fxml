@@ -49,12 +49,12 @@
       <TextField id="delay" fx:id="delay" layoutX="211.0" layoutY="246.0" onAction="#onButtonPressed" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
       <Text layoutX="333.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ms" />
       <CheckBox fx:id="auto" layoutX="37.0" layoutY="434.0" mnemonicParsing="false" onAction="#toggleDelay" prefHeight="18.0" prefWidth="398.0" text="Eseguire automaticamente l'algoritmo" />
-      <Button fx:id="start" layoutX="521.0" layoutY="431.0" mnemonicParsing="false" onAction="#onButtonPressed" prefHeight="25.0" prefWidth="60.0" text="Inizia" />
+      <Button fx:id="start" layoutX="502.0" layoutY="431.0" mnemonicParsing="false" onAction="#onButtonPressed" prefHeight="25.0" prefWidth="79.0" text="Inizia" />
       <Text layoutX="50.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero Elementi" />
       <TextField id="num" fx:id="num" layoutX="211.0" layoutY="283.0" onAction="#onButtonPressed" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
       <Label fx:id="stato" layoutX="50.0" layoutY="391.0" prefHeight="15.0" prefWidth="557.0" textFill="RED" />
       <Text layoutX="50.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valore Massimo" />
       <TextField id="value" fx:id="value" layoutX="211.0" layoutY="321.0" onAction="#onButtonPressed" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
-      <Button layoutX="442.0" layoutY="431.0" mnemonicParsing="false" onAction="#initialize" prefHeight="25.0" prefWidth="79.0" text="Ripristina" />
+      <Button layoutX="419.0" layoutY="431.0" mnemonicParsing="false" onAction="#initialize" prefHeight="25.0" prefWidth="79.0" text="Ripristina" />
    </children>
 </AnchorPane>
