@@ -11,5 +11,4 @@
   - Pseudocodice
   - fare in modo che abbiamo rich text (Textflow?)
 - Javadoc
-- Bottone punto interrogativo
-- ​
+- Percorsi non assoluti ma con getClass().getResource()
