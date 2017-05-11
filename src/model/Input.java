@@ -125,7 +125,8 @@ public class Input{
 	// valida l'input, controllando se è nel range accettato da max_value
 	private boolean validateInput(String s) {
 		Object tc = fromString(s);
-		if(compareTo(tc, maxInRangeElement()) > 0 && compareTo(tc, minInRangeElement()) < 0 ) {
+		if(compareTo(tc, maxInRangeElement()) > 0 || compareTo(tc, minInRangeElement()) < 0 ) {
+			System.out.println("Comparison: " + compareTo(tc, minInRangeElement()));
 			System.out.println("fuori range");
 			return false;
 		}
