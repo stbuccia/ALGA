@@ -8,8 +8,6 @@ public class Rects {
 		max_height=cheight;
 		max_width=cwidth;
 		heights= new Double[i.items.length];
-		setWidth(i.items.length);
-		setHeights(i);
 	}
 	
 	public void setWidth(int n){
@@ -25,8 +23,7 @@ public class Rects {
 	public void setHeights(Input i){
 		if (i.isString())
 			for (int j=0; j<i.items.length; j++){
-					double h=calcolaStringHeight(i.items[j].toString(), 0);
-					System.out.println(h);
+					double h=calcolaStringHeight(i.items[j].toString(), 0, 0);
 					heights[j]=(h)*max_height; //1 è il massimo valore che può avere calcolaStringHeight
 			}
 		else
@@ -34,12 +31,13 @@ public class Rects {
 				heights[j]=(new Double(i.items[j].toString())/i.getMaxVal())*max_height;
 	}
 	
-	private double calcolaStringHeight(String s, int pos){
+	private double calcolaStringHeight(String s, int pos, int iter){
 		if (pos>=s.length())
 			return 0;
 		else{
 			double x=((double)(s.charAt(pos)-'a')+1)/27;
-			return x+(1/27)*calcolaStringHeight(s, pos+1);
+			System.out.println(x + " " + iter);
+			return (x+(calcolaStringHeight(s, pos+1, iter+1) / 27));
 		}
 	}
 	
@@ -47,5 +45,11 @@ public class Rects {
 		double temp=heights[x];
 		heights[x]=heights[y];
 		heights[y]=temp;
+	}
+	
+	public void dumpRect(){
+		for(int j = 0; j < heights.length; ++j){
+			System.out.println(j + ") " + heights[j]);
+		}
 	}
 }

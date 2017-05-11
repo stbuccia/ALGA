@@ -4,13 +4,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 
 public class Input{
 	
 	public Object[] items;
 	private String path=""; // Percorso al file sorgente dei dati
-	private Integer max_val=0, lunghStr=10;
+	private Integer max_val=1, lunghStr=20; 
 	private String mode, type;
 	
 	public Input(int n, String tipo){
@@ -63,7 +64,7 @@ public class Input{
 		Scanner keyboard = new Scanner(System.in);
 		for (int i=0; i<items.length; i++){
 			try{
-				String s=keyboard.next();
+				String s=keyboard.next().toLowerCase();
 				if (validateInput(s)) items[i]=this.fromString(s);
 				else i--;
 			}catch(NumberFormatException e){
@@ -86,12 +87,12 @@ public class Input{
 			reader = new BufferedReader(new FileReader(source));
 			for	(int i = 0; i < items.length; ++i) {
 				try {
-					l = reader.readLine();
+					l = reader.readLine().toLowerCase();
 					add(l, i);
 				} catch (Exception nd) {
 					nd.printStackTrace();
 					System.out.println("Skipping line " + i);
-					l = reader.readLine();
+					l = reader.readLine().toLowerCase();
 					add(l, i);
 				}
 			}		
@@ -124,10 +125,17 @@ public class Input{
 	// valida l'input, controllando se è nel range accettato da max_value
 	private boolean validateInput(String s) {
 		Object tc = fromString(s);
-		if(toCompare(tc, maxInRangeElement()) > 0 ) {
+		if(compareTo(tc, maxInRangeElement()) > 0 && compareTo(tc, minInRangeElement()) < 0 ) {
 			System.out.println("fuori range");
 			return false;
 		}
+		
+		if(isString() && (!s.matches("[a-z]+"))){
+			System.out.println("Solo lettere, grazie");
+			return false;
+		}
+		
+		
 		return true;
 	}
 
@@ -146,6 +154,12 @@ public class Input{
 				s+="z";
 			return(fromString(s));
 		}
+	}
+	
+	private Object minInRangeElement(){
+		if(this.isInteger()) return fromInteger(0);
+		else if(this.isDouble()) return fromDouble(0.0);
+		else return(fromString("a"));
 	}
 	
 	public Object fromInteger(Integer n){
@@ -178,7 +192,7 @@ public class Input{
 		return type.equals("Stringhe");
 	}
 	
-	public int toCompare(Object t1, Object t2){
+	public int compareTo(Object t1, Object t2){
 		if (isInteger()){
 			return ((Integer)t1).compareTo((Integer)t2);
 		}
@@ -186,7 +200,7 @@ public class Input{
 			return ((Double)t1).compareTo((Double)t2);
 		}
 		else{
-			return t1.toString().compareToIgnoreCase(t2.toString());
+			return t1.toString().compareTo(t2.toString());
 		}
 	}
 	

@@ -38,7 +38,7 @@ public class Algoritmo {
 		Object temp;
 		for (int i=primo; i<=ultimo; i++){
 			this.passoAlgoritmo();
-			if (input.toCompare(input.items[i], p)<0){
+			if (input.compareTo(input.items[i], p)<0){
 				j++;
 				temp=input.items[i]; 
 				input.items[i]=input.items[j];
@@ -48,6 +48,7 @@ public class Algoritmo {
 		}
 		input.items[primo]=input.items[j];
 		input.items[j]=p;
+		rectangle.switchRect(primo, j);
 		return j;
 	}
 	
@@ -88,6 +89,12 @@ public class Algoritmo {
 		for (int i=0; i<input.items.length; i++)
 			System.out.print(input.items[i]+" ");
 		System.out.println();
+	}
+	
+	public void dumpRect(){
+		for(int j = 0; j < input.items.length; ++j){
+			System.out.println(j + ") " + rectangle.getHeight(j));
+		}
 	}
 	
 }

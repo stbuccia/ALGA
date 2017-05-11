@@ -126,7 +126,6 @@ public class WelcomeWindowController {
 	void inizia(ActionEvent event){
 		
 		int n;
-		model.Main.u.setMyScene(Scenes.QSORT);
 
 		n=Integer.parseInt(num.getText());
 		model.Input i=new model.Input(n, Tipo.getSelectionModel().getSelectedItem());
@@ -134,6 +133,8 @@ public class WelcomeWindowController {
 		i.setPath(path.getText());
 		i.setMaxVal(Integer.parseInt(value.getText()));
 		i.riempiItems();
+
+		model.Main.u.setMyScene(Scenes.QSORT);
 		
 		model.Algoritmo a=new model.Algoritmo(i);
 		if (auto.isSelected()) a.setByStep(false);
@@ -141,6 +142,7 @@ public class WelcomeWindowController {
 		a.creaRects(100, 100);
 		a.stampaItems();
 		a.doQuickSort(0, n-1);
+		a.dumpRect();
 		a.stampaItems();
 	}
 	
@@ -150,7 +152,7 @@ public class WelcomeWindowController {
 		Tipo.getSelectionModel().select("Interi");
 		Modalita.getSelectionModel().select("Casuale");
 		
-		path.setText("/home/buccia/file.txdouble)((double)(s.charAt(i-'a')+1)t");
+		path.setText("/home/buccia/file.txt");
 		path.setDisable(true);
 		
 		delay.setText("50");
