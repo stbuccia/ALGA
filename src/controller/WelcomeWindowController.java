@@ -10,8 +10,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
-import javafx.util.converter.NumberStringConverter;
-import java.text.ParseException;
 
 public class WelcomeWindowController {
 	

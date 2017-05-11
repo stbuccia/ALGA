@@ -10,29 +10,29 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.TextFlow?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.QSortViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="544.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.QSortViewController">
    <children>
-      <ScrollPane prefHeight="550.0" prefWidth="615.0">
+      <ScrollPane prefHeight="550.0" prefWidth="615.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <content>
-            <Pane prefHeight="549.0" prefWidth="616.0">
+            <Pane>
                <children>
+                  <ButtonBar prefHeight="24.0" prefWidth="593.0">
+                     <buttons>
+                        <Button mnemonicParsing="false" text="Pausa" />
+                        <Button mnemonicParsing="false" onAction="#toWelcomeView" text="Indietro" />
+                        <Button mnemonicParsing="false" text="Vai" />
+                        <TextField fx:id="addField" />
+                        <Button fx:id="addButton" mnemonicParsing="false" text="Aggiungi" />
+                     </buttons>
+                  </ButtonBar>
                   <Canvas fx:id="Canvas" height="355.0" layoutX="1.0" layoutY="31.0" width="615.0">
                      <effect>
                         <InnerShadow />
                      </effect></Canvas>
-                  <TextFlow fx:id="Console" layoutX="-5.0" layoutY="386.0" prefHeight="149.0" prefWidth="635.0" style="-fx-background-color: black;" />
+                  <TextFlow fx:id="Console" layoutX="4.0" layoutY="386.0" prefHeight="148.0" prefWidth="632.0" style="-fx-background-color: black;" />
                </children>
             </Pane>
         </content>
       </ScrollPane>
-      <ButtonBar prefHeight="24.0" prefWidth="593.0">
-         <buttons>
-            <Button mnemonicParsing="false" text="Pausa" />
-            <Button mnemonicParsing="false" onAction="#toWelcomeView" text="Indietro" />
-            <Button mnemonicParsing="false" text="Vai" />
-            <TextField fx:id="addField" />
-            <Button fx:id="addButton" mnemonicParsing="false" text="Aggiungi" />
-         </buttons>
-      </ButtonBar>
    </children>
 </AnchorPane>

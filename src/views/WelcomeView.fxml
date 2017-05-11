@@ -6,18 +6,19 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="632.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeWindowController">
    <children>
-   		<ScrollPane prefHeight="500" prefWidth="621" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+   		<ScrollPane prefHeight="508.0" prefWidth="641.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <Pane prefHeight="500" prefWidth="621">
+            <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseDragOver="#movedSlider" onMouseReleased="#movedSlider" prefHeight="500.0" prefWidth="621.0">
                <children>
                   <Text fill="#6e6e6e" layoutX="116.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QuickSort Animator">
 			         <font>
@@ -51,9 +52,8 @@
 					</ComboBox>
 			      <Text layoutX="50.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File sorgente " />
 			      <TextField id="path" fx:id="path" layoutX="211.0" layoutY="205.0" onAction="#inizia" onKeyReleased="#control" prefHeight="26.0" prefWidth="356.0" />
-			      <Text layoutX="50.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delay nell'esecuzione" />
+			      <Text layoutX="50.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delay (ms)" />
 			      <TextField id="delay" fx:id="delay" layoutX="211.0" layoutY="246.0" onAction="#inizia" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
-			      <Text layoutX="333.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ms" />
 			      <CheckBox fx:id="auto" layoutX="37.0" layoutY="434.0" mnemonicParsing="false" onAction="#toggleDelay" prefHeight="18.0" prefWidth="398.0" text="Eseguire automaticamente l'algoritmo" />
 			      <Button fx:id="start" layoutX="502.0" layoutY="431.0" mnemonicParsing="false" onAction="#inizia" prefHeight="25.0" prefWidth="79.0" text="Inizia" />
 			      <Text layoutX="50.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero Elementi" />
@@ -62,6 +62,10 @@
 			      <Text layoutX="50.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valore Massimo" />
 			      <TextField id="value" fx:id="value" layoutX="211.0" layoutY="321.0" onAction="#inizia" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
 			      <Button layoutX="419.0" layoutY="431.0" mnemonicParsing="false" onAction="#initialize" prefHeight="25.0" prefWidth="79.0" text="Ripristina" />
+                  <Button fx:id="aiuto" layoutX="389.0" layoutY="431.0" mnemonicParsing="false" onAction="#openReadMe" prefHeight="25.0" prefWidth="22.0" text="?" />
+                  <Slider fx:id="slide_delay" blockIncrement="5.0" layoutX="319.0" layoutY="248.0" max="2000.0" onMouseDragged="#movedSlider" onMouseReleased="#movedSlider" />
+                  <Slider fx:id="slide_num" blockIncrement="1.0" layoutX="319.0" layoutY="289.0" max="1000.0" min="1.0" onMouseDragged="#movedSlider" onMouseReleased="#movedSlider" />
+                  <Slider fx:id="slide_value" blockIncrement="1.0" layoutX="319.0" layoutY="326.0" max="1000.0" min="1.0" onMouseDragged="#movedSlider" onMouseReleased="#movedSlider" />
 				</children>
             </Pane>
          </content>

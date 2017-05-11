@@ -18,7 +18,7 @@
    <children>
    		<ScrollPane prefHeight="508.0" prefWidth="641.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseReleased="#movedSlider" prefHeight="500.0" prefWidth="621.0">
+            <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseDragOver="#movedSlider" onMouseReleased="#movedSlider" prefHeight="500.0" prefWidth="621.0">
                <children>
                   <Text fill="#6e6e6e" layoutX="116.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QuickSort Animator">
 			         <font>
@@ -63,9 +63,9 @@
 			      <TextField id="value" fx:id="value" layoutX="211.0" layoutY="321.0" onAction="#inizia" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
 			      <Button layoutX="419.0" layoutY="431.0" mnemonicParsing="false" onAction="#initialize" prefHeight="25.0" prefWidth="79.0" text="Ripristina" />
                   <Button fx:id="aiuto" layoutX="389.0" layoutY="431.0" mnemonicParsing="false" onAction="#openReadMe" prefHeight="25.0" prefWidth="22.0" text="?" />
-                  <Slider fx:id="slide_delay" blockIncrement="5.0" layoutX="319.0" layoutY="248.0" max="2000.0" onMouseMoved="#movedSlider" />
-                  <Slider fx:id="slide_num" blockIncrement="1.0" layoutX="319.0" layoutY="289.0" max="1000.0" min="1.0" onMouseMoved="#movedSlider" />
-                  <Slider fx:id="slide_value" blockIncrement="1.0" layoutX="319.0" layoutY="326.0" max="1000.0" min="1.0" onMouseMoved="#movedSlider" opacity="0.9" />
+                  <Slider fx:id="slide_delay" blockIncrement="5.0" layoutX="319.0" layoutY="248.0" max="2000.0" onMouseDragged="#movedSlider" onMouseReleased="#movedSlider" />
+                  <Slider fx:id="slide_num" blockIncrement="1.0" layoutX="319.0" layoutY="289.0" max="1000.0" min="1.0" onMouseDragged="#movedSlider" onMouseReleased="#movedSlider" />
+                  <Slider fx:id="slide_value" blockIncrement="1.0" layoutX="319.0" layoutY="326.0" max="1000.0" min="1.0" onMouseDragged="#movedSlider" onMouseReleased="#movedSlider" />
 				</children>
             </Pane>
          </content>
