@@ -10,13 +10,13 @@
    <children>
       <Button fx:id="indietro" layoutY="370.0" mnemonicParsing="false" onAction="#indietro" text="Indietro" AnchorPane.bottomAnchor="7.0" />
       <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="552.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <content>
+  		<content>
             <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                <children>
                   <TextFlow fx:id="text" layoutX="5.0" />
                </children>
             </Pane>
-         </content>
+     	</content>
       </ScrollPane>
    </children>
 </AnchorPane>

@@ -7,14 +7,18 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
+import javafx.util.converter.NumberStringConverter;
+import java.text.ParseException;
 
 public class WelcomeWindowController {
 	
 	@FXML private ComboBox<String> Tipo, Modalita;
 	@FXML private CheckBox auto;
 	@FXML private TextField path, delay, num, value;
+	@FXML private Slider slide_delay, slide_num, slide_value;
 	@FXML private Label stato;
 	@FXML private Button start;
 	
@@ -65,8 +69,8 @@ public class WelcomeWindowController {
 				stato.setText("Il delay deve essere un numero");
 				disable=true;
 			}
-			if(ms <0 || ms >5000){
-				stato.setText("Il delay deve essere un intero tra 0 e 5000 ");
+			if(ms <0 || ms >2000){
+				stato.setText("Il delay deve essere un intero tra 0 e 2000 ");
 				disable=true;
 			}
 		}
@@ -116,15 +120,31 @@ public class WelcomeWindowController {
 	
 	@FXML
 	void control(){
+		
 		if (controlPath() && controlDelay() && controlNumber() && controlMaxValue()){
 			start.setDisable(false);
 			stato.setText("");
+			changeSliders();
 		}
 	}
 	
 	@FXML
 	void openReadMe(){
 		model.Main.u.setMyScene(Scenes.FILE);
+	}
+	
+	
+	@FXML
+	void changeSliders(){
+		slide_delay.adjustValue(Double.parseDouble(delay.getText()));
+		slide_num.adjustValue(Double.parseDouble(num.getText()));
+		slide_value.adjustValue(Double.parseDouble(value.getText()));
+	}
+	@FXML
+	void movedSlider(){
+		delay.setText(String.valueOf((int)slide_delay.getValue()));
+		num.setText(String.valueOf((int)slide_num.getValue()));
+		value.setText(String.valueOf((int)slide_value.getValue()));
 	}
 	@FXML
 	void inizia(ActionEvent event){
@@ -167,6 +187,10 @@ public class WelcomeWindowController {
 		
 		value.setText("100");
 		value.setDisable(false);
+		
+		slide_delay.adjustValue(Double.parseDouble(delay.getText()));
+		slide_num.adjustValue(Double.parseDouble(num.getText()));
+		slide_value.adjustValue(Double.parseDouble(value.getText()));
 		
 		auto.setSelected(true);
 		stato.setText("");
