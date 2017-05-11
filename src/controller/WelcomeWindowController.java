@@ -123,6 +123,10 @@ public class WelcomeWindowController {
 	}
 	
 	@FXML
+	void openReadMe(){
+		model.Main.u.setMyScene(Scenes.FILE);
+	}
+	@FXML
 	void inizia(ActionEvent event){
 		
 		int n;

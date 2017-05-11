@@ -5,7 +5,6 @@ import java.net.URL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class Utils extends Object{
 	
@@ -31,6 +30,9 @@ public class Utils extends Object{
 			break;
 		case QSORT:
 			out= this.getClass().getResource("/views/QSortView.fxml");
+			break;
+		case FILE:
+			out= this.getClass().getResource("/views/FileView.fxml");
 			break;
 		}
 		return out;

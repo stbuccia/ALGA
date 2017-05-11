@@ -6,9 +6,9 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -17,7 +17,7 @@
    <children>
    		<ScrollPane prefHeight="500" prefWidth="621" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <Pane prefHeight="500" prefWidth="621">
+            <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="621.0">
                <children>
                   <Text fill="#6e6e6e" layoutX="116.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QuickSort Animator">
 			         <font>
@@ -62,6 +62,7 @@
 			      <Text layoutX="50.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valore Massimo" />
 			      <TextField id="value" fx:id="value" layoutX="211.0" layoutY="321.0" onAction="#inizia" onKeyReleased="#control" prefHeight="26.0" prefWidth="95.0" />
 			      <Button layoutX="419.0" layoutY="431.0" mnemonicParsing="false" onAction="#initialize" prefHeight="25.0" prefWidth="79.0" text="Ripristina" />
+                  <Button fx:id="aiuto" layoutX="389.0" layoutY="431.0" mnemonicParsing="false" onAction="#openReadMe" prefHeight="25.0" prefWidth="22.0" text="?" />
 				</children>
             </Pane>
          </content>
