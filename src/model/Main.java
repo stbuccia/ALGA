@@ -9,6 +9,8 @@ public class Main extends Application{
 	
 	public static Stage stage;
 	public static Utils u=null;
+	public static Algoritmo a=null;
+	public static Input i=null;
 	
 	public static void main(String[] args) {
 		u=new Utils();

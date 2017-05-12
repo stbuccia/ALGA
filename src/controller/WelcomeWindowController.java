@@ -150,22 +150,16 @@ public class WelcomeWindowController {
 		int n;
 
 		n=Integer.parseInt(num.getText());
-		model.Input i=new model.Input(n, Tipo.getSelectionModel().getSelectedItem());
-		i.setMode(Modalita.getSelectionModel().getSelectedItem());
-		i.setPath(path.getText());
-		i.setMaxVal(Integer.parseInt(value.getText()));
-		i.riempiItems();
-
+		model.Main.i = new model.Input(n, Tipo.getSelectionModel().getSelectedItem());
+		model.Main.i.setMode(Modalita.getSelectionModel().getSelectedItem());
+		model.Main.i.setPath(path.getText());
+		model.Main.i.setMaxVal(Integer.parseInt(value.getText()));
+		if (auto.isSelected()) model.Main.i.setByStep(false);
+		model.Main.i.setDelay(Integer.parseInt(delay.getText()));
+		model.Main.i.riempiItems();
 		model.Main.u.setMyScene(Scenes.QSORT);
 		
-		model.Algoritmo a=new model.Algoritmo(i);
-		if (auto.isSelected()) a.setByStep(false);
-		a.setDelay(Integer.parseInt(delay.getText()));
-		a.creaRects(100, 100);
-		a.stampaItems();
-		a.doQuickSort(0, n-1);
-		a.dumpRect();
-		a.stampaItems();
+		
 	}
 	
 	@FXML

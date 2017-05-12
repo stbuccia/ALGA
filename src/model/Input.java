@@ -13,6 +13,8 @@ public class Input{
 	private String path=""; // Percorso al file sorgente dei dati
 	private Integer max_val=1, lunghStr=20; 
 	private String mode, type;
+	private int delay=50;
+	private boolean byStep;
 	
 	public Input(int n, String tipo){
 		this.items=new Object[n];
@@ -29,6 +31,23 @@ public class Input{
 	
 	public void setMode(String c){
 		this.mode=c;
+	}
+
+	public void setDelay(int n){
+		this.delay=n;
+	}
+
+	
+	public void setByStep(boolean cond){
+		this.byStep=cond;
+	}
+	
+	public boolean getByStep(){
+		return this.byStep;
+	}
+	
+	public int getDelay(){
+		return this.delay;
 	}
 	
 	public Integer getMaxVal(){

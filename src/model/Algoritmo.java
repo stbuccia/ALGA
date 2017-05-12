@@ -7,13 +7,11 @@ public class Algoritmo {
 	
 	private Input input;
 	public Rects rectangle;
-	private boolean byStep, inPausa;
+	private boolean inPausa;
 	private Scanner keyboard = null;
-	private int delay=50;
 	
 	public Algoritmo(Input i){
 		keyboard = new Scanner(System.in);
-		this.setByStep(true);
 		inPausa=false;
 		input=i;
 	}
@@ -56,14 +54,14 @@ public class Algoritmo {
 	private void passoAlgoritmo(){
 		do{
 			boolean isPressed = false;
-			if (byStep){
+			if (input.getByStep()){
 				while(!isPressed){
 					isPressed = keyboard.nextLine().isEmpty();
 				}
 			}
 			else{
 	        		try {
-	        			TimeUnit.MILLISECONDS.sleep(delay);
+	        			TimeUnit.MILLISECONDS.sleep(input.getDelay());
 	        		} catch(InterruptedException e) {
 	        			e.printStackTrace();
 	        		}
@@ -71,15 +69,7 @@ public class Algoritmo {
 		}while(inPausa);
 		stampaItems();
 	}
-
 	
-	public void setDelay(int n){
-		this.delay=n;
-	}
-	
-	public void setByStep(boolean cond){
-		this.byStep=cond;
-	}
 	
 	public void setInPausa(){
 		this.inPausa=!inPausa;

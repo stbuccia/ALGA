@@ -34,6 +34,13 @@ public class QSortViewController {
         assert Console != null : "fx:id=\"Console\" was not injected: check your FXML file 'QSortView.fxml'.";
         assert addField != null : "fx:id=\"addField\" was not injected: check your FXML file 'QSortView.fxml'.";
         assert addButton != null : "fx:id=\"addButton\" was not injected: check your FXML file 'QSortView.fxml'.";
+        
+        model.Main.a=new model.Algoritmo(model.Main.i);
+		model.Main.a.creaRects(100, 100);
+		model.Main.a.stampaItems();
+		model.Main.a.doQuickSort(0, model.Main.i.items.length-1);
+		model.Main.a.dumpRect();
+		model.Main.a.stampaItems();
 
     }
 }
