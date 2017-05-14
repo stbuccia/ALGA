@@ -15,6 +15,9 @@ public class Utils extends Object{
 			FXMLLoader welcomeViewLoader = new FXMLLoader(location);
 			root = (AnchorPane)(welcomeViewLoader.load());
 			Scene S = new Scene(root);
+			model.Main.stage.setWidth(700);
+			model.Main.stage.setHeight(720);
+			model.Main.stage.setResizable(false);
 			model.Main.stage.setScene(S);
 		
 		}catch (Exception e) {

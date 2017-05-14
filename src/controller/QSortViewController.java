@@ -1,46 +1,80 @@
 package controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import model.Main;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.text.TextFlow;
+import javafx.scene.layout.Pane;
 
 public class QSortViewController {
 
-    @FXML
-    private Canvas Canvas;
+	@FXML
+	private TextField addField;
 
-    @FXML
-    private TextFlow Console;
+	@FXML
+	private Button addButton;
 
-    @FXML
-    private TextField addField;
+	@FXML
+	private TextArea console;
 
-    @FXML
-    private Button addButton;
+	private static QSortDrawer drawer;
 
-    @FXML
-    void toWelcomeView(ActionEvent event) {
+	@FXML
+	private Pane rectPane;
 
-    }
+	@FXML
+	void toWelcomeView(ActionEvent event) {
+		model.Main.u.setMyScene(Scenes.WELCOME);
+	}
 
-    @FXML
-    void initialize() {
-        assert Canvas != null : "fx:id=\"Canvas\" was not injected: check your FXML file 'QSortView.fxml'.";
-        assert Console != null : "fx:id=\"Console\" was not injected: check your FXML file 'QSortView.fxml'.";
-        assert addField != null : "fx:id=\"addField\" was not injected: check your FXML file 'QSortView.fxml'.";
-        assert addButton != null : "fx:id=\"addButton\" was not injected: check your FXML file 'QSortView.fxml'.";
-        
-        model.Main.a=new model.Algoritmo(model.Main.i);
-		model.Main.a.creaRects(100, 100);
-		model.Main.a.stampaItems();
-		model.Main.a.doQuickSort(0, model.Main.i.items.length-1);
-		model.Main.a.dumpRect();
-		model.Main.a.stampaItems();
+	@FXML
+	void initialize() {
+		System.out.println("-- QSORTVIEW LOADED -- ");
+		drawer = new QSortDrawer(rectPane, console);
+		System.out.println(drawer);
+		model.Main.a = new model.Algoritmo(model.Main.i);
+		System.out.println(rectPane.getWidth() + "x"
+				+ rectPane.getHeight());
+		model.Main.a.creaRects(685, 485);
 
-    }
+		// model.Main.a.stampaItems();
+		// model.Main.a.dumpRect();
+
+	}
+
+	static QSortDrawer getDrawer() {
+		return drawer;
+	}
+
+	@FXML
+	void testConsole() {
+		drawer.toConsole("\nFunziona cazzo");
+	}
+
+	@FXML
+	void testRettangoli() {
+		Main.backgroundSorter = new Service<Void>() {
+
+			@Override
+			public Task<Void> createTask() {
+				return new Task<Void>() {
+
+					@Override
+					protected Void call() throws Exception {
+						model.Main.a.doQuickSort(0, model.Main.i.items.length - 1);
+						model.Main.a.stampaItems();
+						return null;
+					}
+				};
+			}
+		};
+		console.textProperty().bind(model.Main.backgroundSorter.messageProperty());
+		model.Main.backgroundSorter.restart();
+		Main.qDrawer.drawRects();
+	}
+
 }
