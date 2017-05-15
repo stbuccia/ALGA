@@ -19,7 +19,7 @@ public class QSortViewController {
 	private TextField addField;
 
 	@FXML
-	private Button addButton, pausa, indietro;
+	private Button addButton, pausa, indietro, byStep;
 
 	@FXML
 	private TextArea console;
@@ -37,18 +37,18 @@ public class QSortViewController {
 
 	@FXML
 	void toWelcomeView(ActionEvent event) {
+		model.Main.backgroundSorter.cancel();
+		model.Main.backgroundSorter = null;
 		model.Main.u.setMyScene(Scenes.WELCOME);
-		//Main.backgroundSorter.cancel();
 	}
 
 	@FXML
 	void initialize() {
 		System.out.println("-- QSORTVIEW LOADED -- ");
-		drawer = new QSortDrawer(rectPane, console);
-		System.out.println(drawer);
-		model.Main.a = new model.Algoritmo<Void>(model.Main.i);
-		System.out.println(rectPane.getWidth() + "x"
-				+ rectPane.getHeight());
+		//rectPane.setMinHeight(485);
+		model.Main.qDrawer = new QSortDrawer(rectPane, console);
+		System.out.println(model.Main.qDrawer);
+		model.Main.a = new model.Algoritmo<Void>(model.Main.getI());
 		model.Main.a.creaRects(685, 485);
 		
 		delay.adjustValue(Main.a.getDelay());
@@ -57,10 +57,12 @@ public class QSortViewController {
 			delay.setDisable(true);
 			pausa.setDisable(true);
 		}
-		
-
+		else{
+			byStep.setDisable(true);
+		}
+		//model.Main.a.rectangle.setPivotH(model.Main.i.items[0], model.Main.i);
+		model.Main.qDrawer.drawRects();
 	}
-
 	static QSortDrawer getDrawer() {
 		return drawer;
 	}
@@ -80,7 +82,9 @@ public class QSortViewController {
 	
 	@FXML
 	void proceed() {
+		if (Main.backgroundSorter==null) testRettangoli();
 		Main.a.setIsPressed();
+		Main.i.stampaItems();
 	}
 	
 	@FXML

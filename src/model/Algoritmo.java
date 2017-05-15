@@ -11,12 +11,10 @@ public class Algoritmo<Void> extends Task<Void>{
 	private Input input;
 	public Rects rectangle;
 	private boolean inPausa;
-	private Scanner keyboard = null;
 	private int delay=0;
 	private boolean isPressed=false;
 
 	public Algoritmo(Input i) {
-		keyboard = new Scanner(System.in);
 		inPausa = false;
 		input = i;
 		delay = i.getDelay();
@@ -101,6 +99,7 @@ public class Algoritmo<Void> extends Task<Void>{
 			}
 		} while (inPausa);
 		stampaItems();
+		Main.i.stampaItems();
 		isPressed = false;
 	}
 
@@ -133,12 +132,6 @@ public class Algoritmo<Void> extends Task<Void>{
 		}
 		System.out.println();
 	}
-
-//	public void sendItemsToConsole() {
-//		for (int i = 0; i < input.items.length; i++) {
-//			Main.qDrawer.toConsole(input.items[i] + " ");
-//		}
-//	}
 
 	public void dumpRect() {
 		for (int j = 0; j < input.items.length; ++j) {

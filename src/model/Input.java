@@ -68,9 +68,7 @@ public class Input {
 			if (!this.isString())
 				items[i] = fromDouble(Math.random() * max_val);
 			else {
-				int lunghezza = (int) (Math.random() * lunghStr + 1); // massimo
-										      // 10
-										      // caratteri
+				int lunghezza = (int) (Math.random() * lunghStr + 1); // massimo 10 caratteri
 				String s = "";
 				for (int j = 0; j < lunghezza; j++)
 					s += (char) (Math.random() * 26 + 97); // Stringhe

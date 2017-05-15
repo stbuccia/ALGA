@@ -17,7 +17,7 @@ public class Main extends Application {
 	public static Algoritmo a = null;
 	public static Input i = null;
 	public static QSortDrawer qDrawer = null;
-	public static Service<Void> backgroundSorter;
+	public static Service<Void> backgroundSorter = null;
 
 	public static void main(String[] args) {
 
@@ -25,7 +25,9 @@ public class Main extends Application {
 		launch(args);
 
 	}
-
+	public static Input getI(){
+		return i;
+	}
 	@Override
 	public void start(Stage firstStage) throws Exception {
 		stage = firstStage;

@@ -34,7 +34,7 @@
                               <Insets left="10.0" right="10.0" />
                            </padding>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#proceed" prefHeight="25.0" text="Avanza" />
+                        <Button fx:id="byStep" mnemonicParsing="false" onAction="#proceed" prefHeight="25.0" text="Avanza" />
                         <Button fx:id="indietro" mnemonicParsing="false" onAction="#toWelcomeView" prefHeight="25.0" text="Indietro" />
                         <Button fx:id="pausa" mnemonicParsing="false" onAction="#pause" prefHeight="25.0" text="Pausa" />
                         <Button mnemonicParsing="false" onAction="#initialize" prefHeight="25.0" text="Reset" />

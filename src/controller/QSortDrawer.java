@@ -33,8 +33,7 @@ public class QSortDrawer {
 		}
 		Line l = new Line();
 		l.setStartX(0);
-		l.setStartY(panel.getHeight()
-				- model.Main.a.rectangle.getPivotH());
+		l.setStartY(panel.getHeight()- model.Main.a.rectangle.getPivotH());
 		l.setEndX(675);
 		l.setEndY(l.getStartY());
 		l.setStroke(Color.GREY);
@@ -47,10 +46,11 @@ public class QSortDrawer {
 			rs[i].setFill(Color.WHITE);
 			rs[i].setStroke(Color.BLACK);
 			rs[i].setX((i * model.Main.a.rectangle.getWidth()));
-			rs[i].setY(panel.getHeight()
-					- model.Main.a.rectangle.getHeight(i));
+			if (panel.getHeight()==0) rs[i].setY(485 - model.Main.a.rectangle.getHeight(i));
+			else rs[i].setY(panel.getHeight() - model.Main.a.rectangle.getHeight(i));
 			rs[i].setHeight(model.Main.a.rectangle.getHeight(i));
 			rs[i].setWidth(model.Main.a.rectangle.getWidth());
+				
 			// System.out.println(rs[i].getX() + "," + rs[i].getY()
 			// + " - " + rs[i].getWidth() + "x" +
 			// rs[i].getHeight());

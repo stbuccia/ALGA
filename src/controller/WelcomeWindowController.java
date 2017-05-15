@@ -172,7 +172,7 @@ public class WelcomeWindowController {
 		model.Main.i.riempiItems();
 
 		model.Main.u.setMyScene(Scenes.QSORT);
-		model.Main.qDrawer = QSortViewController.getDrawer();
+		//model.Main.qDrawer = QSortViewController.getDrawer();
 
 		// System.out.println(model.Main.qDrawer);
 
