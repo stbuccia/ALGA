@@ -187,10 +187,10 @@ public class WelcomeWindowController {
 		path.setText("/home/buccia/file.txt");
 		path.setDisable(true);
 
-		delay.setText("0");
+		delay.setText("50");
 		delay.setDisable(false);
 
-		num.setText("20");
+		num.setText("50");
 		num.setDisable(false);
 
 		value.setText("100");
