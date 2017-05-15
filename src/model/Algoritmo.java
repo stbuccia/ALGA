@@ -3,7 +3,10 @@ package model;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-public class Algoritmo {
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+
+public class Algoritmo<Void> extends Task<Void>{
 
 	private Input input;
 	public Rects rectangle;
@@ -43,11 +46,27 @@ public class Algoritmo {
 				input.items[i] = input.items[j];
 				input.items[j] = temp;
 				rectangle.switchRect(i, j);
+				updateMessage("Scambio " + i + " con " + j);
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						Main.qDrawer.drawRects();
+						
+					}
+				});
 			}
 		}
 		input.items[primo] = input.items[j];
 		input.items[j] = p;
 		rectangle.switchRect(primo, j);
+		updateMessage("Scambio " + primo + " con " + p);
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				Main.qDrawer.drawRects();
+				
+			}
+		});
 		return j;
 	}
 
@@ -83,16 +102,22 @@ public class Algoritmo {
 		System.out.println();
 	}
 
-	public void sendItemsToConsole() {
-		for (int i = 0; i < input.items.length; i++) {
-			Main.qDrawer.toConsole(input.items[i] + " ");
-		}
-	}
+//	public void sendItemsToConsole() {
+//		for (int i = 0; i < input.items.length; i++) {
+//			Main.qDrawer.toConsole(input.items[i] + " ");
+//		}
+//	}
 
 	public void dumpRect() {
 		for (int j = 0; j < input.items.length; ++j) {
 			System.out.println(j + ") " + rectangle.getHeight(j));
 		}
+	}
+
+	@Override
+	protected Void call() throws Exception {
+		this.doQuickSort(0, model.Main.i.items.length - 1);
+		return null;
 	}
 
 }

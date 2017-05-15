@@ -25,10 +25,6 @@ public class QSortDrawer {
 		System.out.println("Drawer instantiated");
 	}
 
-	public void toConsole(String s) {
-		ta.appendText(s);
-	}
-
 	public void drawRects() {
 		panel.getChildren().remove(0, panel.getChildren().size());
 		makeRects();
