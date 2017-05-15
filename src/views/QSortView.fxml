@@ -22,7 +22,7 @@
                               <Insets left="10.0" right="10.0" />
                            </padding></Button>
                         <Button mnemonicParsing="false" onAction="#toWelcomeView" text="Indietro" />
-                        <Button mnemonicParsing="false" onAction="#testConsole" text="Test console" />
+                        <Button mnemonicParsing="false" onAction="#pause" text="Pausa" />
                         <TextField fx:id="addField" />
                         <Button fx:id="addButton" mnemonicParsing="false" text="Aggiungi" />
                      </buttons>

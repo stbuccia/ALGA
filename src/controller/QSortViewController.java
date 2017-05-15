@@ -7,6 +7,8 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -17,13 +19,19 @@ public class QSortViewController {
 	private TextField addField;
 
 	@FXML
-	private Button addButton;
+	private Button addButton, pausa, indietro;
 
 	@FXML
 	private TextArea console;
 
 	private static QSortDrawer drawer;
-
+	
+	@FXML
+	private Slider delay;
+	
+	@FXML
+	private Label delayLab;
+	
 	@FXML
 	private Pane rectPane;
 
@@ -42,9 +50,14 @@ public class QSortViewController {
 		System.out.println(rectPane.getWidth() + "x"
 				+ rectPane.getHeight());
 		model.Main.a.creaRects(685, 485);
-
-		// model.Main.a.stampaItems();
-		// model.Main.a.dumpRect();
+		
+		delay.adjustValue(Main.a.getDelay());
+		delayLab.setText("Delay(ms):"+Main.a.getDelay());
+		if (Main.i.getByStep()){
+			delay.setDisable(true);
+			pausa.setDisable(true);
+		}
+		
 
 	}
 
@@ -53,28 +66,25 @@ public class QSortViewController {
 	}
 
 	@FXML
-	void testConsole() {
-		//drawer.toConsole("\nFunziona cazzo");
+	void pause() {
+		Main.a.setInPausa();
+		if (Main.a.isInPausa())	pausa.setText("Riprendi");
+		else pausa.setText("Pausa");
 	}
-
+	
+	@FXML
+	void changeDelay() {
+		Main.a.setDelay((int)delay.getValue());
+		delayLab.setText("Delay(ms):"+Main.a.getDelay());
+	}
+	
+	@FXML
+	void proceed() {
+		Main.a.setIsPressed();
+	}
+	
 	@FXML
 	void testRettangoli() {
-//		Main.backgroundSorter = new Service<Void>() {
-//
-//			@Override
-//			public Task<Void> createTask() {
-//				return new Task<Void>() {
-//
-//					@Override
-//					protected Void call() throws Exception {
-//						model.Main.a.doQuickSort(0, model.Main.i.items.length - 1);
-//						model.Main.a.stampaItems();
-//						return null;
-//					}
-//				};
-//			}
-//		};
-//		console.textProperty().bind(model.Main.backgroundSorter.messageProperty());
 		Main.backgroundSorter = new Service<Void>() {
 			@Override
 			public Task<Void> createTask(){

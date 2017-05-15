@@ -74,8 +74,8 @@ public class WelcomeWindowController {
 				stato.setText("Il delay deve essere un numero");
 				disable = true;
 			}
-			if (ms < 0 || ms > 2000) {
-				stato.setText("Il delay deve essere un intero tra 0 e 2000 ");
+			if (ms < 0 || ms > 500) {
+				stato.setText("Il delay deve essere un intero tra 0 e 500 ");
 				disable = true;
 			}
 		}
