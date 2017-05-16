@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+//import javax.swing.SwingWorker<T,V>;
 import javafx.scene.layout.Pane;
 
 public class QSortViewController {
@@ -25,7 +26,7 @@ public class QSortViewController {
 	private TextArea console;
 
 	private static QSortDrawer drawer;
-	private int counter=0, panelx=685, panely=485;
+	public static int counter=0, panelx=685, panely=485;
 	
 	@FXML
 	private Slider delay;
@@ -38,8 +39,10 @@ public class QSortViewController {
 
 	@FXML
 	void toWelcomeView(ActionEvent event) {
-		//model.Main.backgroundSorter.cancel();
-		model.Main.backgroundSorter = null;
+		if (model.Main.a != null){
+			model.Main.a.cancel(true);
+			model.Main.a = null;
+		}
 		model.Main.u.setMyScene(Scenes.WELCOME);
 	}
 	
@@ -64,7 +67,6 @@ public class QSortViewController {
 	@FXML
 	void initialize() {
 		System.out.println("-- QSORTVIEW LOADED -- ");
-		//rectPane.setMinHeight(485);
 		model.Main.qDrawer = new QSortDrawer(rectPane, console);
 		System.out.println(model.Main.qDrawer);
 		model.Main.a = new model.Algoritmo<Void>(model.Main.getI());
@@ -72,13 +74,19 @@ public class QSortViewController {
 		model.Main.qDrawer.drawRects();
 		setDefault();
 		
-		if (Main.i.getMode().equals("Tastiera")){
+		if (Main.i.getMode().equals("Tastiera") && counter<model.Main.i.items.length){
 			go.setDisable(true);
 			byStep.setDisable(true);
 			pausa.setDisable(true);
 			add.setDisable(false);
 			addField.setDisable(false);
 		}
+	}
+	
+	@FXML
+	void openReadMe(){
+		if (model.Main.a != null) model.Main.a.cancel(true);
+		model.Main.u.setMyScene(Scenes.FILE);
 	}
 	
 	@FXML

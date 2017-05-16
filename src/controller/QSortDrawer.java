@@ -26,35 +26,40 @@ public class QSortDrawer {
 	}
 
 	public void drawRects() {
-		panel.getChildren().remove(0, panel.getChildren().size());
-		makeRects();
-		for (int i = 0; i < model.Main.a.rectangle.getHowMany(); ++i) {
-			panel.getChildren().add(rs[i]);
+		try{
+			panel.getChildren().remove(0, panel.getChildren().size());
+			makeRects();
+			for (int i = 0; i < model.Main.a.rectangle.getHowMany(); ++i) {
+				panel.getChildren().add(rs[i]);
+			}
+			Line l = new Line();
+			l.setStartX(0);
+			if (panel.getHeight()!=0) l.setStartY(panel.getHeight()- model.Main.a.rectangle.getPivotH());
+			l.setEndX(675);
+			l.setEndY(l.getStartY());
+			l.setStroke(Color.GREY);
+			l.setStrokeWidth(1);
+			panel.getChildren().add(l);
+		}catch(java.lang.NullPointerException e){
+			System.out.println();
 		}
-		Line l = new Line();
-		l.setStartX(0);
-		if (panel.getHeight()!=0) l.setStartY(panel.getHeight()- model.Main.a.rectangle.getPivotH());
-		l.setEndX(675);
-		l.setEndY(l.getStartY());
-		l.setStroke(Color.GREY);
-		l.setStrokeWidth(1);
-		panel.getChildren().add(l);
 	}
 
 	private void makeRects() {
-		for (int i = 0; i < len; ++i) {
-			rs[i].setFill(Color.WHITE);
-			rs[i].setStroke(Color.BLACK);
-			rs[i].setX((i * model.Main.a.rectangle.getWidth()));
-			if (panel.getHeight()==0) rs[i].setY(485 - model.Main.a.rectangle.getHeight(i));
-			else rs[i].setY(panel.getHeight() - model.Main.a.rectangle.getHeight(i));
-			rs[i].setHeight(model.Main.a.rectangle.getHeight(i));
-			rs[i].setWidth(model.Main.a.rectangle.getWidth());
-				
-			// System.out.println(rs[i].getX() + "," + rs[i].getY()
-			// + " - " + rs[i].getWidth() + "x" +
-			// rs[i].getHeight());
-		}
+			for (int i = 0; i < len; ++i) {
+				rs[i].setFill(Color.WHITE);
+				rs[i].setStroke(Color.BLACK);
+				rs[i].setX((i * model.Main.a.rectangle.getWidth()));
+				if (panel.getHeight()==0) rs[i].setY(485 - model.Main.a.rectangle.getHeight(i));
+				else rs[i].setY(panel.getHeight() - model.Main.a.rectangle.getHeight(i));
+				rs[i].setHeight(model.Main.a.rectangle.getHeight(i));
+				rs[i].setWidth(model.Main.a.rectangle.getWidth());
+					
+				// System.out.println(rs[i].getX() + "," + rs[i].getY()
+				// + " - " + rs[i].getWidth() + "x" +
+				// rs[i].getHeight());
+			}
+		
 
 	}
 

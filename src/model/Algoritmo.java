@@ -27,6 +27,7 @@ public class Algoritmo<Void> extends Task<Void>{
 	}
 
 	public void doQuickSort(int primo, int ultimo) {
+		if (isCancelled()) return;
 		if (primo < ultimo) {
 			int k = this.pivot(primo, ultimo);
 			this.doQuickSort(primo, k - 1);
@@ -35,20 +36,14 @@ public class Algoritmo<Void> extends Task<Void>{
 	}
 	
 	private int pivot(int primo, int ultimo) {
-		
 		int j = primo;
 		Object p = input.items[primo];
 		Object temp;
 		rectangle.setPivotH(p, input);
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				Main.qDrawer.drawRects();
-				
-			}
-		});
+		disegna();
 		for (int i = primo; i <= ultimo; i++) {
 			if (input.compareTo(input.items[i], p) < 0) {
+				if (isCancelled()) return 0;
 				this.passoAlgoritmo();
 				j++;
 				temp = input.items[i];
@@ -56,26 +51,14 @@ public class Algoritmo<Void> extends Task<Void>{
 				input.items[j] = temp;
 				rectangle.switchRect(i, j);
 				updateMessage("Scambio " + input.items[i] + " con " + input.items[j]);
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						Main.qDrawer.drawRects();
-						
-					}
-				});
+				disegna();
 			}
 		}
 		input.items[primo] = input.items[j];
 		input.items[j] = p;
 		rectangle.switchRect(primo, j);
 		updateMessage("Scambio " + input.items[primo] + " con " + p);
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				Main.qDrawer.drawRects();
-				
-			}
-		});
+		disegna();
 		return j;
 	}
 
@@ -87,22 +70,31 @@ public class Algoritmo<Void> extends Task<Void>{
 					try {
 						TimeUnit.MILLISECONDS.sleep(50);
 					} catch (InterruptedException e) {
-						e.printStackTrace();
+						System.out.println("sleep interrupted");
 					}
 				}
 			} else {
 				try {
 					TimeUnit.MILLISECONDS.sleep(delay);
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					System.out.println("sleep interrupted");
 				}
 			}
 		} while (inPausa);
 		stampaItems();
-		//Main.i.stampaItems();
 		isPressed = false;
 	}
 
+	private static void disegna(){
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				Main.qDrawer.drawRects();
+				
+			}
+		});
+	}
+	
 	public void setInPausa() {
 		this.inPausa = !inPausa;
 	}

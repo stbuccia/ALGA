@@ -25,7 +25,8 @@ public class FileViewController {
     // dell'interfaccia, che fa le operazioni di inizializzazione se necessarie
     @FXML
     private void indietro(){
-    	model.Main.u.setMyScene(Scenes.WELCOME);
+    	if (model.Main.a==null) model.Main.u.setMyScene(Scenes.WELCOME);
+    	else model.Main.u.setMyScene(Scenes.QSORT);
     }
     
     @FXML
