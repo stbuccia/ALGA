@@ -5,18 +5,28 @@ import java.util.concurrent.TimeUnit;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 
-public class Algoritmo<Void> extends Task<Void>{
+public class Algoritmo<Void> extends Task<Void> {
 
 	private Input input;
 	public Rects rectangle;
 	private boolean inPausa;
-	private int delay=0;
-	private boolean isPressed=false;
+	private int delay = 0;
+	private boolean isPressed = false;
+	private int pivotIndex = 0, currentIndex = 0;
+	private int firstToSwitch = 0, secondToSwitch = 0;
 
 	public Algoritmo(Input i) {
 		inPausa = false;
 		input = i;
 		delay = i.getDelay();
+	}
+
+	public int getPivotIndex() {
+		return this.pivotIndex;
+	}
+
+	public int getCurrentIndex() {
+		return this.currentIndex;
 	}
 
 	public void creaRects(double x, double y) {
@@ -26,70 +36,83 @@ public class Algoritmo<Void> extends Task<Void>{
 	}
 
 	public void doQuickSort(int primo, int ultimo) {
-		if (isCancelled()) return;
+		if (isCancelled())
+			return;
 		if (primo < ultimo) {
-			updateProgress(primo, input.items.length-1);
-			
+			updateProgress(primo, input.items.length - 1);
+
 			int k = this.pivot(primo, ultimo);
-			
+
 			this.doQuickSort(primo, k - 1);
-			updateProgress(k, input.items.length-1);
-			
+			updateProgress(k, input.items.length - 1);
+
 			this.doQuickSort(k + 1, ultimo);
-			updateProgress(ultimo, input.items.length-1);
+			updateProgress(ultimo, input.items.length - 1);
 		}
 	}
-	
+
 	private int pivot(int primo, int ultimo) {
 		int j = primo;
 		Object p = input.items[primo];
 		Object temp;
 		rectangle.setPivotH(p, input);
-		disegna();
+		this.pivotIndex = primo;
+		updateCanvas();
 		for (int i = primo; i <= ultimo; i++) {
 			if (input.compareTo(input.items[i], p) < 0) {
-				if (isCancelled()) return 0;
-				this.passoAlgoritmo();
+				if (isCancelled())
+					return 0;
+				this.currentIndex = i;
+				tick();
 				j++;
 				temp = input.items[i];
 				input.items[i] = input.items[j];
 				input.items[j] = temp;
 				rectangle.switchRect(i, j);
-				updateMessage("Scambio " + input.items[i] + " con " + input.items[j]+"\n"+this.getItems());
-				disegna();
+				
+				setSwitch(i, j);
+				updateMessage(this.getItems() + "\nScambio "
+						+ input.items[i] + " con "
+						+ input.items[j] + " (pivot: "
+						+ input.items[pivotIndex] + ")");
+				updateCanvas();
 			}
 		}
+		
 		input.items[primo] = input.items[j];
 		input.items[j] = p;
 		rectangle.switchRect(primo, j);
-		updateMessage("Scambio " + input.items[primo] + " con " + p +"\n"+this.getItems());
-		disegna();
+		this.pivotIndex = j;
+		
+		setSwitch(primo, j);
+		updateMessage("Il pivot diventa " + input.items[j]);
+		updateCanvas();
 		return j;
 	}
 
 	public String getItems() {
-		String s="";
+		String s = "";
 		for (int i = 0; i < input.items.length; i++)
-			s+=input.items[i] + " ";
+			s += input.items[i] + " ";
 		return s;
 	}
 
 	// Esegue ogni iterazione
-	private void passoAlgoritmo() {
+	private void tick() {
 		do {
 			if (input.getByStep()) {
 				while (!isPressed) {
 					try {
 						TimeUnit.MILLISECONDS.sleep(50);
 					} catch (InterruptedException e) {
-						System.out.println("sleep interrupted");
+						System.out.println("ERROR: sleep interrupted");
 					}
 				}
 			} else {
 				try {
 					TimeUnit.MILLISECONDS.sleep(delay);
 				} catch (InterruptedException e) {
-					System.out.println("sleep interrupted");
+					System.out.println("ERROR: sleep interrupted");
 				}
 			}
 		} while (inPausa);
@@ -97,7 +120,7 @@ public class Algoritmo<Void> extends Task<Void>{
 		isPressed = false;
 	}
 
-	private static void disegna(){
+	private static void updateCanvas() {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -105,30 +128,32 @@ public class Algoritmo<Void> extends Task<Void>{
 			}
 		});
 	}
-	
+
+	private void setSwitch(int i, int j) {
+		this.firstToSwitch = i;
+		this.secondToSwitch = j;
+	}
+
 	public void setInPausa() {
 		this.inPausa = !inPausa;
 	}
-	
-	
+
 	public boolean isInPausa() {
 		return this.inPausa;
 	}
-	
+
 	public void setDelay(int n) {
 		this.delay = n;
 	}
-	
-	
+
 	public int getDelay() {
 		return this.delay;
 	}
-	
+
 	public void setIsPressed() {
 		this.isPressed = true;
 	}
-	
-	
+
 	public void stampaItems() {
 		for (int i = 0; i < input.items.length; i++) {
 			System.out.print(input.items[i] + " ");
@@ -147,5 +172,12 @@ public class Algoritmo<Void> extends Task<Void>{
 		this.doQuickSort(0, model.Main.i.items.length - 1);
 		return null;
 	}
+	
+	public int getFirstToSwitch(){
+		return firstToSwitch;
+	}
 
+	public int getSecondToSwitch(){
+		return secondToSwitch;
+	}
 }

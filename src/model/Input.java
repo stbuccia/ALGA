@@ -63,7 +63,7 @@ public class Input {
 		else if (this.mode.equals("File"))
 			this.getFromFile();
 		else
-			System.out.println("Modalità input non disponibile");
+			System.out.println("ERROR: Modalità input non disponibile");
 		riempiInitial();
 	}
 	
@@ -97,7 +97,7 @@ public class Input {
 
 		azzeraItems();
 		String l = "";
-		System.out.println(this.path);
+		System.out.println("INFO: Loading data from " + this.path);
 		BufferedReader reader = null;
 		File source = null;
 
@@ -110,7 +110,7 @@ public class Input {
 					add(l, i);
 				} catch (Exception nd) {
 					nd.printStackTrace();
-					System.out.println("Skipping line " + i);
+					System.out.println("WARNING: Skipping line " + i);
 					l = reader.readLine().toLowerCase();
 					add(l, i);
 				}
@@ -130,7 +130,7 @@ public class Input {
 
 	private void add(String l, int i) {
 		try {
-			System.out.println(l);
+			//System.out.println(l);
 			if (l != null) {
 				l = l.trim();
 				if (validateInput(l)) {
@@ -149,13 +149,13 @@ public class Input {
 	public boolean validateInput(String s) {
 		Object tc = fromString(s);
 		if (compareTo(tc, maxInRangeElement()) > 0 || compareTo(tc, minInRangeElement()) < 0) {
-			System.out.println("Comparison: "+ compareTo(tc, minInRangeElement()));
-			System.out.println("fuori range");
+			//System.out.println("Comparison: "+ compareTo(tc, minInRangeElement()));
+			System.out.println("ERROR: fuori range");
 			return false;
 		}
 
 		if (isString() && (!s.matches("[a-z]+"))) {
-			System.out.println("Solo lettere, grazie");
+			System.out.println("ERROR: Solo lettere, grazie");
 			return false;
 		}
 

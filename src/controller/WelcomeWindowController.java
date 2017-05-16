@@ -184,7 +184,12 @@ public class WelcomeWindowController {
 		Tipo.getSelectionModel().select("Interi");
 		Modalita.getSelectionModel().select("Casuale");
 
-		path.setText("/home/buccia/file.txt");
+		try {
+			path.setText((getClass().getResource("DataSample.txt").toURI()).getPath());
+		} catch (Exception e) {
+			System.out.println("WARNING: Default data set non provided");
+			path.setText("/percorso/al/file.txt");
+		}
 		path.setDisable(true);
 
 		delay.setText("50");

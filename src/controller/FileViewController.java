@@ -35,7 +35,8 @@ public class FileViewController {
 		File source = null;
 		String ftxt="";
 		try {
-			source = new File("/home/buccia/Università/Algoritmi/ALGA/README.md");
+			source = new File("README.md");
+			System.out.println("INFO: Loading " + source.toURI());
 			reader = new BufferedReader(new FileReader(source));
 			String l = reader.readLine();
 			while (l!=null) {
@@ -43,7 +44,6 @@ public class FileViewController {
 				l = reader.readLine();
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			e.printStackTrace();
 		} finally {
 			try { reader.close(); } catch (Exception e) { e.printStackTrace(); }

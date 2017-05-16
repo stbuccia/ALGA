@@ -16,10 +16,26 @@ public class Main extends Application {
 	public static Input i = null;
 	public static QSortDrawer qDrawer = null;
 	public static Service<Void> backgroundSorter = null;
-
+	public static final String greeting =  "\n" +  
+            "             _------_ \n" +
+	    "           -~        ~- \n" +
+	    "          -     _      - \n" +
+	    "         -      |>      - \n" + 
+	    "         -      |<      - \n" +
+	    "          -     |>     - \n" +
+	    "           -    ||    - \n" +
+	    "            -   ||   - \n" +
+	    "             -__||__- \n" +
+	    "             |______| \n" +
+	    "             <______> \n" +
+	    "             <______> \n" +
+	    "                \\/\n                    Bye <3";
+	
 	public static void main(String[] args) {
 		u = new Utils();
 		launch(args);
+		System.out.println(greeting);
+		
 	}
 	
 	@Override
