@@ -47,7 +47,11 @@ public class Input {
 	public int getDelay() {
 		return this.delay;
 	}
-
+	
+	public String getMode(){
+		return this.mode;
+	}
+	
 	public Integer getMaxVal() {
 		return max_val;
 	}
@@ -82,6 +86,7 @@ public class Input {
 	}
 
 	private void riempiKeyItems() {
+		/*
 		Scanner keyboard = new Scanner(System.in);
 		for (int i = 0; i < items.length; i++) {
 			try {
@@ -95,7 +100,10 @@ public class Input {
 				i--;
 			}
 		}
-		keyboard.close();
+		keyboard.close();*/
+		for (int i = 0; i < items.length; i++) {
+			items[i]=nullElement();
+		}
 	}
 
 	private void getFromFile() {
@@ -150,12 +158,10 @@ public class Input {
 	}
 
 	// valida l'input, controllando se è nel range accettato da max_value
-	private boolean validateInput(String s) {
+	public boolean validateInput(String s) {
 		Object tc = fromString(s);
-		if (compareTo(tc, maxInRangeElement()) > 0
-				|| compareTo(tc, minInRangeElement()) < 0) {
-			System.out.println("Comparison: "
-					+ compareTo(tc, minInRangeElement()));
+		if (compareTo(tc, maxInRangeElement()) > 0 || compareTo(tc, minInRangeElement()) < 0) {
+			System.out.println("Comparison: "+ compareTo(tc, minInRangeElement()));
 			System.out.println("fuori range");
 			return false;
 		}

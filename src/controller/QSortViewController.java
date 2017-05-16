@@ -19,12 +19,13 @@ public class QSortViewController {
 	private TextField addField;
 
 	@FXML
-	private Button addButton, pausa, indietro, byStep;
+	private Button addButton, pausa, indietro, byStep, go, add;
 
 	@FXML
 	private TextArea console;
 
 	private static QSortDrawer drawer;
+	private int counter=0, panelx=685, panely=485;
 	
 	@FXML
 	private Slider delay;
@@ -37,11 +38,29 @@ public class QSortViewController {
 
 	@FXML
 	void toWelcomeView(ActionEvent event) {
-		model.Main.backgroundSorter.cancel();
+		//model.Main.backgroundSorter.cancel();
 		model.Main.backgroundSorter = null;
 		model.Main.u.setMyScene(Scenes.WELCOME);
 	}
-
+	
+	void setDefault(){	
+		go.setDisable(false);
+		byStep.setDisable(false);
+		pausa.setDisable(false);
+		delay.adjustValue(Main.a.getDelay());
+		delayLab.setText("Delay: "+Main.a.getDelay()+"ms");
+		add.setDisable(true);
+		addField.setDisable(true);
+		if (Main.i.getByStep()){
+			delay.setDisable(true);
+			pausa.setDisable(true);
+			go.setDisable(true);
+		}
+		else{
+			byStep.setDisable(true);
+		}
+	}
+	
 	@FXML
 	void initialize() {
 		System.out.println("-- QSORTVIEW LOADED -- ");
@@ -49,22 +68,38 @@ public class QSortViewController {
 		model.Main.qDrawer = new QSortDrawer(rectPane, console);
 		System.out.println(model.Main.qDrawer);
 		model.Main.a = new model.Algoritmo<Void>(model.Main.getI());
-		model.Main.a.creaRects(685, 485);
-		
-		delay.adjustValue(Main.a.getDelay());
-		delayLab.setText("Delay(ms):"+Main.a.getDelay());
-		if (Main.i.getByStep()){
-			delay.setDisable(true);
-			pausa.setDisable(true);
-		}
-		else{
-			byStep.setDisable(true);
-		}
-		//model.Main.a.rectangle.setPivotH(model.Main.i.items[0], model.Main.i);
+		model.Main.a.creaRects(panelx, panely);
 		model.Main.qDrawer.drawRects();
+		setDefault();
+		
+		if (Main.i.getMode().equals("Tastiera")){
+			go.setDisable(true);
+			byStep.setDisable(true);
+			pausa.setDisable(true);
+			add.setDisable(false);
+			addField.setDisable(false);
+		}
 	}
-	static QSortDrawer getDrawer() {
-		return drawer;
+	
+	@FXML
+	void addItem() {
+		String s = addField.getText().toLowerCase();
+		try {
+			if (Main.i.validateInput(s)){
+				Main.i.items[counter] = Main.i.fromString(s);
+				model.Main.a.creaRects(panelx, panely);
+				console.appendText("Inserito "+s+"\n");
+				model.Main.qDrawer.drawRects();
+				counter++;
+			}
+			else{
+				if (Main.i.isString()) console.appendText("Input solo lettere\n");
+				else console.appendText("Input tra 0 e "+Main.i.getMaxVal()+"\n");
+			}
+		} catch (NumberFormatException e) {
+			console.appendText("L'input non è del tipo richiesto\n");
+		}
+		if (counter==model.Main.i.items.length) setDefault();
 	}
 
 	@FXML
@@ -77,7 +112,7 @@ public class QSortViewController {
 	@FXML
 	void changeDelay() {
 		Main.a.setDelay((int)delay.getValue());
-		delayLab.setText("Delay(ms):"+Main.a.getDelay());
+		delayLab.setText("Delay: "+Main.a.getDelay()+"ms");
 	}
 	
 	@FXML

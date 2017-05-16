@@ -99,7 +99,7 @@ public class Algoritmo<Void> extends Task<Void>{
 			}
 		} while (inPausa);
 		stampaItems();
-		Main.i.stampaItems();
+		//Main.i.stampaItems();
 		isPressed = false;
 	}
 

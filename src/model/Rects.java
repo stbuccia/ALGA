@@ -29,17 +29,12 @@ public class Rects {
 	public void setHeights(Input i) {
 		if (i.isString())
 			for (int j = 0; j < i.items.length; j++) {
-				double h = calcolaStringHeight(
-						i.items[j].toString(), 0, 0);
-				heights[j] = (h) * max_height; // 1 è il massimo
-							       // valore che può
-							       // avere
-							       // calcolaStringHeight
+				double h = calcolaStringHeight(i.items[j].toString(), 0, 0);
+				heights[j] = (h) * max_height; // 1 è il massimo valore che può avere calcolaStringHeight
 			}
 		else
 			for (int j = 0; j < i.items.length; j++)
-				heights[j] = (new Double(i.items[j].toString()) / i
-						.getMaxVal()) * max_height;
+				heights[j] = (new Double(i.items[j].toString()) / i.getMaxVal()) * max_height;
 	}
 
 	private double calcolaStringHeight(String s, int pos, int iter) {

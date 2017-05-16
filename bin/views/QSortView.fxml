@@ -20,16 +20,16 @@
                <children>
                   <ButtonBar layoutX="14.0" layoutY="31.0" prefHeight="0.0" prefWidth="595.0">
                     <buttons>
-                        <Label fx:id="delayLab" minWidth="10.0" onMouseDragged="#changeDelay" onMouseReleased="#changeDelay" prefHeight="15.0" text="Delay(ms): " />
+                        <Label fx:id="delayLab" minWidth="10.0" onMouseDragged="#changeDelay" onMouseReleased="#changeDelay" prefHeight="15.0" text="Delay: ms " />
                         <Slider fx:id="delay" max="500.0" onMouseDragged="#changeDelay" onMousePressed="#changeDelay" />
                         <Separator minWidth="1.0" orientation="VERTICAL" prefHeight="25.0" />
-                        <TextField fx:id="addField" prefHeight="25.0" prefWidth="479.0" />
-                      <Button mnemonicParsing="false" prefHeight="25.0" text="Aggiungi" />
+                        <TextField fx:id="addField" onAction="#addItem" prefHeight="25.0" prefWidth="479.0" />
+                      <Button fx:id="add" mnemonicParsing="false" onAction="#addItem" prefHeight="25.0" text="Aggiungi" />
                     </buttons>
                   </ButtonBar>
                   <ButtonBar layoutX="3.0" prefHeight="31.0" prefWidth="680.0">
                      <buttons>
-                        <Button mnemonicParsing="false" onAction="#testRettangoli" prefHeight="25.0" prefWidth="199.0" text="Vai">
+                        <Button fx:id="go" mnemonicParsing="false" onAction="#testRettangoli" prefHeight="25.0" prefWidth="199.0" text="Vai">
                            <padding>
                               <Insets left="10.0" right="10.0" />
                            </padding>
