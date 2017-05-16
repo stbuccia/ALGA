@@ -44,6 +44,7 @@ public class QSortViewController {
 			model.Main.a.cancel(true);
 			model.Main.a = null;
 		}
+		Main.backgroundSorter=null;
 		counter=0;
 		model.Main.u.setMyScene(Scenes.WELCOME);
 	}
@@ -72,9 +73,10 @@ public class QSortViewController {
 		System.out.println("-- QSORTVIEW LOADED -- ");
 		model.Main.qDrawer = new QSortDrawer(rectPane);
 		System.out.println(model.Main.qDrawer);
-		if (Main.a==null){ 
+		if (Main.a==null || Main.backgroundSorter==null){ 
 			model.Main.a = new model.Algoritmo<Void>(model.Main.i);
 			model.Main.a.creaRects(panelx, panely);
+			console.setText(Main.a.getItems());
 		}
 		else{
 			console.textProperty().bind(model.Main.backgroundSorter.messageProperty());
@@ -115,7 +117,10 @@ public class QSortViewController {
 		} catch (NumberFormatException e) {
 			console.appendText("L'input non è del tipo richiesto\n");
 		}
-		if (counter==model.Main.i.items.length) setDefault();
+		if (counter==model.Main.i.items.length){
+			setDefault();
+			console.setText(Main.a.getItems());
+		}
 	}
 
 	@FXML
@@ -146,6 +151,10 @@ public class QSortViewController {
 			model.Main.a = null;
 			help.setDisable(false);
 		}
+		bar.progressProperty().unbind();
+		bar.setProgress(0.0);
+		console.textProperty().unbind();
+		Main.backgroundSorter=null;
 		for (int j=0; j<Main.i.items.length; j++)
 			Main.i.items[j]=Main.i.initial[j];
 		initialize();
@@ -155,7 +164,7 @@ public class QSortViewController {
 	void proceed() {
 		if (Main.backgroundSorter==null) testRettangoli();
 		Main.a.setIsPressed();
-		Main.i.stampaItems();
+		Main.a.stampaItems();
 	}
 	
 	@FXML

@@ -241,9 +241,9 @@ public class Input {
 			return t1.toString().compareTo(t2.toString());
 		}
 	}
-
-	public void stampaItems() {
-		for (int i = 0; i < items.length; i++)
+	
+	public void stampaItems(){
+		for (int i = 0; i < items.length; i++) 
 			System.out.print(items[i] + " ");
 		System.out.println();
 	}

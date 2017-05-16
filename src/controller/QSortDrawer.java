@@ -49,7 +49,6 @@ public class QSortDrawer {
 			else rs[i].setY(panel.getHeight() - model.Main.a.rectangle.getHeight(i));
 			rs[i].setHeight(model.Main.a.rectangle.getHeight(i));
 			rs[i].setWidth(model.Main.a.rectangle.getWidth());
-			
 		}
 	}
 

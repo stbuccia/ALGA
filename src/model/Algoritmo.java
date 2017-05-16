@@ -55,16 +55,23 @@ public class Algoritmo<Void> extends Task<Void>{
 				input.items[i] = input.items[j];
 				input.items[j] = temp;
 				rectangle.switchRect(i, j);
-				updateMessage("Scambio " + input.items[i] + " con " + input.items[j]);
+				updateMessage("Scambio " + input.items[i] + " con " + input.items[j]+"\n"+this.getItems());
 				disegna();
 			}
 		}
 		input.items[primo] = input.items[j];
 		input.items[j] = p;
 		rectangle.switchRect(primo, j);
-		updateMessage("Scambio " + input.items[primo] + " con " + p);
+		updateMessage("Scambio " + input.items[primo] + " con " + p +"\n"+this.getItems());
 		disegna();
 		return j;
+	}
+
+	public String getItems() {
+		String s="";
+		for (int i = 0; i < input.items.length; i++)
+			s+=input.items[i] + " ";
+		return s;
 	}
 
 	// Esegue ogni iterazione
@@ -95,7 +102,6 @@ public class Algoritmo<Void> extends Task<Void>{
 			@Override
 			public void run() {
 				Main.qDrawer.drawRects();
-				
 			}
 		});
 	}
