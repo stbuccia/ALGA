@@ -60,7 +60,7 @@ public class Input {
 		if (this.mode.equals("Casuale"))
 			this.riempiRandItems();
 		else if (this.mode.equals("Tastiera"))
-			this.riempiKeyItems();
+			this.azzeraItems();
 		else if (this.mode.equals("File"))
 			this.getFromFile();
 		else
@@ -85,22 +85,8 @@ public class Input {
 		}
 	}
 
-	private void riempiKeyItems() {
-		/*
-		Scanner keyboard = new Scanner(System.in);
-		for (int i = 0; i < items.length; i++) {
-			try {
-				String s = keyboard.next().toLowerCase();
-				if (validateInput(s))
-					items[i] = this.fromString(s);
-				else
-					i--;
-			} catch (NumberFormatException e) {
-				System.out.println("L'input non è del tipo richiesto");
-				i--;
-			}
-		}
-		keyboard.close();*/
+	private void azzeraItems() {
+		//aggiunge solo 0, poi ci pensa la finestra a gestirli come si deve
 		for (int i = 0; i < items.length; i++) {
 			items[i]=nullElement();
 		}
@@ -108,6 +94,7 @@ public class Input {
 
 	private void getFromFile() {
 
+		azzeraItems();
 		String l = "";
 		System.out.println(this.path);
 		BufferedReader reader = null;
