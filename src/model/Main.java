@@ -20,14 +20,10 @@ public class Main extends Application {
 	public static Service<Void> backgroundSorter = null;
 
 	public static void main(String[] args) {
-
 		u = new Utils();
 		launch(args);
-
 	}
-	public static Input getI(){
-		return i;
-	}
+	
 	@Override
 	public void start(Stage firstStage) throws Exception {
 		stage = firstStage;

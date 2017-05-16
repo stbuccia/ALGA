@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class Input {
 
-	public Object[] items;
+	public Object[] items, initial;
 	private String path = ""; // Percorso al file sorgente dei dati
 	private Integer max_val = 1, lunghStr = 20;
 	private String mode, type;
@@ -17,6 +17,7 @@ public class Input {
 
 	public Input(int n, String tipo) {
 		this.items = new Object[n];
+		this.initial = new Object[n];
 		this.type = tipo;
 	}
 
@@ -65,8 +66,14 @@ public class Input {
 			this.getFromFile();
 		else
 			System.out.println("Modalità input non disponibile");
+		riempiInitial();
 	}
-
+	
+	private void riempiInitial(){
+		for (int i=0; i<items.length; i++)
+			initial[i]=items[i];
+	}
+	
 	private void riempiRandItems() {
 		for (int i = 0; i < items.length; i++) {
 			if (!this.isString())
@@ -75,11 +82,7 @@ public class Input {
 				int lunghezza = (int) (Math.random() * lunghStr + 1); // massimo 10 caratteri
 				String s = "";
 				for (int j = 0; j < lunghezza; j++)
-					s += (char) (Math.random() * 26 + 97); // Stringhe
-									       // con
-									       // solo
-									       // lettere
-									       // minuscole
+					s += (char) (Math.random() * 26 + 97); // Stringhe con solo lettere minuscole
 				items[i] = fromString(s);
 			}
 		}

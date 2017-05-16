@@ -37,7 +37,7 @@
                         <Button fx:id="byStep" mnemonicParsing="false" onAction="#proceed" prefHeight="25.0" text="Avanza" />
                         <Button fx:id="indietro" mnemonicParsing="false" onAction="#toWelcomeView" prefHeight="25.0" text="Indietro" />
                         <Button fx:id="pausa" mnemonicParsing="false" onAction="#pause" prefHeight="25.0" text="Pausa" />
-                        <Button mnemonicParsing="false" onAction="#initialize" prefHeight="25.0" text="Reset" />
+                        <Button mnemonicParsing="false" onAction="#reset" prefHeight="25.0" text="Redo" />
                         <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#openReadMe" prefHeight="25.0" prefWidth="22.0" text="?" />
                      </buttons>
                      <padding>

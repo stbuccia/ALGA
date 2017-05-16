@@ -43,6 +43,7 @@ public class QSortViewController {
 			model.Main.a.cancel(true);
 			model.Main.a = null;
 		}
+		counter=0;
 		model.Main.u.setMyScene(Scenes.WELCOME);
 	}
 	
@@ -69,11 +70,11 @@ public class QSortViewController {
 		System.out.println("-- QSORTVIEW LOADED -- ");
 		model.Main.qDrawer = new QSortDrawer(rectPane, console);
 		System.out.println(model.Main.qDrawer);
-		model.Main.a = new model.Algoritmo<Void>(model.Main.getI());
+		model.Main.a = new model.Algoritmo<Void>(model.Main.i);
 		model.Main.a.creaRects(panelx, panely);
 		model.Main.qDrawer.drawRects();
 		setDefault();
-		
+		System.out.println(counter);
 		if (Main.i.getMode().equals("Tastiera") && counter<model.Main.i.items.length){
 			go.setDisable(true);
 			byStep.setDisable(true);
@@ -95,6 +96,7 @@ public class QSortViewController {
 		try {
 			if (Main.i.validateInput(s)){
 				Main.i.items[counter] = Main.i.fromString(s);
+				Main.i.initial[counter] = Main.i.fromString(s);
 				model.Main.a.creaRects(panelx, panely);
 				console.appendText("Inserito "+s+"\n");
 				model.Main.qDrawer.drawRects();
@@ -121,6 +123,17 @@ public class QSortViewController {
 	void changeDelay() {
 		Main.a.setDelay((int)delay.getValue());
 		delayLab.setText("Delay: "+Main.a.getDelay()+"ms");
+	}
+	
+	@FXML
+	void reset(){
+		if (model.Main.a != null){
+			model.Main.a.cancel(true);
+			model.Main.a = null;
+		}
+		for (int j=0; j<Main.i.items.length; j++)
+			Main.i.items[j]=Main.i.initial[j];
+		initialize();
 	}
 	
 	@FXML
