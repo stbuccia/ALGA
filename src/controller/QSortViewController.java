@@ -73,7 +73,7 @@ public class QSortViewController {
 		System.out.println("-- QSORTVIEW LOADED -- ");
 		model.Main.qDrawer = new QSortDrawer(rectPane);
 		System.out.println(model.Main.qDrawer);
-		if (Main.a==null || Main.backgroundSorter==null){ 
+		if (Main.backgroundSorter==null){ 
 			model.Main.a = new model.Algoritmo<Void>(model.Main.i);
 			model.Main.a.creaRects(panelx, panely);
 			console.setText(Main.a.getItems());
