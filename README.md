@@ -1,4 +1,4 @@
-# ALGA - un fighissimo animatore di algoritmi
+# 	ALGA - un fighissimo animatore di algoritmi
 
 - [ ] Scrivere readme
   - [ ] Pseudocodice
