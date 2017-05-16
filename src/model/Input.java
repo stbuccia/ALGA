@@ -3,8 +3,6 @@ package model;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Input {
 

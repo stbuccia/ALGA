@@ -1,8 +1,6 @@
 package controller;
 
 import model.Main;
-import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -13,7 +11,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-//import javax.swing.SwingWorker<T,V>;
 import javafx.scene.layout.Pane;
 
 public class QSortViewController {
@@ -22,7 +19,7 @@ public class QSortViewController {
 	private TextField addField;
 
 	@FXML
-	private Button addButton, pausa, indietro, byStep, go, add;
+	private Button addButton, pausa, indietro, byStep, go, add, help;
 	
 	@FXML
 	private ProgressBar bar; 
@@ -51,7 +48,8 @@ public class QSortViewController {
 		model.Main.u.setMyScene(Scenes.WELCOME);
 	}
 	
-	void setDefault(){	
+	void setDefault(){
+		setPausaText();
 		go.setDisable(false);
 		byStep.setDisable(false);
 		pausa.setDisable(false);
@@ -72,10 +70,16 @@ public class QSortViewController {
 	@FXML
 	void initialize() {
 		System.out.println("-- QSORTVIEW LOADED -- ");
-		model.Main.qDrawer = new QSortDrawer(rectPane, console);
+		model.Main.qDrawer = new QSortDrawer(rectPane);
 		System.out.println(model.Main.qDrawer);
-		model.Main.a = new model.Algoritmo<Void>(model.Main.i);
-		model.Main.a.creaRects(panelx, panely);
+		if (Main.a==null){ 
+			model.Main.a = new model.Algoritmo<Void>(model.Main.i);
+			model.Main.a.creaRects(panelx, panely);
+		}
+		else{
+			console.textProperty().bind(model.Main.backgroundSorter.messageProperty());
+			bar.progressProperty().bind(model.Main.backgroundSorter.progressProperty());
+		}
 		model.Main.qDrawer.drawRects();
 		setDefault();
 		if (Main.i.getMode().equals("Tastiera") && counter<model.Main.i.items.length){
@@ -89,7 +93,6 @@ public class QSortViewController {
 	
 	@FXML
 	void openReadMe(){
-		if (model.Main.a != null) model.Main.a.cancel(true);
 		model.Main.u.setMyScene(Scenes.FILE);
 	}
 	
@@ -117,8 +120,16 @@ public class QSortViewController {
 
 	@FXML
 	void pause() {
-		Main.a.setInPausa();
-		if (Main.a.isInPausa())	pausa.setText("Riprendi");
+		if (Main.a.isRunning()){
+			Main.a.setInPausa();
+			setPausaText();
+			if (Main.a.isInPausa())	help.setDisable(false);
+			else help.setDisable(true);
+		}
+	}
+	
+	void setPausaText(){
+		if (Main.a.isInPausa()) pausa.setText("Riprendi");
 		else pausa.setText("Pausa");
 	}
 	
@@ -133,6 +144,7 @@ public class QSortViewController {
 		if (model.Main.a != null){
 			model.Main.a.cancel(true);
 			model.Main.a = null;
+			help.setDisable(false);
 		}
 		for (int j=0; j<Main.i.items.length; j++)
 			Main.i.items[j]=Main.i.initial[j];
@@ -151,13 +163,13 @@ public class QSortViewController {
 		Main.backgroundSorter = new Service<Void>() {
 			@Override
 			public Task<Void> createTask(){
-				return Main.a;
+				return (Task<Void>) Main.a;
 			}
 		};
+		help.setDisable(true);
 		console.textProperty().bind(model.Main.backgroundSorter.messageProperty());
 		bar.progressProperty().bind(model.Main.backgroundSorter.progressProperty());
 		Main.backgroundSorter.restart();
-//		Main.qDrawer.toConsole(Main.backgroundSorter.messageProperty().getName());
 	}
 
 }

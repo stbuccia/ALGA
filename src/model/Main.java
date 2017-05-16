@@ -2,11 +2,9 @@ package model;
 
 import controller.Utils;
 import controller.QSortDrawer;
-import controller.QSortViewController;
 
 import javafx.application.Application;
 import javafx.concurrent.Service;
-import javafx.concurrent.Task;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -14,7 +12,7 @@ public class Main extends Application {
 	// La maggior parte di queste cose sono inizializzati dai controller
 	public static Stage stage;
 	public static Utils u = null;
-	public static Algoritmo a = null;
+	public static Algoritmo<?> a = null;
 	public static Input i = null;
 	public static QSortDrawer qDrawer = null;
 	public static Service<Void> backgroundSorter = null;

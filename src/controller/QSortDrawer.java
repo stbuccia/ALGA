@@ -1,24 +1,18 @@
 package controller;
 
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 
 public class QSortDrawer {
 
 	private Pane panel = null;
-	private TextArea ta = null;
 	private int len = model.Main.i.items.length;
 	private Rectangle rs[] = new Rectangle[len];
-	private int gap = 10;
 
-	public QSortDrawer(Pane panel, TextArea ta) {
+	public QSortDrawer(Pane panel) {
 		this.panel = panel;
-		this.ta = ta;
 		for (int i = 0; i < len; ++i) {
 			rs[i] = new Rectangle();
 		}
@@ -47,18 +41,16 @@ public class QSortDrawer {
 	}
 
 	private void makeRects() {
-			for (int i = 0; i < len; ++i) {
-				rs[i].setFill(Color.WHITE);
-				rs[i].setStroke(Color.BLACK);
-				rs[i].setX((i * model.Main.a.rectangle.getWidth()));
-				if (panel.getHeight()==0) rs[i].setY(476 - model.Main.a.rectangle.getHeight(i));
-				else rs[i].setY(panel.getHeight() - model.Main.a.rectangle.getHeight(i));
-				rs[i].setHeight(model.Main.a.rectangle.getHeight(i));
-				rs[i].setWidth(model.Main.a.rectangle.getWidth());
-				
-			}
-		
-
+		for (int i = 0; i < len; ++i) {
+			rs[i].setFill(Color.WHITE);
+			rs[i].setStroke(Color.BLACK);
+			rs[i].setX((i * model.Main.a.rectangle.getWidth()));
+			if (panel.getHeight()==0) rs[i].setY(476 - model.Main.a.rectangle.getHeight(i));
+			else rs[i].setY(panel.getHeight() - model.Main.a.rectangle.getHeight(i));
+			rs[i].setHeight(model.Main.a.rectangle.getHeight(i));
+			rs[i].setWidth(model.Main.a.rectangle.getWidth());
+			
+		}
 	}
 
 }

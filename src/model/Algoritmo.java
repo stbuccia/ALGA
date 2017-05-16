@@ -1,6 +1,5 @@
 package model;
 
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 import javafx.application.Platform;
