@@ -2,12 +2,14 @@ package controller;
 
 import model.Main;
 import javafx.application.Platform;
+import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -21,11 +23,13 @@ public class QSortViewController {
 
 	@FXML
 	private Button addButton, pausa, indietro, byStep, go, add;
+	
+	@FXML
+	private ProgressBar bar; 
 
 	@FXML
 	private TextArea console;
 
-	private static QSortDrawer drawer;
 	public static int counter=0, panelx=685, panely=485;
 	
 	@FXML
@@ -74,7 +78,6 @@ public class QSortViewController {
 		model.Main.a.creaRects(panelx, panely);
 		model.Main.qDrawer.drawRects();
 		setDefault();
-		System.out.println(counter);
 		if (Main.i.getMode().equals("Tastiera") && counter<model.Main.i.items.length){
 			go.setDisable(true);
 			byStep.setDisable(true);
@@ -152,6 +155,7 @@ public class QSortViewController {
 			}
 		};
 		console.textProperty().bind(model.Main.backgroundSorter.messageProperty());
+		bar.progressProperty().bind(model.Main.backgroundSorter.progressProperty());
 		Main.backgroundSorter.restart();
 //		Main.qDrawer.toConsole(Main.backgroundSorter.messageProperty().getName());
 	}

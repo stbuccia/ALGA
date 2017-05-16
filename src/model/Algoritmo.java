@@ -29,9 +29,15 @@ public class Algoritmo<Void> extends Task<Void>{
 	public void doQuickSort(int primo, int ultimo) {
 		if (isCancelled()) return;
 		if (primo < ultimo) {
+			updateProgress(primo, input.items.length-1);
+			
 			int k = this.pivot(primo, ultimo);
+			
 			this.doQuickSort(primo, k - 1);
+			updateProgress(k, input.items.length-1);
+			
 			this.doQuickSort(k + 1, ultimo);
+			updateProgress(ultimo, input.items.length-1);
 		}
 	}
 	
