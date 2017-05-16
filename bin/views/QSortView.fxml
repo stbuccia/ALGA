@@ -53,7 +53,7 @@
       <Pane id="canvas" fx:id="rectPane" layoutX="18.0" layoutY="88.0" prefHeight="489.0" prefWidth="723.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0">
       </Pane>
       <ProgressBar fx:id="bar" layoutX="10.0" layoutY="592.0" prefHeight="20.0" prefWidth="723.0" progress="0.0" />
-         <TextArea fx:id="console" editable="false" layoutX="-2.0" layoutY="625.0" prefHeight="111.0" prefWidth="451.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="349.0" AnchorPane.topAnchor="625.0" />
+         <TextArea fx:id="console" editable="false" layoutX="-2.0" layoutY="625.0" prefHeight="91.0" prefWidth="391.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="349.0" AnchorPane.topAnchor="625.0" />
       <Pane layoutX="406.0" layoutY="625.0" prefHeight="102.0" prefWidth="341.0">
          <children>
             <Rectangle fx:id="legRPivot" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" layoutX="31.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />

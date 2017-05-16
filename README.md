@@ -30,3 +30,7 @@
 - WELCOMEVIEW: Slider non reimposta etichetta dello stato: se prima questa era attiva perchè un valore non era ammissibile, cambiare lo slider oltre a reimpostare il testo dell'etichetta dovrebbe anche reimpostare lo stato, perchè il valore che prima non andava bene viene sovrascritto con un numero 
 - QSORTVIEW: Le stringhe non hanno la barra dell'altezza del pivot
 - WELCOMEVIEW: Sarebbe carino trovare un modo per avere un riferimento assoluto (magari far funzionare getClass().getResource()) al file dei dati con cui settare la casella del percorso, in modo da non avere il percorso di default che dipende dall'utente
+
+
+
+git commit -m "Colori rettangoli, messo a posto le finestre, cambiato cosine qua e la, trovato alcuni problemi"

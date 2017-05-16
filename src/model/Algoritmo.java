@@ -49,6 +49,7 @@ public class Algoritmo<Void> extends Task<Void> {
 			this.doQuickSort(k + 1, ultimo);
 			updateProgress(ultimo, input.items.length - 1);
 		}
+		stampaItems();
 	}
 
 	private int pivot(int primo, int ultimo) {
