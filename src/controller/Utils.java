@@ -52,12 +52,12 @@ public class Utils extends Object {
 		switch(p){
 		case PIVOT:
 			return Color.web("#0092C3");
-		case TALLER:
-			return Color.web("#ffb40099");
+		case SHORTER:
+			return Color.web("#E0E0E0");
 		case SWITCHED:
-			return Color.web("#0024cc");
+			return Color.web("#4ACDD0");
 		case CURRENT:
-			return Color.web("#ff8300");
+			return Color.web("#00D288");
 		default:
 			return Color.WHITE;
 		}

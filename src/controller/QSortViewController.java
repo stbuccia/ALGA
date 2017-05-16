@@ -65,10 +65,13 @@ public class QSortViewController {
 	private Text legLChanged;
 
 	@FXML
-	private Rectangle legRTaller;
+	private Rectangle legRShorter;
 
 	@FXML
-	private Text legLTaller;
+	private Text legLShorter;
+	
+	@FXML
+	private Label pivotLbl;
 
 	@FXML
 	void toWelcomeView(ActionEvent event) {
@@ -234,8 +237,8 @@ public class QSortViewController {
 		this.legLCurrent.setText("Corrente");
 		this.legRPivot.setFill(Main.u.fromPalette(Palette.PIVOT));
 		this.legLPivot.setText("Pivot");
-		this.legRTaller.setFill(Main.u.fromPalette(Palette.TALLER));
-		this.legLTaller.setText("Più grandi del pivot");
+		this.legRShorter.setFill(Main.u.fromPalette(Palette.SHORTER));
+		this.legLShorter.setText("Più piccoli del pivot");
 	}
 
 }

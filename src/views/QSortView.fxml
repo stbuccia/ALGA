@@ -62,8 +62,8 @@
             <Text fx:id="legLCurrent" layoutX="225.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
             <Rectangle fx:id="legRChanged" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" layoutX="199.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
             <Text fx:id="legLChanged" layoutX="225.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Rectangle fx:id="legRTaller" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" layoutX="31.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
-            <Text fx:id="legLTaller" layoutX="53.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Rectangle fx:id="legRShorter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" layoutX="31.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
+            <Text fx:id="legLShorter" layoutX="53.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
          </children></Pane>
    </children>
 </AnchorPane>

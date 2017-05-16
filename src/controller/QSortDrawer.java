@@ -1,6 +1,7 @@
 package controller;
 
 import model.Main;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -15,6 +16,8 @@ public class QSortDrawer {
 	private int len = model.Main.i.items.length;
 	private Rectangle rs[] = new Rectangle[len];
 	private double pivotH;
+	private Label pivotLabel;
+	private Label currentLabel;
 
 	public QSortDrawer(Pane panel) {
 		this.panel = panel;
@@ -48,6 +51,17 @@ public class QSortDrawer {
 			l.setStroke(Main.u.fromPalette(Palette.PIVOT));
 			l.setStrokeWidth(1);
 			panel.getChildren().add(l);
+			
+			pivotLabel = new Label("" + Main.i.items[Main.a.getPivotIndex()]);
+			pivotLabel.setTranslateY(l.getEndY() - 20);
+			pivotLabel.setTranslateX(rs[Main.a.getPivotIndex()].getX());
+			panel.getChildren().add(pivotLabel);
+			
+			pivotLabel = new Label("" + Main.i.items[Main.a.getCurrentIndex()]);
+			pivotLabel.setTranslateY(rs[Main.a.getCurrentIndex()].getY() - 20);
+			pivotLabel.setTranslateX(rs[Main.a.getCurrentIndex()].getX());
+			panel.getChildren().add(pivotLabel);
+			
 		} catch (java.lang.NullPointerException e) {
 			System.out.println();
 		}
@@ -60,14 +74,14 @@ public class QSortDrawer {
 
 			pivotH = Main.a.rectangle.getPivotH();
 			rs[i].setStroke(Color.GREY);
-			if (Main.a.rectangle.getHeight(i) > pivotH) {
+			if (Main.a.rectangle.getHeight(i) < pivotH) {
 				rs[i].setFill(Main.u
-						.fromPalette(Palette.TALLER));
+						.fromPalette(Palette.SHORTER));
 			} else if (Main.a.getPivotIndex() == i) {
 				rs[i].setFill(Main.u.fromPalette(Palette.PIVOT));
 			} else {
 				rs[i].setFill(Main.u
-						.fromPalette(Palette.SHORTER));
+						.fromPalette(Palette.TALLER));
 			}
 
 			if (Main.a.getCurrentIndex() == i) {
