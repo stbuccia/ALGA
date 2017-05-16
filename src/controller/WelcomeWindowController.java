@@ -152,6 +152,7 @@ public class WelcomeWindowController {
 		delay.setText(String.valueOf((int) slide_delay.getValue()));
 		num.setText(String.valueOf((int) slide_num.getValue()));
 		value.setText(String.valueOf((int) slide_value.getValue()));
+		stato.setText("");
 	}
 
 	@FXML
