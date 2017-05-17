@@ -12,7 +12,7 @@ public class Algoritmo<Void> extends Task<Void> {
 	private boolean inPausa;
 	private int delay = 0;
 	private boolean isPressed = false;
-	private int pivotIndex = 0, currentIndex = 0;
+	private int pivotIndex = 0, currentIndex = 0, currentJ = 0;
 	private int firstToSwitch = 0, secondToSwitch = 0;
 
 	public Algoritmo(Input i) {
@@ -28,7 +28,11 @@ public class Algoritmo<Void> extends Task<Void> {
 	public int getCurrentIndex() {
 		return this.currentIndex;
 	}
-
+	
+	public int getCurrentJ() {
+		return this.currentJ;
+	}
+	
 	public void creaRects(double x, double y) {
 		rectangle = new Rects(input, x, y);
 		rectangle.setWidth(input.items.length);
@@ -36,18 +40,15 @@ public class Algoritmo<Void> extends Task<Void> {
 	}
 
 	public void doQuickSort(int primo, int ultimo) {
-		if (isCancelled())
-			return;
+			if (isCancelled())
+				return;
 		if (primo < ultimo) {
-			updateProgress(primo, input.items.length - 1);
-
+				updateProgress(primo, input.items.length - 1);
 			int k = this.pivot(primo, ultimo);
-
 			this.doQuickSort(primo, k - 1);
-			updateProgress(k, input.items.length - 1);
-
+				updateProgress(k, input.items.length - 1);
 			this.doQuickSort(k + 1, ultimo);
-			updateProgress(ultimo, input.items.length - 1);
+				updateProgress(ultimo, input.items.length - 1);
 		}
 		stampaItems();
 	}
@@ -56,38 +57,36 @@ public class Algoritmo<Void> extends Task<Void> {
 		int j = primo;
 		Object p = input.items[primo];
 		Object temp;
-		rectangle.setPivotH(p, input);
-		this.pivotIndex = primo;
-		updateCanvas();
+			rectangle.setPivotH(p, input);
+			this.pivotIndex = primo;
+			updateCanvas();
+			updateMessage(this.getItems()+"\nIl pivot è diventato " + input.items[primo]);
 		for (int i = primo; i <= ultimo; i++) {
 			if (input.compareTo(input.items[i], p) < 0) {
-				if (isCancelled())
-					return 0;
-				this.currentIndex = i;
-				tick();
+					if (isCancelled())
+						return 0;
+					this.currentIndex = i;
+					this.currentJ = j+1;
+					tick();
 				j++;
 				temp = input.items[i];
 				input.items[i] = input.items[j];
 				input.items[j] = temp;
-				rectangle.switchRect(i, j);
-				
-				setSwitch(i, j);
-				updateMessage(this.getItems() + "\nScambio "
-						+ input.items[i] + " con "
-						+ input.items[j] + " (pivot: "
-						+ input.items[pivotIndex] + ")");
-				updateCanvas();
+					rectangle.switchRect(i, j);
+					setSwitch(i, j);
+					updateMessage(this.getItems() + "\nScambiati "+ input.items[j] + " con "+ input.items[i] + " (pivot: "+ input.items[pivotIndex] + ")");
+					updateCanvas();
 			}
 		}
 		
 		input.items[primo] = input.items[j];
 		input.items[j] = p;
-		rectangle.switchRect(primo, j);
-		this.pivotIndex = j;
-		
-		setSwitch(primo, j);
-		updateMessage("Il pivot diventa " + input.items[j]);
-		updateCanvas();
+			rectangle.switchRect(primo, j);
+			this.pivotIndex = primo;
+			rectangle.setPivotH(input.items[primo], input);
+			setSwitch(primo, j);
+			updateMessage(this.getItems() +"\nScambiati " + input.items[primo] + " con " + input.items[j] + "\nIl pivot è diventato " + input.items[primo]);
+			updateCanvas();
 		return j;
 	}
 

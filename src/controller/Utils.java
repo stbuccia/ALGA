@@ -36,13 +36,13 @@ public class Utils extends Object {
 			out = this.getClass().getResource(
 					"/views/QSortView.fxml");
 			model.Main.stage.setWidth(750);
-			model.Main.stage.setHeight(765);
+			model.Main.stage.setHeight(735);
 			break;
 		case FILE:
 			out = this.getClass().getResource(
 					"/views/FileView.fxml");
 			model.Main.stage.setWidth(750);
-			model.Main.stage.setHeight(765);
+			model.Main.stage.setHeight(735);
 			break;
 		}
 		return out;

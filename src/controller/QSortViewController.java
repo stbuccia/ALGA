@@ -232,9 +232,9 @@ public class QSortViewController {
 	
 	private void makeLegend(){
 		this.legRChanged.setFill(Main.u.fromPalette(Palette.SWITCHED));
-		this.legLChanged.setText("Da scambiare");
+		this.legLChanged.setText("Scambiati");
 		this.legRCurrent.setFill(Main.u.fromPalette(Palette.CURRENT));
-		this.legLCurrent.setText("Corrente");
+		this.legLCurrent.setText("Da scambiare");
 		this.legRPivot.setFill(Main.u.fromPalette(Palette.PIVOT));
 		this.legLPivot.setText("Pivot");
 		this.legRShorter.setFill(Main.u.fromPalette(Palette.SHORTER));

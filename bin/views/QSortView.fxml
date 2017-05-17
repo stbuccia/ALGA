@@ -14,9 +14,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.QSortViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.QSortViewController">
    <children>
-      <Pane prefHeight="750.0" prefWidth="750.0">
+      <Pane prefHeight="707.0" prefWidth="750.0">
          <children>
             <ButtonBar layoutX="1.0" layoutY="54.0" prefHeight="15.0" prefWidth="730.0">
               <buttons>
@@ -48,22 +48,23 @@
                   <Insets left="-5.0" right="10.0" />
                </padding>
             </ButtonBar>
+               <TextArea fx:id="console" editable="false" layoutX="14.0" layoutY="602.0" prefHeight="91.0" prefWidth="391.0" />
+            <Pane layoutX="409.0" layoutY="602.0" prefHeight="84.0" prefWidth="341.0">
+               <children>
+                  <Rectangle fx:id="legRPivot" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" layoutX="31.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
+                  <Text fx:id="legLPivot" layoutX="53.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Rectangle fx:id="legRCurrent" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" layoutX="199.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
+                  <Text fx:id="legLCurrent" layoutX="225.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Rectangle fx:id="legRChanged" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" layoutX="199.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
+                  <Text fx:id="legLChanged" layoutX="225.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Rectangle fx:id="legRShorter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" layoutX="31.0" layoutY="58.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
+                  <Text fx:id="legLShorter" layoutX="53.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+               </children>
+            </Pane>
+            <ProgressBar fx:id="bar" layoutX="7.0" layoutY="580.0" prefHeight="15.0" prefWidth="730.0" progress="0.0" />
          </children>
       </Pane>
       <Pane id="canvas" fx:id="rectPane" layoutX="18.0" layoutY="88.0" prefHeight="489.0" prefWidth="723.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="17.0">
       </Pane>
-      <ProgressBar fx:id="bar" layoutX="10.0" layoutY="592.0" prefHeight="20.0" prefWidth="723.0" progress="0.0" />
-         <TextArea fx:id="console" editable="false" layoutX="-2.0" layoutY="625.0" prefHeight="91.0" prefWidth="391.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="349.0" AnchorPane.topAnchor="625.0" />
-      <Pane layoutX="406.0" layoutY="625.0" prefHeight="102.0" prefWidth="341.0">
-         <children>
-            <Rectangle fx:id="legRPivot" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" layoutX="31.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
-            <Text fx:id="legLPivot" layoutX="53.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Rectangle fx:id="legRCurrent" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" layoutX="199.0" layoutY="32.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
-            <Text fx:id="legLCurrent" layoutX="225.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Rectangle fx:id="legRChanged" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" layoutX="199.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
-            <Text fx:id="legLChanged" layoutX="225.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Rectangle fx:id="legRShorter" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" layoutX="31.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />
-            <Text fx:id="legLShorter" layoutX="53.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-         </children></Pane>
    </children>
 </AnchorPane>
