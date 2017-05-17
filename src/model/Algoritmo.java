@@ -57,9 +57,7 @@ public class Algoritmo<Void> extends Task<Void> {
 		int j = primo;
 		Object p = input.items[primo];
 		Object temp;
-			rectangle.setPivotH(p, input);
-			this.pivotIndex = primo;
-			updateCanvas();
+			pivotChanged(primo);
 			updateMessage(this.getItems()+"\nIl pivot è diventato " + input.items[primo]);
 		for (int i = primo; i <= ultimo; i++) {
 			if (input.compareTo(input.items[i], p) < 0) {
@@ -72,24 +70,32 @@ public class Algoritmo<Void> extends Task<Void> {
 				temp = input.items[i];
 				input.items[i] = input.items[j];
 				input.items[j] = temp;
-					rectangle.switchRect(i, j);
-					setSwitch(i, j);
+					switchedItems(i, j);
 					updateMessage(this.getItems() + "\nScambiati "+ input.items[j] + " con "+ input.items[i] + " (pivot: "+ input.items[pivotIndex] + ")");
-					updateCanvas();
 			}
 		}
-		
+			this.currentIndex = primo;
+			this.currentJ = j;
+			tick();
 		input.items[primo] = input.items[j];
 		input.items[j] = p;
-			rectangle.switchRect(primo, j);
-			this.pivotIndex = primo;
-			rectangle.setPivotH(input.items[primo], input);
-			setSwitch(primo, j);
+			switchedItems(primo, j);
+			pivotChanged(primo);
 			updateMessage(this.getItems() +"\nScambiati " + input.items[primo] + " con " + input.items[j] + "\nIl pivot è diventato " + input.items[primo]);
-			updateCanvas();
 		return j;
 	}
-
+	
+	private void switchedItems(int i, int j){
+		rectangle.switchRect(i, j);
+		setSwitch(i, j);
+		updateCanvas();
+	}
+	
+	private void pivotChanged(int n){
+		this.pivotIndex = n;
+		rectangle.setPivotH(input.items[n], input);
+		updateCanvas();
+	}
 	public String getItems() {
 		String s = "";
 		for (int i = 0; i < input.items.length; i++)
@@ -170,6 +176,7 @@ public class Algoritmo<Void> extends Task<Void> {
 	@Override
 	protected Void call() throws Exception {
 		this.doQuickSort(0, model.Main.i.items.length - 1);
+		updateMessage(this.getItems()+"\nFinito!");
 		return null;
 	}
 	

@@ -75,7 +75,7 @@ public class Input {
 	private void riempiRandItems() {
 		for (int i = 0; i < items.length; i++) {
 			if (!this.isString())
-				items[i] = fromDouble(Math.random() * max_val);
+				items[i] = fromDouble(Math.random() * (max_val+1));
 			else {
 				int lunghezza = (int) (Math.random() * lunghStr + 1); // massimo 10 caratteri
 				String s = "";
