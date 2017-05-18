@@ -35,8 +35,6 @@ public class QSortViewController {
 	@FXML
 	private TextArea console;
 
-	public static int counter = 0, panelx = 730, panely = 500;
-
 	@FXML
 	private Slider delay;
 
@@ -80,7 +78,7 @@ public class QSortViewController {
 			model.Main.a = null;
 		}
 		Main.backgroundSorter = null;
-		counter = 0;
+		Main.u.counterKey = 0;
 		model.Main.u.setMyScene(Scenes.WELCOME);
 	}
 
@@ -89,6 +87,8 @@ public class QSortViewController {
 		go.setDisable(false);
 		byStep.setDisable(false);
 		pausa.setDisable(false);
+		delay.setMin(Main.u.min_delay);
+		delay.setMax(Main.u.max_delay);
 		delay.adjustValue(Main.a.getDelay());
 		delayLab.setText("Delay: " + Main.a.getDelay() + "ms");
 		add.setDisable(true);
@@ -102,36 +102,7 @@ public class QSortViewController {
 		}
 	}
 
-	@FXML
-	void initialize() {
-		System.out.println("INFO: QSortView loaded");
-		model.Main.qDrawer = new QSortDrawer(rectPane);
-		makeLegend();
-		if (Main.backgroundSorter == null) {
-			model.Main.a = new model.Algoritmo<Void>(model.Main.i);
-			model.Main.a.creaRects(panelx, panely);
-			console.setText(Main.a.getItems());
-		} else {
-			console.textProperty().bind(
-					model.Main.backgroundSorter
-							.messageProperty());
-			bar.progressProperty().bind(
-					model.Main.backgroundSorter
-							.progressProperty());
-		}
-		model.Main.qDrawer.drawRects();
-		setDefault();
-
-		if (Main.i.getMode().equals("Tastiera")
-				&& counter < model.Main.i.items.length) {
-			go.setDisable(true);
-			byStep.setDisable(true);
-			pausa.setDisable(true);
-			add.setDisable(false);
-			addField.setDisable(false);
-		}
-	}
-
+	
 	@FXML
 	void openReadMe() {
 		model.Main.u.setMyScene(Scenes.FILE);
@@ -142,24 +113,22 @@ public class QSortViewController {
 		String s = addField.getText().toLowerCase();
 		try {
 			if (Main.i.validateInput(s)) {
-				Main.i.items[counter] = Main.i.fromString(s);
-				Main.i.initial[counter] = Main.i.fromString(s);
-				model.Main.a.creaRects(panelx, panely);
+				Main.i.items[Main.u.counterKey] = Main.i.fromString(s);
+				Main.i.initial[Main.u.counterKey] = Main.i.fromString(s);
+				model.Main.a.creaRects(Main.u.panelx, Main.u.panely);
 				console.appendText("Inserito " + s + "\n");
 				model.Main.qDrawer.drawRects();
-				counter++;
+				Main.u.counterKey++;
 			} else {
 				if (Main.i.isString())
 					console.appendText("Input solo lettere\n");
 				else
-					console.appendText("Input tra 0 e "
-							+ Main.i.getMaxVal()
-							+ "\n");
+					console.appendText("Input tra 0 e "+ Main.i.getMaxVal()+ "\n");
 			}
 		} catch (NumberFormatException e) {
 			console.appendText("L'input non è del tipo richiesto\n");
 		}
-		if (counter == model.Main.i.items.length) {
+		if (Main.u.counterKey == model.Main.i.items.length) {
 			setDefault();
 			console.setText(Main.a.getItems());
 		}
@@ -239,6 +208,35 @@ public class QSortViewController {
 		this.legLPivot.setText("Pivot");
 		this.legRShorter.setFill(Main.u.fromPalette(Palette.SHORTER));
 		this.legLShorter.setText("Più piccoli del pivot");
+	}
+	
+	@FXML
+	void initialize() {
+		System.out.println("INFO: QSortView loaded");
+		model.Main.qDrawer = new QSortDrawer(rectPane);
+		makeLegend();
+		if (Main.backgroundSorter == null) {
+			model.Main.a = new model.Algoritmo<Void>(model.Main.i);
+			model.Main.a.creaRects(Main.u.panelx, Main.u.panely);
+			console.setText(Main.a.getItems());
+		} else {
+			console.textProperty().bind(
+					model.Main.backgroundSorter
+							.messageProperty());
+			bar.progressProperty().bind(
+					model.Main.backgroundSorter
+							.progressProperty());
+		}
+		model.Main.qDrawer.drawRects();
+		setDefault();
+
+		if (Main.i.getMode().equals("Tastiera") && Main.u.counterKey < model.Main.i.items.length) {
+			go.setDisable(true);
+			byStep.setDisable(true);
+			pausa.setDisable(true);
+			add.setDisable(false);
+			addField.setDisable(false);
+		}
 	}
 
 }

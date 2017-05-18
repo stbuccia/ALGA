@@ -28,8 +28,7 @@ public class FileViewController {
     
     @FXML
     private Button indietro;
-    // Metodo chiamato automaticamente durante la costruzione
-    // dell'interfaccia, che fa le operazioni di inizializzazione se necessarie
+    
     @FXML
     private void indietro(){
     	if (model.Main.a==null) model.Main.u.setMyScene(Scenes.WELCOME);
@@ -58,7 +57,7 @@ public class FileViewController {
 //		Text t = new Text(ftxt);
 //		text.getChildren().add(t);
 
-	    engine.load("file:/home/ema/Scrivania/README.html");
+	    engine.load("file:/home/buccia/Università/Algoritmi/ALGA/README.md");
 	    pane.getChildren().add(view);
     }
 }

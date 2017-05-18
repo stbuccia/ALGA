@@ -8,9 +8,9 @@ public class Input {
 
 	public Object[] items, initial;
 	private String path = ""; // Percorso al file sorgente dei dati
-	private Integer max_val = 1, lunghStr = 20;
+	private Integer max_val = Main.u.pref_value, lunghStr = 20;
 	private String mode, type;
-	private int delay = 50;
+	private int delay = Main.u.pref_delay;
 	private boolean byStep = true;
 
 	public Input(int n, String tipo) {

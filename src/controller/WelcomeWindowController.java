@@ -2,6 +2,8 @@ package controller;
 
 import java.io.File;
 
+import model.Main;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -35,8 +37,7 @@ public class WelcomeWindowController {
 
 	@FXML
 	void toggleValue() {
-		value.setText("100"); // altrimenti potrebbe essere sollevata
-				      // un'eccezione
+		value.setText(""+Main.u.pref_value);
 		String s = Tipo.getSelectionModel().getSelectedItem();
 		value.setDisable(s.equals("Stringhe"));
 		control();
@@ -44,8 +45,7 @@ public class WelcomeWindowController {
 
 	@FXML
 	void toggleDelay() {
-		delay.setText("50"); // altrimenti potrebbe essere sollevata
-				     // un'eccezione
+		delay.setText(""+Main.u.pref_delay);
 		delay.setDisable(!auto.isSelected());
 		control();
 	}
@@ -64,7 +64,7 @@ public class WelcomeWindowController {
 	}
 
 	boolean controlDelay() {
-		int ms = 0;
+		int ms = Main.u.min_delay;
 		String s = delay.getText();
 		boolean disable = false;
 		if (!delay.isDisable()) {
@@ -74,8 +74,8 @@ public class WelcomeWindowController {
 				stato.setText("Il delay deve essere un numero");
 				disable = true;
 			}
-			if (ms < 0 || ms > 500) {
-				stato.setText("Il delay deve essere un intero tra 0 e 500 ");
+			if (ms < Main.u.min_delay || ms > Main.u.max_delay ) {
+				stato.setText("Il delay deve essere un intero tra "+Main.u.min_delay+" e "+Main.u.max_delay );
 				disable = true;
 			}
 		}
@@ -94,8 +94,8 @@ public class WelcomeWindowController {
 			stato.setText("Il numero degli elementi non è valido");
 			disable = true;
 		}
-		if (n < 1 || n > 1000) {
-			stato.setText("Il numero deglie elementi deve essere un intero tra 1 e 1000 ");
+		if (n < 1 || n > Main.u.max_n) {
+			stato.setText("Il numero deglie elementi deve essere un intero tra 1 e " +Main.u.max_n);
 			disable = true;
 		}
 		if (disable)
@@ -114,8 +114,8 @@ public class WelcomeWindowController {
 				stato.setText("Il valore massimo degli elementi non è valido");
 				disable = true;
 			}
-			if (n < 1 || n > 1000) {
-				stato.setText("Il valore massimo degli elementi deve essere un intero tra 1 e 1000 ");
+			if (n < 1 || n > Main.u.max_value) {
+				stato.setText("Il valore massimo degli elementi deve essere un intero tra 1 e "+Main.u.max_value);
 				disable = true;
 			}
 		}
@@ -127,8 +127,7 @@ public class WelcomeWindowController {
 	@FXML
 	void control() {
 
-		if (controlPath() && controlDelay() && controlNumber()
-				&& controlMaxValue()) {
+		if (controlPath() && controlDelay() && controlNumber() && controlMaxValue()) {
 			start.setDisable(false);
 			stato.setText("");
 			changeSliders();
@@ -161,10 +160,8 @@ public class WelcomeWindowController {
 		int n;
 
 		n = Integer.parseInt(num.getText());
-		model.Main.i = new model.Input(n, Tipo.getSelectionModel()
-				.getSelectedItem());
-		model.Main.i.setMode(Modalita.getSelectionModel()
-				.getSelectedItem());
+		model.Main.i = new model.Input(n, Tipo.getSelectionModel().getSelectedItem());
+		model.Main.i.setMode(Modalita.getSelectionModel().getSelectedItem());
 		model.Main.i.setPath(path.getText());
 		model.Main.i.setMaxVal(Integer.parseInt(value.getText()));
 		if (auto.isSelected())
@@ -173,9 +170,6 @@ public class WelcomeWindowController {
 		model.Main.i.riempiItems();
 
 		model.Main.u.setMyScene(Scenes.QSORT);
-		//model.Main.qDrawer = QSortViewController.getDrawer();
-
-		// System.out.println(model.Main.qDrawer);
 
 	}
 
@@ -193,14 +187,21 @@ public class WelcomeWindowController {
 		}
 		path.setDisable(true);
 
-		delay.setText("50");
+		delay.setText(""+Main.u.pref_delay);
 		delay.setDisable(false);
+		slide_delay.setMin(Main.u.min_delay);
+		slide_delay.setMax(Main.u.max_delay);
 
-		num.setText("50");
+		num.setText(""+Main.u.pref_n);
 		num.setDisable(false);
+		slide_num.setMin(1);
+		slide_num.setMax(Main.u.max_n);
 
-		value.setText("100");
+
+		value.setText(""+Main.u.pref_value);
 		value.setDisable(false);
+		slide_value.setMin(1);
+		slide_value.setMax(Main.u.max_value);
 
 		slide_delay.adjustValue(Double.parseDouble(delay.getText()));
 		slide_num.adjustValue(Double.parseDouble(num.getText()));

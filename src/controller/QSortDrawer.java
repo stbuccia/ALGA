@@ -1,10 +1,7 @@
 package controller;
 
-import java.util.concurrent.TimeUnit;
-
 import model.Main;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -12,8 +9,8 @@ import javafx.scene.shape.Rectangle;
 
 public class QSortDrawer {
 
-	private static final int endCanvasY = 486;
-	private static final int endCanvasX = 730;
+	private static final int endCanvasY = Main.u.panelx-14;
+	private static final int endCanvasX = Main.u.panely;
 	private Pane panel = null;
 	private int len = model.Main.i.items.length;
 	private Rectangle rs[] = new Rectangle[len];
@@ -99,8 +96,7 @@ public class QSortDrawer {
 			rs[i].setX((i * model.Main.a.rectangle.getWidth()));
 
 			if (panel.getHeight() == 0)
-				rs[i].setY(485 - model.Main.a.rectangle
-						.getHeight(i));
+				rs[i].setY((endCanvasY) - model.Main.a.rectangle.getHeight(i));
 			else
 				rs[i].setY(panel.getHeight()- model.Main.a.rectangle.getHeight(i));
 			rs[i].setHeight(model.Main.a.rectangle.getHeight(i));

@@ -10,7 +10,7 @@ public class Algoritmo<Void> extends Task<Void> {
 	private Input input;
 	public Rects rectangle;
 	private boolean inPausa;
-	private int delay = 0;
+	private int delay = Main.u.pref_delay;
 	private boolean isPressed = false;
 	private int pivotIndex = 0, currentIndex = 0, currentJ = 0;
 	private int firstToSwitch = 0, secondToSwitch = 0;
@@ -109,7 +109,7 @@ public class Algoritmo<Void> extends Task<Void> {
 			if (input.getByStep()) {
 				while (!isPressed) {
 					try {
-						TimeUnit.MILLISECONDS.sleep(50);
+						TimeUnit.MILLISECONDS.sleep(Main.u.pref_delay);
 					} catch (InterruptedException e) {
 						System.out.println("ERROR: sleep interrupted");
 					}

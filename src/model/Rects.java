@@ -32,15 +32,11 @@ public class Rects {
 			for (int j = 0; j < i.items.length; j++) {
 				double h = calcolaStringHeight(
 						i.items[j].toString(), 0, 0);
-				heights[j] = (h) * max_height; // 1 è il massimo
-							       // valore che può
-							       // avere
-							       // calcolaStringHeight
+				heights[j] = (h) * max_height; // 1 è il massimo valore che può avere calcolaStringHeight
 			}
 		else
 			for (int j = 0; j < i.items.length; j++)
-				heights[j] = (new Double(i.items[j].toString()) / i
-						.getMaxVal()) * max_height;
+				heights[j] = (new Double(i.items[j].toString()) / i.getMaxVal()) * max_height;
 	}
 
 	private double calcolaStringHeight(String s, int pos, int iter) {
@@ -48,7 +44,6 @@ public class Rects {
 			return 0;
 		else {
 			double x = ((double) (s.charAt(pos) - 'a') + 1) / 27;
-			//System.out.println(x + " " + iter);
 			return (x + (calcolaStringHeight(s, pos + 1, iter + 1) / 27));
 		}
 	}
@@ -77,8 +72,7 @@ public class Rects {
 		if (i.isString()) {
 			pivotHeight = calcolaStringHeight(p.toString(), 0, 0) * max_height;
 		} else {
-			pivotHeight = (new Double(p.toString()) / i.getMaxVal())
-					* max_height;
+			pivotHeight = (new Double(p.toString()) / i.getMaxVal())* max_height;
 		}
 	}
 }
