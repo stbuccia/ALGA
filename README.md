@@ -13,3 +13,5 @@
 ## Cose da risolvere
 
 - WELCOMEVIEW: Sarebbe carino trovare un modo per avere un riferimento assoluto (magari far funzionare getClass().getResource()) al file dei dati con cui settare la casella del percorso, in modo da non avere il percorso di default che dipende dall'utente
+- Aggiunta da file: dopo pulsante aggiungi, resettare textField
+- Posizionamento iniziale dei rettangoli. Qualcosa di grosso non va con la vista fxml che abbiamo per QSortView

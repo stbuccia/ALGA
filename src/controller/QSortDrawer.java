@@ -9,8 +9,8 @@ import javafx.scene.shape.Rectangle;
 
 public class QSortDrawer {
 
-	private static final int endCanvasY = Main.u.panelx-14;
-	private static final int endCanvasX = Main.u.panely;
+	private static final int endCanvasX = Main.u.panelx;
+	private static final int endCanvasY = Main.u.panely;
 	private Pane panel = null;
 	private int len = model.Main.i.items.length;
 	private Rectangle rs[] = new Rectangle[len];

@@ -57,7 +57,7 @@ public class FileViewController {
 //		Text t = new Text(ftxt);
 //		text.getChildren().add(t);
 
-	    engine.load("file:/home/buccia/Università/Algoritmi/ALGA/README.md");
+	    engine.load("file:/home/ema/Dropbox/Uni/ANNO 1/Algoritmi/ALGA/assets/README.html");
 	    pane.getChildren().add(view);
     }
 }

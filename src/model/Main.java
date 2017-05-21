@@ -32,6 +32,7 @@ public class Main extends Application {
 	    "                \\/\n                    Bye <3";
 	
 	public static void main(String[] args) {
+		
 		u = new Utils();
 		launch(args);
 		System.out.println(greeting);

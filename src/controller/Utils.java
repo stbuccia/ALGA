@@ -11,7 +11,7 @@ public class Utils extends Object {
 	public int max_delay = 500, min_delay = 0, pref_delay = 50;
 	public int max_n = 1000, pref_n = 50;
 	public int max_value = 1000, pref_value = 100;
-	public int counterKey = 0, panelx = 730, panely = 500;
+	public int counterKey = 0, panelx = 723, panely = 480;
 	
 	public void setMyScene(Scenes myscene) {
 		AnchorPane root;

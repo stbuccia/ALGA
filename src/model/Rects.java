@@ -72,7 +72,7 @@ public class Rects {
 		if (i.isString()) {
 			pivotHeight = calcolaStringHeight(p.toString(), 0, 0) * max_height;
 		} else {
-			pivotHeight = (new Double(p.toString()) / i.getMaxVal())* max_height;
+			pivotHeight = (new Double(p.toString()) / i.getMaxVal()) * max_height;
 		}
 	}
 }
