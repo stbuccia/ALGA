@@ -89,8 +89,8 @@ public class QSortViewController {
 		pausa.setDisable(false);
 		delay.setMin(Main.u.min_delay);
 		delay.setMax(Main.u.max_delay);
-		delay.adjustValue(Main.a.getDelay());
-		delayLab.setText("Delay: " + Main.a.getDelay() + "ms");
+		delay.adjustValue(Main.i.getDelay());
+		delayLab.setText("Delay: " + Main.i.getDelay() + "ms");
 		add.setDisable(true);
 		addField.setDisable(true);
 		if (Main.i.getByStep()) {
@@ -155,8 +155,8 @@ public class QSortViewController {
 
 	@FXML
 	void changeDelay() {
-		Main.a.setDelay((int) delay.getValue());
-		delayLab.setText("Delay: " + Main.a.getDelay() + "ms");
+		Main.i.setDelay((int) delay.getValue());
+		delayLab.setText("Delay: " + Main.i.getDelay() + "ms");
 	}
 
 	@FXML

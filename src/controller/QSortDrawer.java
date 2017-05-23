@@ -81,7 +81,7 @@ public class QSortDrawer {
 				rs[i].setFill(Main.u.fromPalette(Palette.TALLER));
 			}
 			
-			if (i == Main.a.getFirstToSwitch() || i == Main.a.getSecondToSwitch()) {
+			if (i == Main.a.getFirstSwitched() || i == Main.a.getSecondSwitched()) {
 				rs[i].setFill(Main.u.fromPalette(Palette.SWITCHED));
 			}
 

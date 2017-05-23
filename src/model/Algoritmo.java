@@ -1,47 +1,97 @@
 package model;
 
 import java.util.concurrent.TimeUnit;
-
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 
-public class Algoritmo<Void> extends Task<Void> {
+/** *
+ * @param <Void>
+ * Classe che continene la logica per eseguire il QuickSort. Estende la classe task, così da avere un servizio indipendente quando si
+ * istanzia la classe. Contiene anche la logica per richiedere un aggiornamento dei componenti della finestra, per mostrare
+ * l'esecuzione dell'algoritmo a ogni iterazione.
+ */
 
-	private Input input;
+@SuppressWarnings("hiding")
+public class Algoritmo<Void> extends Task<Void> {
+	
+	/**
+	 * Oggetto che tiene le informazioni su tutti i rettangoli necessari nella view
+	 *
+	 */
 	public Rects rectangle;
+	
+	private Input input;
 	private boolean inPausa;
-	private int delay = Main.u.pref_delay;
 	private boolean isPressed = false;
 	private int pivotIndex = 0, currentIndex = 0, currentJ = 0;
-	private int firstToSwitch = 0, secondToSwitch = 0;
-
+	private int firstSwitched = 0, secondSwitched = 0;
+	
+	/**
+	 * 
+	 * @param i	Oggetto di classe Input, contentente tutti i dettagli per l'esecuzione, 
+	 * tra cui i dati da ordinare, la modalità di esecuzione, ed un eventuale ritardo automatico
+	 * @see model.Input
+	 */
 	public Algoritmo(Input i) {
 		inPausa = false;
 		input = i;
-		delay = i.getDelay();
+	}
+	
+	@Override
+	protected Void call() throws Exception {
+		this.doQuickSort(0, model.Main.i.items.length - 1);
+		updateMessage(this.getItems()+"\nFinito!");
+		return null;
 	}
 
+	/**
+	 * 
+	 * @return L'indice del pivot attuale
+	 */
 	public int getPivotIndex() {
 		return this.pivotIndex;
 	}
-
+	
+	/**
+	 * 
+	 * @return l'indice del primo elemento da scambiare
+	 */
 	public int getCurrentIndex() {
 		return this.currentIndex;
 	}
 	
+	/**
+	 * 
+	 * @return l'indice del secondo elemento da scambiare
+	 */
 	public int getCurrentJ() {
 		return this.currentJ;
 	}
 	
+	/**
+	 * 
+	 * @param x	Larghezza del pannello su cui i rettangoli andranno disegnati
+	 * @param y	Altezza del pannello su cui i rettagnoli andranno disegnati
+	 * 
+	 * Si occupa della creazione dei dati dei rettangoli che andranno disegnati, calcolando di ognuno la sua altezza e la sua larghezza
+	 * 
+	 */
 	public void creaRects(double x, double y) {
 		rectangle = new Rects(input, x, y);
 		rectangle.setWidth(input.items.length);
 		rectangle.setHeights(input);
 	}
-
+	
+	/**
+	 * 
+	 * @param primo
+	 * @param ultimo
+	 * 
+	 * È dove succede la magia. Ordina l'array dalla posizione di primo alla posizione di ultimo
+	 */
 	public void doQuickSort(int primo, int ultimo) {
-			if (isCancelled())
-				return;
+		if (isCancelled())
+			return;
 		if (primo < ultimo) {
 				updateProgress(primo, input.items.length - 1);
 			int k = this.pivot(primo, ultimo);
@@ -96,6 +146,11 @@ public class Algoritmo<Void> extends Task<Void> {
 		rectangle.setPivotH(input.items[n], input);
 		updateCanvas();
 	}
+	
+	/**
+	 *
+	 * @return Gli elementi dell'array in forma di stringa, tutti su un'unica riga
+	 */
 	public String getItems() {
 		String s = "";
 		for (int i = 0; i < input.items.length; i++)
@@ -103,7 +158,6 @@ public class Algoritmo<Void> extends Task<Void> {
 		return s;
 	}
 
-	// Esegue ogni iterazione
 	private void tick() {
 		do {
 			if (input.getByStep()) {
@@ -116,7 +170,7 @@ public class Algoritmo<Void> extends Task<Void> {
 				}
 			} else {
 				try {
-					TimeUnit.MILLISECONDS.sleep(delay);
+					TimeUnit.MILLISECONDS.sleep(Main.i.getDelay());
 				} catch (InterruptedException e) {
 					System.out.println("ERROR: sleep interrupted");
 				}
@@ -136,30 +190,34 @@ public class Algoritmo<Void> extends Task<Void> {
 	}
 
 	private void setSwitch(int i, int j) {
-		this.firstToSwitch = i;
-		this.secondToSwitch = j;
+		this.firstSwitched = i;
+		this.secondSwitched = j;
 	}
-
+	
+	/**
+	 * Ferma o fa riprendere l'esecuzione dell'algoritmo
+	 */
 	public void setInPausa() {
 		this.inPausa = !inPausa;
 	}
-
+	
+	/**
+	 * @return true se l'algoritmo è in pausa alla chiamata della funzione
+	 */
 	public boolean isInPausa() {
 		return this.inPausa;
 	}
 
-	public void setDelay(int n) {
-		this.delay = n;
-	}
-
-	public int getDelay() {
-		return this.delay;
-	}
-
+	/**
+	 * Consente l'esecuzione di un singolo passo dell'algoritmo, nel momento in cui questo non viene eseguito automaticamente
+	 */
 	public void setIsPressed() {
 		this.isPressed = true;
 	}
 
+	/**
+	 * Funzione di debug. Stampa a console lo stato corrente dell'array
+	 */
 	public void stampaItems() {
 		for (int i = 0; i < input.items.length; i++) {
 			System.out.print(input.items[i] + " ");
@@ -167,24 +225,19 @@ public class Algoritmo<Void> extends Task<Void> {
 		System.out.println();
 	}
 
-	public void dumpRect() {
-		for (int j = 0; j < input.items.length; ++j) {
-			System.out.println(j + ") " + rectangle.getHeight(j));
-		}
+	/**
+	 * 
+	 * @return Il primo elemento scambiato nel giro precedente dell'algoritmo
+	 */
+	public int getFirstSwitched(){
+		return firstSwitched;
 	}
 
-	@Override
-	protected Void call() throws Exception {
-		this.doQuickSort(0, model.Main.i.items.length - 1);
-		updateMessage(this.getItems()+"\nFinito!");
-		return null;
-	}
-	
-	public int getFirstToSwitch(){
-		return firstToSwitch;
-	}
-
-	public int getSecondToSwitch(){
-		return secondToSwitch;
+	/**
+	 * 
+	 * @return Il secondo elemento scambiato nel giro precedente dell'algoritmo
+	 */
+	public int getSecondSwitched(){
+		return secondSwitched;
 	}
 }
