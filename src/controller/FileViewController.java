@@ -56,8 +56,7 @@ public class FileViewController {
 //		}
 //		Text t = new Text(ftxt);
 //		text.getChildren().add(t);
-
-	    engine.load("file:/home/ema/Dropbox/Uni/ANNO 1/Algoritmi/ALGA/assets/README.html");
+	    engine.load("file://"+System.getProperty("user.dir")+"/assets/README.html");
 	    pane.getChildren().add(view);
     }
 }
