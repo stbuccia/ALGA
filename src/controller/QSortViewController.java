@@ -117,6 +117,7 @@ public class QSortViewController {
 				Main.i.initial[Main.u.counterKey] = Main.i.fromString(s);
 				model.Main.a.creaRects(Main.u.panelx, Main.u.panely);
 				console.appendText("Inserito " + s + "\n");
+				addField.setText("");
 				model.Main.qDrawer.drawRects();
 				Main.u.counterKey++;
 			} else {
@@ -218,7 +219,7 @@ public class QSortViewController {
 		if (Main.backgroundSorter == null) {
 			model.Main.a = new model.Algoritmo<Void>(model.Main.i);
 			model.Main.a.creaRects(Main.u.panelx, Main.u.panely);
-			console.setText(Main.a.getItems());
+			console.setText(Main.a.getItems()+"\n");
 		} else {
 			console.textProperty().bind(
 					model.Main.backgroundSorter
