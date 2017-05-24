@@ -12,7 +12,7 @@ La chiave è la divisione ricorsiva in parti, perchè queste vengono formate pre
 QuickSort(ITEM[] Items, integer primo, integer ultimo)
  	 if (primo < ultimo) then
   			integer pivot ← Pivot(Items, primo, ultimo)
-    		QuickSort(Items, primo, pivot - 1)
+    			QuickSort(Items, primo, pivot - 1)
   			QuickSort(Items, pivot + 1, ultimo)
 
 ```
@@ -45,11 +45,11 @@ Una volta esaminati tutti gli elementi, visto che `j` è sempre stato prima (o a
 
 #### Il programma
 
-+ Lo scopo del programma è quello di visualizzare l'esecuzione del QuickSort. L'utente può inserire dati da file, da tastiera o scegliere la generazione casuale (sempre rimandendo all'interno di un range di limitazione per la grandezza dell'input). L'esecuzione mostra ogni passo dell'ordinamento, e viene mostrata visualizzando i vari dati in rettangoli, con altezze in funzione della grandezza relativa dei dati che rappresentano. Vengono colorati i rettangoli al momento confrontati, insieme al pivot e ai rettangoli scambiati. ​
++ Lo scopo del programma è quello di visualizzare l'esecuzione del QuickSort. L'utente può inserire dati da file, da tastiera o scegliere la generazione casuale (sempre rimandendo all'interno di un range di limitazione per la grandezza dell'input). L'esecuzione mostra ogni passo dell'ordinamento, e viene mostrata visualizzando i vari dati in rettangoli, con altezze in funzione della grandezza relativa dei dati che rappresentano. Vengono colorati i rettangoli al momento confrontati, insieme al pivot e ai rettangoli scambiati.
 
 
 
-+ La documentazione delle classi si trova in `/doc/`
++ La documentazione delle classi si trova in `/doc`
 
   ![](http://www.icon100.com/up/3854/128/5-Light-bulb-outline-sign-inside-a-circle.png)
 
