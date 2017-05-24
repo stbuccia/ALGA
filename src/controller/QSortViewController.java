@@ -187,6 +187,7 @@ public class QSortViewController {
 	private void proceed() {
 		if (Main.backgroundSorter == null)
 			go();
+		help.setDisable(false);
 		Main.a.setIsPressed();
 		Main.a.stampaItems();
 	}
