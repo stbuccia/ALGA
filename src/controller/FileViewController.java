@@ -1,21 +1,16 @@
 package controller;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-
-
 import javafx.scene.layout.Pane;
-//import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Text;
-import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.fxml.FXML;
 
-// Questa classe è il controller
+/**
+ * Vista del README
+ *
+ */
 public class FileViewController {
 
     @FXML
@@ -36,26 +31,7 @@ public class FileViewController {
     }
     
     @FXML
-    void initialize(){
-//		BufferedReader reader = null;
-//		File source = null;
-//		String ftxt="";
-//		try {
-//			source = new File("README.md");
-//			System.out.println("INFO: Loading " + source.toURI());
-//			reader = new BufferedReader(new FileReader(source));
-//			String l = reader.readLine();
-//			while (l!=null) {
-//				ftxt += l + "\n";
-//				l = reader.readLine();
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			try { reader.close(); } catch (Exception e) { e.printStackTrace(); }
-//		}
-//		Text t = new Text(ftxt);
-//		text.getChildren().add(t);
+    private void initialize(){
 	    engine.load("file://"+System.getProperty("user.dir")+"/assets/README.html");
 	    pane.getChildren().add(view);
     }

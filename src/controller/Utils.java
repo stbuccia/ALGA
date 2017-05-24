@@ -6,13 +6,56 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 
+/**
+ * Classe di metodi di appoggio
+ *
+ */
 public class Utils extends Object {
 
-	public int max_delay = 500, min_delay = 0, pref_delay = 50;
-	public int max_n = 1000, pref_n = 50;
-	public int max_value = 1000, pref_value = 100;
-	public int counterKey = 0, panelx = 723, panely = 480;
+	/**
+	 * Delay massimo 
+	 */
+	public int max_delay = 500;
+	/**
+	 * Delay minimo
+	 */
+	public int min_delay = 0;
+	/**
+	 * Delay di default
+	 */
+	public int pref_delay = 50;
+	/**
+	 * Quantità massima di elementi da ordinare
+	 */
+	public int max_n = 1000;
 	
+	/**
+	 * Quantità predefinita di elementi
+	 */
+	public int pref_n = 50;
+	/**
+	 * Massimo valore da consentire in input
+	 */
+	public int max_value = 1000;
+	/**
+	 * Valore predefinito da consentire in input
+	 */
+	public int pref_value = 100;
+	
+	/**
+	 * Larghezza predefinita del pannello
+	 */
+	public int panelx = 723;
+	
+	/**
+	 * Altezza predefinita del pannello
+	 */
+	public int panely = 480;
+	
+	/**
+	 * Imposta dinamicamente la scena della finestra, facendo tutte le operazioni necessarie
+	 * @param myscene	La scena da impostare
+	 */
 	public void setMyScene(Scenes myscene) {
 		AnchorPane root;
 		try {
@@ -28,6 +71,11 @@ public class Utils extends Object {
 		}
 	}
 
+	/**
+	 * Associa alla scena l'URL del file fxml che la descrive
+	 * @param myscene	La scena di cui si vuole l'URL
+	 * @return	L'URL cercato
+	 */
 	public URL getScenePath(Scenes myscene) {
 		URL out = null;
 		switch (myscene) {
@@ -53,6 +101,11 @@ public class Utils extends Object {
 		return out;
 	}
 	
+	/**
+	 * Ritorna un colore a partire da un elemento della palette dei colori
+	 * @param p	Richiesta del colore nella Palette
+	 * @return	Il colore vero e proprio
+	 */
 	public Color fromPalette(Palette p) {
 		switch(p){
 		case PIVOT:
@@ -63,6 +116,8 @@ public class Utils extends Object {
 			return Color.web("#4ACDD0");
 		case CURRENT:
 			return Color.web("#00D288");
+		case DONE:
+			return Color.web("#8AE38A");
 		default:
 			return Color.WHITE;
 		}

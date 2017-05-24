@@ -184,7 +184,7 @@ public class Input {
 
 	/**
 	 * Imposta l'esecuzione step by step
-	 * @param true se si vuole eseguire step by step
+	 * @param cond true se si vuole eseguire step by step
 	 */
 	public void setByStep(boolean cond) {
 		this.byStep = cond;
@@ -239,6 +239,9 @@ public class Input {
 
 	/**
 	 * 	Valida l'input, controllando se è nel range accettato da max_value
+	 *	@param s	Input da validare
+	 *
+	 *	@return		true sse input è valido
 	 */
 	public boolean validateInput(String s) {
 		Object tc = fromString(s);
@@ -274,7 +277,7 @@ public class Input {
 	
 	/**
 	 * 
-	 * @param n	Il valore del dato (in Double)
+	 * @param x	Il valore del dato (in Double)
 	 * @return	L'oggetto costruito a partire dal dato
 	 */
 	public Object fromDouble(Double x) {
@@ -288,7 +291,7 @@ public class Input {
 	
 	/**
 	 * 
-	 * @param n	Il valore del dato (in Stringa)
+	 * @param s	Il valore del dato (in Stringa)
 	 * @return	L'oggetto costruito a partire dal dato
 	 */
 	public Object fromString(String s) {

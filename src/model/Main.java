@@ -10,13 +10,38 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	// La maggior parte di queste cose sono inizializzati dai controller
+	
+	/**
+	 * Stage condiviso sul quale si inseriscono le viste
+	 */
 	public static Stage stage;
+	
+	/**
+	 * Utilities
+	 */
 	public static Utils u = null;
+	
+	/**
+	 * Esecutore dell'algoritmo
+	 */
 	public static Algoritmo<?> a = null;
+	
+	/**
+	 * Input per l'algoritmo
+	 */
 	public static Input i = null;
+	
+	/**
+	 * Disegnatore
+	 */
 	public static QSortDrawer qDrawer = null;
+	
+	/**
+	 * Servizio di ordinamento in background
+	 */
 	public static Service<Void> backgroundSorter = null;
-	public static final String greeting =  "\n" +  
+	
+	private final static String greeting =  "\n" +  
             "             _------_ \n" +
 	    "           -~        ~- \n" +
 	    "          -     _      - \n" +

@@ -15,9 +15,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * Gestisce la finestra che visualizza l'algoritmo
+ *
+ */
 public class QSortViewController {
 
 	@FXML
@@ -70,19 +73,22 @@ public class QSortViewController {
 	
 	@FXML
 	private Label pivotLbl;
+	
+	private int counterKey = 0;
+
 
 	@FXML
-	void toWelcomeView(ActionEvent event) {
+	private void toWelcomeView(ActionEvent event) {
 		if (model.Main.a != null) {
 			model.Main.a.cancel(true);
 			model.Main.a = null;
 		}
 		Main.backgroundSorter = null;
-		Main.u.counterKey = 0;
+		counterKey = 0;
 		model.Main.u.setMyScene(Scenes.WELCOME);
 	}
 
-	void setDefault() {
+	private void setDefault() {
 		setPausaText();
 		go.setDisable(false);
 		byStep.setDisable(false);
@@ -104,22 +110,22 @@ public class QSortViewController {
 
 	
 	@FXML
-	void openReadMe() {
+	private void openReadMe() {
 		model.Main.u.setMyScene(Scenes.FILE);
 	}
 
 	@FXML
-	void addItem() {
+	private void addItem() {
 		String s = addField.getText().toLowerCase();
 		try {
 			if (Main.i.validateInput(s)) {
-				Main.i.items[Main.u.counterKey] = Main.i.fromString(s);
-				Main.i.initial[Main.u.counterKey] = Main.i.fromString(s);
+				Main.i.items[counterKey] = Main.i.fromString(s);
+				Main.i.initial[counterKey] = Main.i.fromString(s);
 				model.Main.a.creaRects(Main.u.panelx, Main.u.panely);
 				console.appendText("Inserito " + s + "\n");
 				addField.setText("");
 				model.Main.qDrawer.drawRects();
-				Main.u.counterKey++;
+				counterKey++;
 			} else {
 				if (Main.i.isString())
 					console.appendText("Input solo lettere\n");
@@ -129,14 +135,14 @@ public class QSortViewController {
 		} catch (NumberFormatException e) {
 			console.appendText("L'input non è del tipo richiesto\n");
 		}
-		if (Main.u.counterKey == model.Main.i.items.length) {
+		if (counterKey == model.Main.i.items.length) {
 			setDefault();
 			console.setText(Main.a.getItems());
 		}
 	}
 
 	@FXML
-	void pause() {
+	private void pause() {
 		if (Main.a.isRunning()) {
 			Main.a.setInPausa();
 			setPausaText();
@@ -146,8 +152,8 @@ public class QSortViewController {
 				help.setDisable(true);
 		}
 	}
-
-	void setPausaText() {
+	
+	private void setPausaText() {
 		if (Main.a.isInPausa())
 			pausa.setText("Riprendi");
 		else
@@ -155,38 +161,40 @@ public class QSortViewController {
 	}
 
 	@FXML
-	void changeDelay() {
-		Main.i.setDelay((int) delay.getValue());
+	private void changeDelay() {
+		Main.i.setDelay((int) delay. getValue());
 		delayLab.setText("Delay: " + Main.i.getDelay() + "ms");
 	}
 
 	@FXML
-	void reset() {
-		if (model.Main.a != null) {
-			model.Main.a.cancel(true);
-			model.Main.a = null;
-			help.setDisable(false);
-		}
-		bar.progressProperty().unbind();
-		bar.setProgress(0.0);
-		console.textProperty().unbind();
-		Main.backgroundSorter = null;
-		for (int j = 0; j < Main.i.items.length; j++)
-			Main.i.items[j] = Main.i.initial[j];
-		initialize();
+	private void reset() {
+		if (Main.a.isRunning() && !Main.a.isInPausa()) Main.a.setInPausa();
+        		if (model.Main.a != null) {
+        			model.Main.a.cancel(true);
+        			model.Main.a = null;
+        			help.setDisable(false);
+        		}
+        		bar.progressProperty().unbind();
+        		bar.setProgress(0.0);
+        		console.textProperty().unbind();
+        		Main.backgroundSorter = null;
+        		for (int j = 0; j < Main.i.items.length; j++)
+        			Main.i.items[j] = Main.i.initial[j];
+        		initialize();
 	}
 
 	@FXML
-	void proceed() {
+	private void proceed() {
 		if (Main.backgroundSorter == null)
-			testRettangoli();
+			go();
 		Main.a.setIsPressed();
 		Main.a.stampaItems();
 	}
 
 	@FXML
-	void testRettangoli() {
+	private void go() {
 		Main.backgroundSorter = new Service<Void>() {
+			@SuppressWarnings("unchecked")
 			@Override
 			public Task<Void> createTask() {
 				return (Task<Void>) Main.a;
@@ -204,7 +212,7 @@ public class QSortViewController {
 		this.legRChanged.setFill(Main.u.fromPalette(Palette.SWITCHED));
 		this.legLChanged.setText("Scambiati");
 		this.legRCurrent.setFill(Main.u.fromPalette(Palette.CURRENT));
-		this.legLCurrent.setText("Da scambiare");
+		this.legLCurrent.setText("Controllo");
 		this.legRPivot.setFill(Main.u.fromPalette(Palette.PIVOT));
 		this.legLPivot.setText("Pivot");
 		this.legRShorter.setFill(Main.u.fromPalette(Palette.SHORTER));
@@ -212,7 +220,7 @@ public class QSortViewController {
 	}
 	
 	@FXML
-	void initialize() {
+	private void initialize() {
 		System.out.println("INFO: QSortView loaded");
 		model.Main.qDrawer = new QSortDrawer(rectPane);
 		makeLegend();
@@ -231,7 +239,7 @@ public class QSortViewController {
 		model.Main.qDrawer.drawRects();
 		setDefault();
 
-		if (Main.i.getMode().equals("Tastiera") && Main.u.counterKey < model.Main.i.items.length) {
+		if (Main.i.getMode().equals("Tastiera") && counterKey < model.Main.i.items.length) {
 			go.setDisable(true);
 			byStep.setDisable(true);
 			pausa.setDisable(true);

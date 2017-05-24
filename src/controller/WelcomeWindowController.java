@@ -13,6 +13,10 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 
+/**
+ * Gestisce la finestra iniziale
+ *
+ */
 public class WelcomeWindowController {
 
 	@FXML
@@ -29,14 +33,14 @@ public class WelcomeWindowController {
 	private Button start;
 
 	@FXML
-	void togglePath() {
+	private void togglePath() {
 		String s = Modalita.getSelectionModel().getSelectedItem();
 		path.setDisable(!s.equals("File"));
 		control();
 	}
 
 	@FXML
-	void toggleValue() {
+	private void toggleValue() {
 		value.setText(""+Main.u.pref_value);
 		String s = Tipo.getSelectionModel().getSelectedItem();
 		value.setDisable(s.equals("Stringhe"));
@@ -44,13 +48,13 @@ public class WelcomeWindowController {
 	}
 
 	@FXML
-	void toggleDelay() {
+	private void toggleDelay() {
 		delay.setText(""+Main.u.pref_delay);
 		delay.setDisable(!auto.isSelected());
 		control();
 	}
 
-	boolean controlPath() {
+	private boolean checkPath() {
 		boolean disable = false;
 		if (!path.isDisable()) {
 			String s = path.getText();
@@ -63,7 +67,7 @@ public class WelcomeWindowController {
 		return (!disable);
 	}
 
-	boolean controlDelay() {
+	private boolean checkDelay() {
 		int ms = Main.u.min_delay;
 		String s = delay.getText();
 		boolean disable = false;
@@ -84,7 +88,7 @@ public class WelcomeWindowController {
 		return (!disable);
 	}
 
-	boolean controlNumber() {
+	private boolean checkNumber() {
 		int n = 1;
 		String s = num.getText();
 		boolean disable = false;
@@ -103,7 +107,7 @@ public class WelcomeWindowController {
 		return (!disable);
 	}
 
-	boolean controlMaxValue() {
+	private boolean checkMaxValue() {
 		int n = 1;
 		String s = value.getText();
 		boolean disable = false;
@@ -125,9 +129,9 @@ public class WelcomeWindowController {
 	}
 
 	@FXML
-	void control() {
+	private void control() {
 
-		if (controlPath() && controlDelay() && controlNumber() && controlMaxValue()) {
+		if (checkPath() && checkDelay() && checkNumber() && checkMaxValue()) {
 			start.setDisable(false);
 			stato.setText("");
 			changeSliders();
@@ -135,19 +139,19 @@ public class WelcomeWindowController {
 	}
 
 	@FXML
-	void openReadMe() {
+	private void openReadMe() {
 		model.Main.u.setMyScene(Scenes.FILE);
 	}
 
 	@FXML
-	void changeSliders() {
+	private void changeSliders() {
 		slide_delay.adjustValue(Double.parseDouble(delay.getText()));
 		slide_num.adjustValue(Double.parseDouble(num.getText()));
 		slide_value.adjustValue(Double.parseDouble(value.getText()));
 	}
 
 	@FXML
-	void movedSlider() {
+	private void movedSlider() {
 		delay.setText(String.valueOf((int) slide_delay.getValue()));
 		num.setText(String.valueOf((int) slide_num.getValue()));
 		value.setText(String.valueOf((int) slide_value.getValue()));
@@ -155,7 +159,7 @@ public class WelcomeWindowController {
 	}
 
 	@FXML
-	void inizia(ActionEvent event) {
+	private void inizia(ActionEvent event) {
 
 		int n;
 
@@ -174,13 +178,14 @@ public class WelcomeWindowController {
 	}
 
 	@FXML
-	public void initialize() {
+	private void initialize() {
 
 		Tipo.getSelectionModel().select("Interi");
 		Modalita.getSelectionModel().select("Casuale");
 
 		try {
-			path.setText((getClass().getResource("DataSample.txt").toURI()).getPath());
+			
+			path.setText(System.getProperty("user.dir")+"/assets/DataSample.txt");
 		} catch (Exception e) {
 			System.out.println("WARNING: Default data set non provided");
 			path.setText("/percorso/al/file.txt");

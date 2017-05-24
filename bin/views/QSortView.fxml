@@ -33,7 +33,7 @@
             </ButtonBar>
             <ButtonBar layoutX="3.0" prefHeight="54.0" prefWidth="742.0">
                <buttons>
-                  <Button fx:id="go" mnemonicParsing="false" onAction="#testRettangoli" prefHeight="25.0" prefWidth="199.0" text="Vai">
+                  <Button fx:id="go" mnemonicParsing="false" onAction="#go" prefHeight="25.0" prefWidth="199.0" text="Vai">
                      <padding>
                         <Insets left="10.0" right="10.0" />
                      </padding>
@@ -48,7 +48,7 @@
                   <Insets left="-5.0" right="10.0" />
                </padding>
             </ButtonBar>
-               <TextArea fx:id="console" editable="false" layoutX="14.0" layoutY="602.0" prefHeight="91.0" prefWidth="391.0" />
+               <TextArea fx:id="console" editable="false" layoutX="14.0" layoutY="609.0" prefHeight="84.0" prefWidth="391.0" />
             <Pane layoutX="409.0" layoutY="602.0" prefHeight="84.0" prefWidth="341.0">
                <children>
                   <Rectangle fx:id="legRPivot" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" layoutX="31.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="10.0" />

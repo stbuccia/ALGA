@@ -7,6 +7,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * Crea l'oggetto che si preoccupa di gestire il disegno della finestra per mostrare l'algoritmo.
+ * @see QSortViewController
+ */
 public class QSortDrawer {
 
 	private static final int endCanvasX = Main.u.panelx;
@@ -15,8 +19,55 @@ public class QSortDrawer {
 	private int len = model.Main.i.items.length;
 	private Rectangle rs[] = new Rectangle[len];
 	private double pivotH;
-	private Label pivotLabel;
 
+	
+	// Crea i rettangoli da aggiungere al campo
+	private void makeRects() {
+
+		for (int i = 0; i < len; ++i) {
+
+			pivotH = Main.a.rectangle.getPivotH();
+			rs[i].setStroke(Color.GREY);
+			if (Main.a.rectangle.getHeight(i) < pivotH) {
+				rs[i].setFill(Main.u.fromPalette(Palette.SHORTER));
+			}else {
+				rs[i].setFill(Main.u.fromPalette(Palette.TALLER));
+			}
+			
+			if (i == Main.a.getFirstSwitched() || i == Main.a.getSecondSwitched()) {
+				rs[i].setFill(Main.u.fromPalette(Palette.SWITCHED));
+			}
+
+			if (Main.a.getCurrentIndex() == i) {
+				rs[i].setFill(Main.u.fromPalette(Palette.CURRENT));
+			}
+			
+			if (Main.a.getPivotIndex() == i) {
+				rs[i].setFill(Main.u.fromPalette(Palette.PIVOT));
+			}
+
+			rs[i].setX((i * model.Main.a.rectangle.getWidth()));
+
+			if (panel.getHeight() == 0)
+				rs[i].setY((endCanvasY) - model.Main.a.rectangle.getHeight(i));
+			else
+				rs[i].setY(panel.getHeight()- model.Main.a.rectangle.getHeight(i));
+			rs[i].setHeight(model.Main.a.rectangle.getHeight(i));
+			rs[i].setWidth(model.Main.a.rectangle.getWidth());
+		}
+	}
+	
+	private void makeLabel(int index){
+		Label lb = new Label("" + Main.i.items[index]);
+		lb.setTranslateY(rs[index].getY() - 20);
+		lb.setTranslateX(rs[index].getX());
+		panel.getChildren().add(lb);
+	}
+
+	/**
+	 * Istanzia i rettangoli e si collega al pannello su cui disegnare
+	 * @param panel		Il Pannello su cui si disegna
+	 */
 	public QSortDrawer(Pane panel) {
 		this.panel = panel;
 		for (int i = 0; i < len; ++i) {
@@ -25,6 +76,9 @@ public class QSortDrawer {
 		System.out.println("INFO: Drawer instantiated");
 	}
 
+	/**
+	 * Disegna i rettangoli sul pannello associato all'oggetto disegnatore
+	 */
 	public void drawRects() {
 		try {
 			panel.getChildren().remove(0,
@@ -46,61 +100,27 @@ public class QSortDrawer {
 			l.setStrokeWidth(1);
 			panel.getChildren().add(l);
 			
-			pivotLabel = new Label("" + Main.i.items[Main.a.getPivotIndex()]);
-			pivotLabel.setTranslateY(rs[Main.a.getPivotIndex()].getY() - 20);
-			pivotLabel.setTranslateX(rs[Main.a.getPivotIndex()].getX());
-			panel.getChildren().add(pivotLabel);
-			
-			pivotLabel = new Label("" + Main.i.items[Main.a.getCurrentIndex()]);
-			pivotLabel.setTranslateY(rs[Main.a.getCurrentIndex()].getY() - 20);
-			pivotLabel.setTranslateX(rs[Main.a.getCurrentIndex()].getX());
-			panel.getChildren().add(pivotLabel);
-			
-			pivotLabel = new Label("" + Main.i.items[Main.a.getCurrentJ()]);
-			pivotLabel.setTranslateY(rs[Main.a.getCurrentJ()].getY() - 20);
-			pivotLabel.setTranslateX(rs[Main.a.getCurrentJ()].getX());
-			panel.getChildren().add(pivotLabel);
+			makeLabel(Main.a.getPivotIndex());
+			makeLabel(Main.a.getCurrentIndex());
+			makeLabel(Main.a.getFirstSwitched());
+			makeLabel(Main.a.getSecondSwitched());
 			
 		} catch (java.lang.NullPointerException e) {
+			// Viene sollevata se si interrompe il disegno dei rettangoli.
+			// Visto che succede solamente su esplicita richiesta dell'utente
+			// (con Redo o Indietro) la ignoriamo...
 			System.out.println();
 		}
 
 	}
 
-	private void makeRects() {
-
-		for (int i = 0; i < len; ++i) {
-
-			pivotH = Main.a.rectangle.getPivotH();
-			rs[i].setStroke(Color.GREY);
-			if (Main.a.rectangle.getHeight(i) < pivotH) {
-				rs[i].setFill(Main.u.fromPalette(Palette.SHORTER));
-			} else if (Main.a.getPivotIndex() == i) {
-				rs[i].setFill(Main.u.fromPalette(Palette.PIVOT));
-			} else {
-				rs[i].setFill(Main.u.fromPalette(Palette.TALLER));
-			}
-			
-			if (i == Main.a.getFirstSwitched() || i == Main.a.getSecondSwitched()) {
-				rs[i].setFill(Main.u.fromPalette(Palette.SWITCHED));
-			}
-
-			if (Main.a.getCurrentIndex() == i) {
-				rs[i].setFill(Main.u.fromPalette(Palette.CURRENT));
-			}
-			
-			if (Main.a.getCurrentJ() == i) {
-				rs[i].setFill(Main.u.fromPalette(Palette.CURRENT));
-			}
-
-			rs[i].setX((i * model.Main.a.rectangle.getWidth()));
-
-			if (panel.getHeight() == 0)
-				rs[i].setY((endCanvasY) - model.Main.a.rectangle.getHeight(i));
-			else
-				rs[i].setY(panel.getHeight()- model.Main.a.rectangle.getHeight(i));
-			rs[i].setHeight(model.Main.a.rectangle.getHeight(i));
-			rs[i].setWidth(model.Main.a.rectangle.getWidth());
+	/**
+	 * Colora di verde tutti i rettangoli 
+	 */
+	public void clearRects(){
+		for (int i = 0; i < rs.length; ++i){
+			rs[i].setFill(Main.u.fromPalette(Palette.DONE));
+			rs[i].setStroke(Color.WHITE);
 		}
 	}
 	
