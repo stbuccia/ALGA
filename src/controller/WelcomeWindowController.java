@@ -184,8 +184,8 @@ public class WelcomeWindowController {
 		Modalita.getSelectionModel().select("Casuale");
 
 		try {
-			
-			path.setText(System.getProperty("user.dir")+"/assets/DataSample.txt");
+			File f = new File(Main.u.getClass().getResource("/assets/DataSample.txt").toURI());
+			path.setText(f.getAbsolutePath().toString());
 		} catch (Exception e) {
 			System.out.println("WARNING: Default data set non provided");
 			path.setText("/percorso/al/file.txt");

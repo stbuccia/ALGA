@@ -94,7 +94,8 @@ public class Utils extends Object {
 		case FILE:
 			out = this.getClass().getResource(
 					"/views/FileView.fxml");
-			model.Main.stage.setWidth(750);
+			System.out.println(out);
+			model.Main.stage.setWidth(800);
 			model.Main.stage.setHeight(735);
 			break;
 		}

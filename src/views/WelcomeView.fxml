@@ -19,7 +19,7 @@
 			            <Font name="Inconsolata" size="48.0" />
 			         </font>
 			      </Text>
-			      <Text fill="#b5b5b5" layoutX="211.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Un fighissimo animatore di algoritmi" />
+			      <Text fill="#b5b5b5" layoutX="211.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Un fenomenale animatore di algoritmi" />
 			      <Text layoutX="41.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo in input" />
 			      <ComboBox fx:id="Tipo" layoutX="202.0" layoutY="187.0" onHiding="#toggleValue" prefHeight="26.0" prefWidth="227.0">
 				      <items>

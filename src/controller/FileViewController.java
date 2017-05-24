@@ -6,6 +6,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.TextFlow;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import model.Main;
 
 /**
  * Vista del README
@@ -32,7 +33,8 @@ public class FileViewController {
     
     @FXML
     private void initialize(){
-	    engine.load("file://"+System.getProperty("user.dir")+"/assets/README.html");
-	    pane.getChildren().add(view);
+	    System.out.println(Main.u.getClass().getResource("/assets/README.html"));
+	   engine.load(Main.u.getClass().getResource("/assets/README.html").toString());
+	   pane.getChildren().add(view);
     }
 }
