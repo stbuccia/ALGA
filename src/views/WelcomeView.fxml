@@ -41,16 +41,16 @@
 				      </items>
 					</ComboBox>
 			      <Text layoutX="41.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File sorgente " />
-			      <TextField id="path" fx:id="path" layoutX="202.0" layoutY="272.0" onAction="#inizia" onKeyReleased="#control" prefHeight="26.0" prefWidth="415.0" />
+			      <TextField id="path" fx:id="path" layoutX="202.0" layoutY="272.0" onAction="#control" onKeyReleased="#control" prefHeight="26.0" prefWidth="415.0" />
 			      <Text layoutX="41.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delay (ms)" />
-			      <TextField id="delay" fx:id="delay" layoutX="202.0" layoutY="313.0" onAction="#inizia" onKeyReleased="#control" prefHeight="26.0" prefWidth="128.0" />
+			      <TextField id="delay" fx:id="delay" layoutX="202.0" layoutY="313.0" onAction="#control" onKeyReleased="#control" prefHeight="26.0" prefWidth="128.0" />
 			      <CheckBox fx:id="auto" layoutX="28.0" layoutY="489.0" mnemonicParsing="false" onAction="#toggleDelay" prefHeight="18.0" prefWidth="394.0" text="Eseguire automaticamente l'algoritmo" />
 			      <Button fx:id="start" layoutX="538.0" layoutY="485.0" mnemonicParsing="false" onAction="#inizia" prefHeight="25.0" prefWidth="79.0" text="Inizia" />
 			      <Text layoutX="39.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero Elementi" />
-			      <TextField id="num" fx:id="num" layoutX="202.0" layoutY="350.0" onAction="#inizia" onKeyReleased="#control" prefHeight="26.0" prefWidth="128.0" />
+			      <TextField id="num" fx:id="num" layoutX="202.0" layoutY="350.0" onAction="#control" onKeyReleased="#control" prefHeight="26.0" prefWidth="128.0" />
 			      <Label fx:id="stato" layoutX="37.0" layoutY="429.0" prefHeight="15.0" prefWidth="557.0" textFill="#d32f2f" />
 			      <Text layoutX="36.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Valore Massimo" wrappingWidth="128.00000042188913" />
-			      <TextField id="value" fx:id="value" layoutX="202.0" layoutY="388.0" onAction="#inizia" onKeyReleased="#control" prefHeight="26.0" prefWidth="128.0" />
+			      <TextField id="value" fx:id="value" layoutX="202.0" layoutY="388.0" onAction="#control" onKeyReleased="#control" prefHeight="26.0" prefWidth="128.0" />
 			      <Button layoutX="432.0" layoutY="485.0" mnemonicParsing="false" onAction="#initialize" prefHeight="26.0" prefWidth="89.0" text="Ripristina" />
       <Button fx:id="aiuto" layoutX="384.0" layoutY="485.0" mnemonicParsing="false" onAction="#openReadMe" prefHeight="25.0" prefWidth="22.0" text="?" />
       <Slider fx:id="slide_delay" blockIncrement="5.0" layoutX="348.0" layoutY="316.0" max="500.0" onMouseDragged="#movedSlider" onMouseReleased="#movedSlider" prefHeight="16.0" prefWidth="187.0" />

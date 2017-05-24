@@ -49,7 +49,6 @@ Una volta esaminati tutti gli elementi, visto che `j` è sempre stato prima (o a
 
 
 
-
 + La documentazione delle classi si trova in `/doc/`
 
   ![](http://www.icon100.com/up/3854/128/5-Light-bulb-outline-sign-inside-a-circle.png)
