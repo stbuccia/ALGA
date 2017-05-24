@@ -39,6 +39,18 @@ Una volta esaminati tutti gli elementi, visto che `j` è sempre stato prima (o a
 
 ####  Considerazioni tecniche
 
-+ L'algoritmo ha complessità media di $O(n\space log \space n)$, ottima per un algoritmo di ordinamento basato su confronti e scambi. Il caso peggiore è quello in cui viene sempre scelto come pivot l'elemento più piccolo o più grande dell'insieme (ovvero, nel nostro caso, quando il vettore è già ordinato), perchè questo porta ad avere sottoproblemi ricorsivi assolutamente sbilanciati l'uno rispetto all'altro, trovandoci un gruppo vuoto e un gruppo con tutti gli elementi, arrivando a complessità di circa $O(n^2)$.
++ L'algoritmo ha complessità media O(n log n) ,ottima per un algoritmo di ordinamento basato su confronti e scambi. Il caso peggiore è quello in cui viene sempre scelto come pivot l'elemento più piccolo o più grande dell'insieme (ovvero, nel nostro caso, quando il vettore è già ordinato), perchè questo porta ad avere sottoproblemi ricorsivi assolutamente sbilanciati l'uno rispetto all'altro, trovandoci un gruppo vuoto e un gruppo con tutti gli elementi, arrivando a complessità di circa O(n²).
 + La scelta del pivot può essere migliorata, prendendo un elemento a caso tra quelli del vettore -- o, meglio ancora, l'elemento medio tra una serie di elementi presi casualmente. Questo per evitare i problemi evidenziati nel punto precedente.
+
+
+#### Il programma
+
++ Lo scopo del programma è quello di visualizzare l'esecuzione del QuickSort. L'utente può inserire dati da file, da tastiera o scegliere la generazione casuale (sempre rimandendo all'interno di un range di limitazione per la grandezza dell'input). L'esecuzione mostra ogni passo dell'ordinamento, e viene mostrata visualizzando i vari dati in rettangoli, con altezze in funzione della grandezza relativa dei dati che rappresentano. Vengono colorati i rettangoli al momento confrontati, insieme al pivot e ai rettangoli scambiati. ​
+
+
+
+
++ La documentazione delle classi si trova in `/doc/`
+
+  ![](http://www.icon100.com/up/3854/128/5-Light-bulb-outline-sign-inside-a-circle.png)
 
