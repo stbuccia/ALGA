@@ -64,7 +64,7 @@ public class Input {
 						* (max_val + 1));
 			else {
 				int lunghezza = (int) (Math.random() * lunghStr + 1); // massimo
-										      // 10
+										      // 20
 										      // caratteri
 				String s = "";
 				for (int j = 0; j < lunghezza; j++)

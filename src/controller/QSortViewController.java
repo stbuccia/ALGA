@@ -74,7 +74,7 @@ public class QSortViewController {
 	@FXML
 	private Label pivotLbl;
 	
-	private int counterKey = 0;
+	private static int counterKey = 0;
 
 
 	@FXML
@@ -189,7 +189,6 @@ public class QSortViewController {
 			go();
 		help.setDisable(false);
 		Main.a.setIsPressed();
-		Main.a.stampaItems();
 	}
 
 	@FXML
