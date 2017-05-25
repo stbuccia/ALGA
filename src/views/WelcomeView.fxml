@@ -53,8 +53,8 @@
 			      <TextField id="value" fx:id="value" layoutX="202.0" layoutY="388.0" onAction="#control" onKeyReleased="#control" prefHeight="26.0" prefWidth="128.0" />
 			      <Button layoutX="432.0" layoutY="485.0" mnemonicParsing="false" onAction="#initialize" prefHeight="26.0" prefWidth="89.0" text="Ripristina" />
       <Button fx:id="aiuto" layoutX="384.0" layoutY="485.0" mnemonicParsing="false" onAction="#openReadMe" prefHeight="25.0" prefWidth="22.0" text="?" />
-      <Slider fx:id="slide_delay" blockIncrement="5.0" layoutX="348.0" layoutY="316.0" max="500.0" onMouseDragged="#movedSlider" onMouseReleased="#movedSlider" prefHeight="16.0" prefWidth="187.0" />
-      <Slider fx:id="slide_num" blockIncrement="1.0" layoutX="348.0" layoutY="357.0" max="1000.0" min="1.0" onMouseDragged="#movedSlider" onMouseReleased="#movedSlider" prefHeight="16.0" prefWidth="187.0" />
-      <Slider fx:id="slide_value" blockIncrement="1.0" layoutX="348.0" layoutY="394.0" max="1000.0" min="1.0" onMouseDragged="#movedSlider" onMouseReleased="#movedSlider" prefHeight="16.0" prefWidth="187.0" />
+      <Slider fx:id="slide_delay" blockIncrement="5.0" layoutX="348.0" layoutY="316.0" max="500.0" onMouseDragged="#movedSlider" onKeyPressed="#movedSlider" onMouseReleased="#movedSlider" prefHeight="16.0" prefWidth="187.0" />
+      <Slider fx:id="slide_num" blockIncrement="5.0" layoutX="348.0" layoutY="357.0" max="1000.0" min="1.0" onMouseDragged="#movedSlider" onKeyPressed="#movedSlider" onMouseReleased="#movedSlider" prefHeight="16.0" prefWidth="187.0" />
+      <Slider fx:id="slide_value" blockIncrement="5.0" layoutX="348.0" layoutY="394.0" max="1000.0" min="1.0" onMouseDragged="#movedSlider" onKeyPressed="#movedSlider" onMouseReleased="#movedSlider" prefHeight="16.0" prefWidth="187.0" />
          </children>
 </AnchorPane>

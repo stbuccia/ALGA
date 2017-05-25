@@ -37,7 +37,11 @@ public class QSortDrawer {
 			if (i == Main.a.getFirstSwitched() || i == Main.a.getSecondSwitched()) {
 				rs[i].setFill(Main.u.fromPalette(Palette.SWITCHED));
 			}
-
+			
+			if (Main.a.getCurrentJ() == i){
+				rs[i].setFill(Main.u.fromPalette(Palette.CURRENT));
+			}
+			
 			if (Main.a.getCurrentIndex() == i) {
 				rs[i].setFill(Main.u.fromPalette(Palette.CURRENT));
 			}
@@ -102,6 +106,7 @@ public class QSortDrawer {
 			
 			makeLabel(Main.a.getPivotIndex());
 			makeLabel(Main.a.getCurrentIndex());
+			makeLabel(Main.a.getCurrentJ());
 			makeLabel(Main.a.getFirstSwitched());
 			makeLabel(Main.a.getSecondSwitched());
 			

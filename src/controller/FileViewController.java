@@ -33,7 +33,7 @@ public class FileViewController {
     
     @FXML
     private void initialize(){
-	    System.out.println(Main.u.getClass().getResource("/assets/README.html"));
+	   System.out.println(Main.u.getClass().getResource("/assets/README.html"));
 	   engine.load(Main.u.getClass().getResource("/assets/README.html").toString());
 	   pane.getChildren().add(view);
     }

@@ -21,7 +21,7 @@
             <ButtonBar layoutX="1.0" layoutY="54.0" prefHeight="15.0" prefWidth="730.0">
               <buttons>
                   <Label fx:id="delayLab" onMouseDragged="#changeDelay" onMouseReleased="#changeDelay" text="Delay: ms " />
-                  <Slider fx:id="delay" max="500.0" onMouseDragged="#changeDelay" onMousePressed="#changeDelay" />
+                  <Slider fx:id="delay" max="500.0" onMouseDragged="#changeDelay" onKeyPressed="#changeDelay" onMousePressed="#changeDelay" />
                   <Separator centerShape="false" minWidth="1.0" orientation="VERTICAL" prefHeight="15.0" />
                   <TextField fx:id="addField" onAction="#addItem" />
                 <Button fx:id="add" mnemonicParsing="false" onAction="#addItem" prefHeight="25.0" text="Aggiungi">

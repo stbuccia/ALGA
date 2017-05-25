@@ -23,7 +23,7 @@ public class Algoritmo<Void> extends Task<Void> {
 	private Input input;
 	private boolean inPausa;
 	private boolean isPressed = false;
-	private int pivotIndex = 0, currentIndex = 0;
+	private int pivotIndex = 0, currentIndex = 0, currentJ = 0;
 	private int firstSwitched = 0, secondSwitched = 0;
 
 	@Override
@@ -49,11 +49,13 @@ public class Algoritmo<Void> extends Task<Void> {
 		for (int i = primo; i <= ultimo; i++) {
 			updateMessage(this.getItems() +"\nControllo " + input.items[i] + " con " + p);
 			this.currentIndex = i;
+			this.currentJ = pivotIndex;
 			tick();
 			updateCanvas();
 			if (input.compareTo(input.items[i], p) < 0) {
 					if (isCancelled()) return 0;
 					updateMessage(this.getItems() + "\nScambio "+ input.items[i] + " con "+ input.items[j+1] + " (pivot: "+ input.items[pivotIndex] + ")");
+					this.currentJ = j + 1;
 					tick();
 				j++;
 				temp = input.items[i];
@@ -200,6 +202,10 @@ public class Algoritmo<Void> extends Task<Void> {
 	 */
 	public int getPivotIndex() {
 		return this.pivotIndex;
+	}
+	
+	public int getCurrentJ(){
+		return this.currentJ;
 	}
 	
 	/**
