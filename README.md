@@ -47,7 +47,7 @@ Una volta esaminati tutti gli elementi, visto che `j` è sempre stato prima (o a
 
 + Lo scopo del programma è quello di visualizzare l'esecuzione del QuickSort. L'utente può inserire dati da file, da tastiera o scegliere la generazione casuale (sempre rimandendo all'interno di un range di limitazione per la grandezza dell'input). L'esecuzione mostra ogni passo dell'ordinamento, e viene mostrata visualizzando i vari dati in rettangoli, con altezze in funzione della grandezza relativa dei dati che rappresentano. Vengono colorati i rettangoli al momento confrontati, insieme al pivot e ai rettangoli scambiati.
 
-+ ** Nota sull'acquisizione dei dati da file: ** -- In caso di acquisizione dei dati da file, il programma acquisisce sempre la quantità di dati impostata nella maschera iniziale: se ne trova di meno completerà quelli trovati con dati nulli (0, o stringhe vuote), e se ne trova di più ignorerà quelli successivi. In caso di file misti, con input non consistente in tipo, il programma si limiterà a ignorare le righe in input con i dati che non sono del tipo richiesto. Il formato del file in input è di un dato per riga.
++ **Nota sull'acquisizione dei dati da file:** -- In caso di acquisizione dei dati da file, il programma acquisisce sempre la quantità di dati impostata nella maschera iniziale: se ne trova di meno completerà quelli trovati con dati nulli (0, o stringhe vuote), e se ne trova di più ignorerà quelli successivi. In caso di file misti, con input non consistente in tipo, il programma si limiterà a ignorare le righe in input con i dati che non sono del tipo richiesto. Il formato del file in input è di un dato per riga.
 
 
 + La documentazione delle classi si trova in `/doc`
