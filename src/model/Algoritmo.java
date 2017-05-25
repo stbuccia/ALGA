@@ -44,6 +44,8 @@ public class Algoritmo<Void> extends Task<Void> {
 		Object p = input.items[primo];
 		Object temp;
 			updateMessage(this.getItems() + "\nIl pivot diventa "+p);
+			this.currentIndex = primo;
+			this.currentJ = primo;
 			tick();
 			pivotChanged(primo);
 		for (int i = primo; i <= ultimo; i++) {
@@ -67,7 +69,7 @@ public class Algoritmo<Void> extends Task<Void> {
 			}
 			
 		}
-			this.currentIndex = primo;
+			this.currentIndex = j;
 			updateMessage(this.getItems() +"\nScambio " + input.items[j] + " con " + input.items[primo]);
 			tick();
 		input.items[primo] = input.items[j];
