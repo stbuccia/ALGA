@@ -129,8 +129,10 @@ public class Input {
 				l = l.trim();
 				if (validateInput(l)) {
 					items[i] = fromString(l);
-				} else {
+				} else if (!isString()) {
 					items[i] = maxInRangeElement();
+				} else {
+					items[i] = nullElement();
 				}
 			} else
 				items[i] = nullElement();
@@ -245,6 +247,7 @@ public class Input {
 	 */
 	public boolean validateInput(String s) {
 		Object tc = fromString(s);
+		
 		if (compareTo(tc, maxInRangeElement()) > 0
 				|| compareTo(tc, minInRangeElement()) < 0) {
 			// System.out.println("Comparison: "+ compareTo(tc,
