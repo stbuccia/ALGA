@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.event.ActionEvent;
 
 /**
@@ -24,17 +26,19 @@ public class WelcomeWindowController {
 	@FXML
 	private CheckBox auto;
 	@FXML
-	private TextField path, delay, num, value;
+	private TextField delay, num, value;
 	@FXML
 	private Slider slide_delay, slide_num, slide_value;
 	@FXML
-	private Label stato;
+	private Label stato, path;
 	@FXML
-	private Button start;
+	private Button start, sfoglia;
 
+	private File file = null;
 	@FXML
 	private void togglePath() {
 		String s = Modalita.getSelectionModel().getSelectedItem();
+		sfoglia.setDisable(!s.equals("File"));
 		path.setDisable(!s.equals("File"));
 		control();
 	}
@@ -56,9 +60,8 @@ public class WelcomeWindowController {
 
 	private boolean checkPath() {
 		boolean disable = false;
-		if (!path.isDisable()) {
-			String s = path.getText();
-			if (!new File(s).exists()) {
+		if (!sfoglia.isDisable()) {
+			if (!file.exists()) {
 				stato.setText("Il file non esiste");
 				disable = true;
 				start.setDisable(true);
@@ -157,7 +160,17 @@ public class WelcomeWindowController {
 		value.setText(String.valueOf((int) slide_value.getValue()));
 		stato.setText("");
 	}
+	
+	@FXML
+	private void searchFile(){
 
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open Resource File");
+		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"));
+		file = fileChooser.showOpenDialog(Main.stage);
+		path.setText(file.getPath());
+		control();
+	}
 	@FXML
 	private void inizia(ActionEvent event) {
 
@@ -166,7 +179,10 @@ public class WelcomeWindowController {
 		n = Integer.parseInt(num.getText());
 		model.Main.i = new model.Input(n, Tipo.getSelectionModel().getSelectedItem());
 		model.Main.i.setMode(Modalita.getSelectionModel().getSelectedItem());
-		model.Main.i.setPath(path.getText());
+		System.out.println(file);
+		if (Main.i.getMode().equals("File")){
+			Main.i.file = file; 
+		}
 		model.Main.i.setMaxVal(Integer.parseInt(value.getText()));
 		if (auto.isSelected())
 			model.Main.i.setByStep(false);
@@ -184,12 +200,14 @@ public class WelcomeWindowController {
 		Modalita.getSelectionModel().select("Casuale");
 
 		try {
-			File f = new File(Main.u.getClass().getResource("/assets/DataSample.txt").toURI());
-			path.setText(f.getAbsolutePath().toString());
+			file = new File(Main.u.getClass().getResource("/assets/DataSample.txt").toURI());
+			path.setText(file.getAbsolutePath().toString());
 		} catch (Exception e) {
 			System.out.println("WARNING: Default data set non provided");
 			path.setText("/percorso/al/file.txt");
 		}
+		
+		sfoglia.setDisable(true);
 		path.setDisable(true);
 
 		delay.setText(""+Main.u.pref_delay);

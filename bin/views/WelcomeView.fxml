@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeWindowController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.WelcomeWindowController">
    <children>
       <Text fill="#6e6e6e" layoutX="100.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="QuickSort Animator" textAlignment="CENTER" wrappingWidth="478.0">
 			         <font>
@@ -40,8 +40,7 @@
 			            </FXCollections>
 				      </items>
 					</ComboBox>
-			      <Text layoutX="41.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File sorgente " />
-			      <TextField id="path" fx:id="path" layoutX="202.0" layoutY="272.0" onAction="#control" onKeyReleased="#control" prefHeight="26.0" prefWidth="415.0" />
+			      <Text layoutX="39.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File sorgente (*.txt)" />
 			      <Text layoutX="41.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delay (ms)" />
 			      <TextField id="delay" fx:id="delay" layoutX="202.0" layoutY="313.0" onAction="#control" onKeyReleased="#control" prefHeight="26.0" prefWidth="128.0" />
 			      <CheckBox fx:id="auto" layoutX="28.0" layoutY="489.0" mnemonicParsing="false" onAction="#toggleDelay" prefHeight="18.0" prefWidth="394.0" text="Eseguire automaticamente l'algoritmo" />
@@ -53,8 +52,10 @@
 			      <TextField id="value" fx:id="value" layoutX="202.0" layoutY="388.0" onAction="#control" onKeyReleased="#control" prefHeight="26.0" prefWidth="128.0" />
 			      <Button layoutX="432.0" layoutY="485.0" mnemonicParsing="false" onAction="#initialize" prefHeight="26.0" prefWidth="89.0" text="Ripristina" />
       <Button fx:id="aiuto" layoutX="384.0" layoutY="485.0" mnemonicParsing="false" onAction="#openReadMe" prefHeight="25.0" prefWidth="22.0" text="?" />
-      <Slider fx:id="slide_delay" blockIncrement="5.0" layoutX="348.0" layoutY="316.0" max="500.0" onMouseDragged="#movedSlider" onKeyPressed="#movedSlider" onMouseReleased="#movedSlider" prefHeight="16.0" prefWidth="187.0" />
-      <Slider fx:id="slide_num" blockIncrement="5.0" layoutX="348.0" layoutY="357.0" max="1000.0" min="1.0" onMouseDragged="#movedSlider" onKeyPressed="#movedSlider" onMouseReleased="#movedSlider" prefHeight="16.0" prefWidth="187.0" />
-      <Slider fx:id="slide_value" blockIncrement="5.0" layoutX="348.0" layoutY="394.0" max="1000.0" min="1.0" onMouseDragged="#movedSlider" onKeyPressed="#movedSlider" onMouseReleased="#movedSlider" prefHeight="16.0" prefWidth="187.0" />
+      <Slider fx:id="slide_delay" blockIncrement="5.0" layoutX="348.0" layoutY="316.0" max="500.0" onKeyPressed="#movedSlider" onMouseDragged="#movedSlider" onMouseReleased="#movedSlider" prefHeight="16.0" prefWidth="187.0" />
+      <Slider fx:id="slide_num" blockIncrement="5.0" layoutX="348.0" layoutY="357.0" max="1000.0" min="1.0" onKeyPressed="#movedSlider" onMouseDragged="#movedSlider" onMouseReleased="#movedSlider" prefHeight="16.0" prefWidth="187.0" />
+      <Slider fx:id="slide_value" blockIncrement="5.0" layoutX="348.0" layoutY="394.0" max="1000.0" min="1.0" onKeyPressed="#movedSlider" onMouseDragged="#movedSlider" onMouseReleased="#movedSlider" prefHeight="16.0" prefWidth="187.0" />
+      <Button fx:id="sfoglia" layoutX="202.0" layoutY="271.0" mnemonicParsing="false" onAction="#searchFile" text="Sfoglia" />
+      <Label fx:id="path" layoutX="266.0" layoutY="276.0" prefHeight="15.0" prefWidth="367.0" />
          </children>
 </AnchorPane>

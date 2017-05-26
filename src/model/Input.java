@@ -15,7 +15,11 @@ public class Input {
 	 */
 	public Object[] initial;
 	
-	private String path = "";
+	/**
+	 * File nel quale prendere eventualmente i dati
+	 */
+	public File file = null;
+	
 	private Integer max_val = Main.u.pref_value, lunghStr = 20;
 	private String mode, type;
 	private int delay = Main.u.pref_delay;
@@ -90,12 +94,12 @@ public class Input {
 
 		azzeraItems();
 		String l = "";
-		System.out.println("INFO: Loading data from " + this.path);
+		System.out.println("INFO: Loading data from " + this.file.getPath());
 		BufferedReader reader = null;
 		File source = null;
 
 		try {
-			source = new File(this.path);
+			source = new File(this.file.getPath());
 			reader = new BufferedReader(new FileReader(source));
 			for (int i = 0; i < items.length; ++i) {
 				try {
@@ -158,14 +162,6 @@ public class Input {
 	 */
 	public void setMaxVal(Integer n) {
 		this.max_val = n;
-	}
-
-	/**
-	 * Imposta il percorso alla sorgente dei dati
-	 * @param s 	File dell'input
-	 */
-	public void setPath(String s) {
-		this.path = s;
 	}
 
 	/**

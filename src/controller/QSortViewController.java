@@ -75,8 +75,7 @@ public class QSortViewController {
 	private Label pivotLbl;
 	
 	private static int counterKey = 0;
-
-
+	
 	@FXML
 	private void toWelcomeView(ActionEvent event) {
 		if (model.Main.a != null) {
